@@ -21,12 +21,39 @@ t_data	*create_pic(t_map_data *map_data)
 	if (NULL == pic)
 		return (NULL);
 	pic->mlx = mlx_init();
-	// pic->window = mlx_new_window(pic->mlx, MAX_W, MAX_H, map_data->filename);
-	pic->window = mlx_new_window(pic->mlx, MAX_W, MAX_H, "test_window");
-	pic->img = mlx_new_image(pic->mlx, MAX_W, MAX_H);
+	// pic->window = mlx_new_window(pic->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, map_data->filename);
+	pic->window = mlx_new_window(pic->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "test_window");
+	pic->img = mlx_new_image(pic->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	pic->addr = mlx_get_data_addr(pic->img, &pic->bits_per_p,
 			&pic->line_len, &pic->endian);
 	return (pic);
+}
+
+void	render(t_data *pic, t_scene *scene)
+{
+	int		x;
+	int		y;
+	int		color;
+	t_ray	ray;
+
+(void) scene;
+(void) ray;
+	printf("starting render\n");
+	y = 0;
+	while (y < WINDOW_HEIGHT)
+	{
+		x = 0;
+		while (x < WINDOW_WIDTH)
+		{
+			color = GREEN;
+			//ray = ray_from_camera(x, y, scene->camera);
+			//color = ray_cast(&ray, scene, 0);
+			my_mlx_pixel_put(pic->img, x, y, color);
+			++x;
+		}
+		++y;
+	}
+	printf("done render\n");
 }
 
 void	mlx_run(t_dot **map, t_map_data *map_data)
@@ -48,10 +75,12 @@ void	mlx_run(t_dot **map, t_map_data *map_data)
 
 
 	draw_line(pixel1, pixel2, pic);
+	//render(pic, NULL);
 	mlx_put_image_to_window(pic->mlx, pic->window, pic->img, M_LEFT, M_TOP);
 	mlx_loop(pic->mlx);
 	free(pic);
 }
+
 
 void	*clear_map(t_dot **map, int i)
 {

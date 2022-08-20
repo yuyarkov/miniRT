@@ -16,7 +16,7 @@ void	my_mlx_pixel_put(t_data *pic, int x, int y, int color)
 {
 	char	*dest;
 
-	if (x > 0 && x < (MAX_W - M_LEFT) && y > 0 && y < (MAX_H - M_TOP))
+	if (x > 0 && x < (WINDOW_WIDTH - M_LEFT) && y > 0 && y < (WINDOW_HEIGHT - M_TOP))
 	{
 		dest = pic->addr + (y * pic->line_len + x * (pic->bits_per_p / 8));
 		*(unsigned int *)dest = color;
