@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dirony <dirony@student.21-school.ru>       +#+  +:+       +#+        */
+/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:11:04 by dirony            #+#    #+#             */
-/*   Updated: 2021/12/11 18:16:37 by dirony           ###   ########.fr       */
+/*   Updated: 2022/08/21 21:18:26 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "miniRT.h"
+#include "../includes/miniRT.h"
 
 t_data	*create_pic(t_map_data *map_data)
 {
@@ -101,7 +101,11 @@ int	main(int argc, char **argv)
 
 (void) argc;
 (void) argv;
-	printf("\n      hello\n");
+	// printf("\n      hello\n");
+	if (ft_check_input(argc, argv))
+		return 1;
+	if (check_map(argv[1]))
+		return 1;
 	// if (argc < 1)
 	// 	return (0);
 	map_data = malloc(sizeof(t_map_data));
@@ -114,6 +118,6 @@ int	main(int argc, char **argv)
 	// 	free(map_data);
 	// 	return (0);
 	// }
-	mlx_run(map, map_data);
+	// mlx_run(map, map_data);
 	return (0);
 }

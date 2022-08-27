@@ -6,7 +6,7 @@ INC_PATH = ./includes
 MLIBX_PATH = ./mlx
 LIB_PATH =   ./libft/
 
-SRC_FILES =	main.c 		draw_utils.c
+SRC_FILES =	main.c draw_utils.c error_parser.c map_parser.c check_colour.c check_vector.c check_geometry.c
 
 
 LIBFT =   libft.a
@@ -16,7 +16,7 @@ OBJS = ${addprefix ${OBJ_PATH}/,${SRC_FILES:.c=.o}}
 
 INCLUDES = -I${INC_PATH} -I${MLIBX_PATH}
 
-CFLAGS = -Wall -Werror -Wextra -MMD -O2
+CFLAGS = -MMD -O2 #-Wall -Werror -Wextra -MMD -O2
 LFLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
 
 all : libmake $(NAME)
@@ -24,7 +24,7 @@ all : libmake $(NAME)
 libmake :	
 	@make -C $(LIB_PATH) 
 
-$(NAME) : $(OBJS)
+$(NAME) : $(OBJS) Makefile
 	@cp $(LIB_PATH)$(LIBFT) $(LIBFT)
 	@make -C $(MLIBX_PATH) all
 	gcc $(OBJS) $(LIBFT) $(CFLAGS) $(LFLAGS) -o $(NAME)

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dirony <dirony@student.21-school.ru>       +#+  +:+       +#+        */
+/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:12:14 by dirony            #+#    #+#             */
-/*   Updated: 2021/12/11 19:14:53 by dirony           ###   ########.fr       */
+/*   Updated: 2022/08/21 20:48:53 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,5 +165,28 @@ void	set_def_position(t_map_data *map_data);
 t_pixel	rotate_flat(t_pixel pixel, t_map_data *map_data);
 void	draw_flat_h(t_dot **map, t_map_data *map_data, t_data *pic);
 void	draw_flat_v(t_dot **map, t_map_data *map_data, t_data *pic);
+
+/* error_parser.c */
+
+int		ft_check_input(int argc, char **argv);
+
+/* map_parser.c */
+
+int		check_map(char *map);
+
+/* check_colour.c */
+
+int		ft_check_colour(char *str);
+void	ft_free_split(char **ptr);
+
+/* check_vector.c */
+
+int		ft_check_vector(char *str);
+
+/* check_geometry.c */
+
+int		ft_check_angle(int fov);
+int		ft_check_ratio(float k);
+int		ft_check_lparam(float l);
 
 #endif
