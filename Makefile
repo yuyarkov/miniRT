@@ -16,7 +16,7 @@ OBJS = ${addprefix ${OBJ_PATH}/,${SRC_FILES:.c=.o}}
 
 INCLUDES = -I${INC_PATH} -I${MLIBX_PATH}
 
-CFLAGS = -MMD -O2 #-Wall -Werror -Wextra -MMD -O2
+CFLAGS = -Wall -Werror -Wextra -MMD -O2 -fsanitize=address
 LFLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
 
 all : libmake $(NAME)
