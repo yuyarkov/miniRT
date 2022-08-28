@@ -21,11 +21,11 @@ t_data	*create_pic(t_map_data *map_data)
 	if (NULL == pic)
 		return (NULL);
 	pic->mlx = mlx_init();
-	// pic->window = mlx_new_window(pic->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, map_data->filename);
 	pic->window = mlx_new_window(pic->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "test_window");
 	pic->img = mlx_new_image(pic->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	pic->addr = mlx_get_data_addr(pic->img, &pic->bits_per_p,
 			&pic->line_len, &pic->endian);
+	
 	return (pic);
 }
 
@@ -38,17 +38,17 @@ void	render(t_data *pic, t_scene *scene)
 
 (void) scene;
 (void) ray;
-	printf("starting render\n");
+	printf("\nstarting render, pic->line_len: %d\n\n", pic->line_len);
 	y = 0;
-	while (y < WINDOW_HEIGHT)
+	while (y < WINDOW_HEIGHT - 1)
 	{
 		x = 0;
-		while (x < WINDOW_WIDTH)
+		while (x < WINDOW_WIDTH - 1)
 		{
 			color = GREEN;
 			//ray = ray_from_camera(x, y, scene->camera);
 			//color = ray_cast(&ray, scene, 0);
-			my_mlx_pixel_put(pic->img, x, y, color);
+			my_mlx_pixel_put(pic, x, y, color);
 			++x;
 		}
 		++y;
@@ -65,7 +65,8 @@ void	mlx_run(t_dot **map, t_map_data *map_data)
 	map_data->map = map;
 	pic = create_pic(map_data);
 	map_data->pic = pic;
-	//mlx_hook(pic->window, 02, (1L << 0), &key_h, map_data);
+	// mlx_hook(mlx->win_ptr, 17, 0, crossclose, (void *)mlx); //закрытие по клику
+	// mlx_hook(mlx->win_ptr, 02, 1L << 0, esc_key, (void *)mlx); //закрытие по Esc
 	pixel1.x = 50;
 	pixel1.y = 50;
 	pixel1.color = WHITE;
@@ -75,7 +76,7 @@ void	mlx_run(t_dot **map, t_map_data *map_data)
 
 
 	draw_line(pixel1, pixel2, pic);
-	//render(pic, NULL);
+	render(map_data->pic, NULL);
 	mlx_put_image_to_window(pic->mlx, pic->window, pic->img, M_LEFT, M_TOP);
 	mlx_loop(pic->mlx);
 	free(pic);
