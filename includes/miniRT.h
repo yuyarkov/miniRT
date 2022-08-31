@@ -26,8 +26,8 @@
 # define GREEN 0x00FF00
 # define BUFF_SIZE 40096
 # define DEF_COLOR 16777215
-# define WINDOW_WIDTH 300
-# define WINDOW_HEIGHT 200
+# define WINDOW_WIDTH 900
+# define WINDOW_HEIGHT 600
 # define PI_STEP 0.19634954084
 # define M_LEFT 10
 # define M_TOP 10
@@ -112,9 +112,16 @@ typedef struct s_ambient
 	t_color		color;
 }				t_ambient;
 
+typedef struct s_sphere
+{
+	t_vec3		center;
+	double		radius;
+	int			color;
+}				t_sphere;
+
 typedef struct s_scene
 {
-	t_list		**objects;
+	t_sphere	*spheres;
 	t_list		**lights;
 	t_camera	*camera;
 	//t_ambient	*ambient;

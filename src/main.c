@@ -12,11 +12,10 @@
 
 #include "../includes/miniRT.h"
 
-t_data	*create_pic(t_map_data *map_data)
+t_data	*create_pic()
 {
 	t_data	*pic;
 
-(void) map_data;
 	pic = malloc(sizeof(t_data));
 	if (NULL == pic)
 		return (NULL);
@@ -56,27 +55,19 @@ void	render(t_data *pic, t_scene *scene)
 	printf("done render\n");
 }
 
-void	mlx_run(t_dot **map, t_map_data *map_data)
+int simple_exit()
+{
+	exit(EXIT_SUCCESS);
+}
+
+void	mlx_run(t_scene *scene)
 {
 	t_data	*pic;
-	t_pixel pixel1;
-	t_pixel pixel2;
-
-	map_data->map = map;
-	pic = create_pic(map_data);
-	map_data->pic = pic;
-	// mlx_hook(mlx->win_ptr, 17, 0, crossclose, (void *)mlx); //закрытие по клику
-	// mlx_hook(mlx->win_ptr, 02, 1L << 0, esc_key, (void *)mlx); //закрытие по Esc
-	pixel1.x = 50;
-	pixel1.y = 50;
-	pixel1.color = WHITE;
-	pixel2.x = 150;
-	pixel2.y = 150;
-	pixel2.color = WHITE;
-
-
-	draw_line(pixel1, pixel2, pic);
-	render(map_data->pic, NULL);
+                                                                                                                                                               
+	pic = create_pic();
+	mlx_hook(pic->window, 17, 0, simple_exit, (void *)pic->mlx); //закрытие по клику
+	mlx_hook(pic->window, 02, 1L << 0, simple_exit, (void *)pic->mlx); //закрытие по Esc
+	render(pic, scene);
 	mlx_put_image_to_window(pic->mlx, pic->window, pic->img, M_LEFT, M_TOP);
 	mlx_loop(pic->mlx);
 	free(pic);
@@ -95,30 +86,39 @@ void	*clear_map(t_dot **map, int i)
 	return (NULL);
 }
 
+void	parse_scene(char *filename, t_scene *scene)
+{
+	(void) filename;
+	t_camera camera;
+	t_sphere sphere;
+//пока захардкодил пробные значения для сцены. есть камера и одна сфера.
+	camera.position.x = -50;
+	camera.position.y = 0;
+	camera.position.z = 20;
+	camera.orientation.x = 0;
+	camera.orientation.y = 0; 
+	camera.orientation.z = 1; 
+	camera.fov = 70;
+
+	sphere.center.x = 0;
+	sphere.center.x = 0;
+	sphere.center.x = 20.6;
+	sphere.radius = 12.6;
+	sphere.color = WHITE;
+
+	scene->spheres = &sphere;
+	scene->camera = &camera;
+}
+
 int	main(int argc, char **argv)
 {
-	t_dot		**map;
-	t_map_data	*map_data;
+	t_scene	scene;
 
-(void) argc;
-(void) argv;
-	// printf("\n      hello\n");
 	if (ft_check_input(argc, argv))
 		return 1;
 	if (check_map(argv[1]))
 		return 1;
-	// if (argc < 1)
-	// 	return (0);
-	map_data = malloc(sizeof(t_map_data));
-	if (NULL == map_data)
-		return (0);
-	//map = parse_map(argv[1], map_data);
-	map = NULL;
-	// if (!map)
-	// {
-	// 	free(map_data);
-	// 	return (0);
-	// }
-	// mlx_run(map, map_data);
+	parse_scene(argv[1], &scene);
+	mlx_run(&scene);
 	return (0);
 }
