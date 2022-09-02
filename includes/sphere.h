@@ -1,4 +1,4 @@
-#include "../includes/miniRT.h"
+#include "miniRT.h"
 
 #ifndef SPHERE_H
 # define SPHERE_H

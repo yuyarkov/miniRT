@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:12:14 by dirony            #+#    #+#             */
-/*   Updated: 2022/09/02 22:49:33 by merlich          ###   ########.fr       */
+/*   Updated: 2022/09/02 22:53:06 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,12 +96,12 @@ typedef struct s_data {
 // 	struct s_camera	*next;
 // }					t_camera;
 
-// typedef struct s_ambient
-// {
-// 	float				intensity;
-// 	t_color				color;
-// 	struct s_ambient	*next;
-// }						t_ambient;
+typedef struct s_ambient
+{
+	float				intensity;
+	t_color				color;
+	struct s_ambient	*next;
+}						t_ambient;
 
 // typedef struct s_sphere
 // {
@@ -136,34 +136,34 @@ typedef struct s_cylinder
 // 	struct s_ray	*next;
 // }					t_ray;
 
-// typedef struct s_scene
-// {
-// 	int			err_flag;
+typedef struct s_scene
+{
+	int			err_flag;
 
-// 	t_list		**lights;
-// 	t_camera	*camera;
-// 	t_ambient	*ambient;
+	t_list		**lights;
+	t_camera	*camera;
+	t_ambient	*ambient;
 
 
-// 	/* Указатели на голову списков */
-// 	t_plane		*planes;
-// 	t_sphere	*spheres;
-// 	t_cylinder	*cylinders;
+	/* Указатели на голову списков */
+	t_plane		*planes;
+	t_sphere	*spheres;
+	t_cylinder	*cylinders;
 
-// 	// t_camera	*camera;
-// 	t_ray		*ray;
-// 	// t_ambient	*ambient;
+	// t_camera	*camera;
+	t_ray		*ray;
+	// t_ambient	*ambient;
 
-// 	/* Итераторы */
-// 	t_plane		*planes_head;
-// 	t_sphere	*spheres_head;
-// 	t_cylinder	*cylinders_head;
+	/* Итераторы */
+	t_plane		*planes_head;
+	t_sphere	*spheres_head;
+	t_cylinder	*cylinders_head;
 
-// 	t_camera	*camera_head;
-// 	t_ray		*ray_head;
-// 	t_ambient	*ambient_head;
+	t_camera	*camera_head;
+	t_ray		*ray_head;
+	t_ambient	*ambient_head;
 
-// }				t_scene;
+}				t_scene;
 
 char	*read_string_from_file(char *file_name);
 int		get_width(char *s);
