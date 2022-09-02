@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: merlich <merlich@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/09/02 22:45:06 by merlich           #+#    #+#              #
+#    Updated: 2022/09/02 22:45:08 by merlich          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME =	miniRT
 
 OBJ_PATH = ./obj
@@ -6,8 +18,14 @@ INC_PATH = ./includes
 MLIBX_PATH = ./mlx
 LIB_PATH =   ./libft/
 
-SRC_FILES =	main.c draw_utils.c error_parser.c map_parser.c check_colour.c check_vector.c check_geometry.c \
-			get_next_line.c get_next_line_utils.c 
+SRC_FILES =	main.c 					draw_utils.c\
+			error_parser.c  		map_parser.c\
+			check_colour.c 			check_vector.c\
+			check_geometry.c		matrix_utils.c\
+			ray_utils.c				vector_operations.c\
+			debug_utils.c			get_next_line.c\
+			get_next_line_utils.c	
+			
 
 
 LIBFT =   libft.a

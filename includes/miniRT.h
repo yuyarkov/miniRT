@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:12:14 by dirony            #+#    #+#             */
-/*   Updated: 2022/09/02 22:33:30 by merlich          ###   ########.fr       */
+/*   Updated: 2022/09/02 22:49:33 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,15 @@
 # include "limits.h"
 
 # include <stdio.h>
+
+# include "vector.h"
+# include "camera.h"
+# include "sphere.h"
+# include "ray.h"
+# include "matrix.h"
+
+# include "debug.h" //чтобы выводить на экран вектора, матрицы и т.д. удалить перед сдачей
+
 
 # define WHITE 0xFFFFFF
 # define GREEN 0x00FF00
@@ -72,35 +81,35 @@ typedef struct s_data {
 	int		endian;
 }	t_data;
 
-typedef struct s_vec3
-{
-	float	x;
-	float	y;
-	float	z;
-}				t_vec3;
+// typedef struct s_vec3
+// {
+// 	float	x;
+// 	float	y;
+// 	float	z;
+// }				t_vec3;
 
-typedef struct s_camera
-{
-	t_vec3			position;
-	t_vec3			orientation;
-	int				fov;
-	struct s_camera	*next;
-}					t_camera;
+// typedef struct s_camera
+// {
+// 	t_vec3			position;
+// 	t_vec3			orientation;
+// 	int				fov;
+// 	struct s_camera	*next;
+// }					t_camera;
 
-typedef struct s_ambient
-{
-	float				intensity;
-	t_color				color;
-	struct s_ambient	*next;
-}						t_ambient;
+// typedef struct s_ambient
+// {
+// 	float				intensity;
+// 	t_color				color;
+// 	struct s_ambient	*next;
+// }						t_ambient;
 
-typedef struct s_sphere
-{
-	t_vec3			center;
-	double			radius;
-	int				color;
-	struct s_sphere	*next;
-}					t_sphere;
+// typedef struct s_sphere
+// {
+// 	t_vec3			center;
+// 	double			radius;
+// 	int				color;
+// 	struct s_sphere	*next;
+// }					t_sphere;
 
 typedef struct s_plane
 {
@@ -120,51 +129,45 @@ typedef struct s_cylinder
 	struct s_cylinder	*next;
 }						t_cylinder;
 
-typedef struct s_ray
-{
-	t_vec3			origin;
-	t_vec3			direction;
-	struct s_ray	*next;
-}					t_ray;
+// typedef struct s_ray
+// {
+// 	t_vec3			origin;
+// 	t_vec3			direction;
+// 	struct s_ray	*next;
+// }					t_ray;
 
-typedef struct s_scene
-{
-	int			err_flag;
+// typedef struct s_scene
+// {
+// 	int			err_flag;
 
-	t_list		**lights;
-	t_camera	*camera;
-	t_ambient	*ambient;
+// 	t_list		**lights;
+// 	t_camera	*camera;
+// 	t_ambient	*ambient;
 
 
-	/* Указатели на голову списков */
-	t_plane		*planes;
-	t_sphere	*spheres;
-	t_cylinder	*cylinders;
+// 	/* Указатели на голову списков */
+// 	t_plane		*planes;
+// 	t_sphere	*spheres;
+// 	t_cylinder	*cylinders;
 
-	// t_camera	*camera;
-	t_ray		*ray;
-	// t_ambient	*ambient;
+// 	// t_camera	*camera;
+// 	t_ray		*ray;
+// 	// t_ambient	*ambient;
 
-	/* Итераторы */
-	t_plane		*planes_head;
-	t_sphere	*spheres_head;
-	t_cylinder	*cylinders_head;
+// 	/* Итераторы */
+// 	t_plane		*planes_head;
+// 	t_sphere	*spheres_head;
+// 	t_cylinder	*cylinders_head;
 
-	t_camera	*camera_head;
-	t_ray		*ray_head;
-	t_ambient	*ambient_head;
+// 	t_camera	*camera_head;
+// 	t_ray		*ray_head;
+// 	t_ambient	*ambient_head;
 
-}				t_scene;
+// }				t_scene;
 
 char	*read_string_from_file(char *file_name);
 int		get_width(char *s);
 int		get_height(char *s);
-// t_dot	**get_map_from_string(char *s, t_dot **map, t_map_data *map_data);
-// t_dot	**parse_map(char *file_name, t_map_data *map_data);
-// void	*clear_map(t_dot **map, int i);
-
-
-
 
 int		ft_is_hexdigit(char ch);
 int		get_hex_digit(char ch);
@@ -175,26 +178,6 @@ void	get_delta(t_pixel *pixel1, t_pixel *pixel2);
 int		get_gradient(t_pixel pixel1, t_pixel pixel2);
 int		get_gradient_color(int color1, int color2, float progress);
 void	draw_line(t_pixel pixel1, t_pixel pixel2, t_data *pic);
-// t_pixel	iso_pixel(t_pixel pixel, double z, t_map_data *map_data);
-// void	draw_iso_grid_h(t_dot **map, t_map_data *map_data, t_data *pic);
-// void	draw_iso_grid_v(t_dot **map, t_map_data *map_data, t_data *pic);
-
-// int		key_h(int keycode, t_map_data *map_data);
-// void	parse_keycode(int keycode, t_map_data *map_data);
-
-// void	zoom_img(int keycode, t_map_data *map_data);
-// void	rotate_axe_x(int keycode, t_map_data *map_data);
-// void	rotate_axe_y(int keycode, t_map_data *map_data);
-// void	rotate_axe_z(int keycode, t_map_data *map_data);
-// void	rotate_iso_img(int keycode, t_map_data *map_data);
-// void	move_img(int keycode, t_map_data *map_data);
-// void	set_max_alt(t_dot **map, t_map_data *map_data);
-// void	set_def_offsets(int scale, t_map_data *map_data);
-// void	set_def_position(t_map_data *map_data);
-
-// t_pixel	rotate_flat(t_pixel pixel, t_map_data *map_data);
-// void	draw_flat_h(t_dot **map, t_map_data *map_data, t_data *pic);
-// void	draw_flat_v(t_dot **map, t_map_data *map_data, t_data *pic);
 
 /* error_parser.c */
 
