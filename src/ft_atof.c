@@ -1,38 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_parser.c                                       :+:      :+:    :+:   */
+/*   ft_atof.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/21 19:04:03 by merlich           #+#    #+#             */
-/*   Updated: 2022/09/02 19:57:07 by merlich          ###   ########.fr       */
+/*   Created: 2022/08/21 21:19:57 by merlich           #+#    #+#             */
+/*   Updated: 2022/08/28 18:38:38 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/miniRT.h"
 
-int	check_map(char *map)
+float	ft_atof(char *str)
 {
-	int	fd;
+	float	num;
+
+	num = 0;
+
 	
-	fd = open(map, O_RDONLY);
-	if (fd < 0)
-	{
-		printf("Error!\nCannot open the file %s\n", map);
-		return 1;
-	}
-	
-	close(fd);
-	return 0;
+
+	return num;
 }
-
-
-
-
-
-void	ft_print_error(void)
-{
-
-}
-

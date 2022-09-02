@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:11:04 by dirony            #+#    #+#             */
-/*   Updated: 2022/08/21 21:18:26 by merlich          ###   ########.fr       */
+/*   Updated: 2022/09/02 19:56:19 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,17 +74,17 @@ void	mlx_run(t_scene *scene)
 }
 
 
-void	*clear_map(t_dot **map, int i)
-{
-	while (i - 1)
-	{
-		free(map[i - 1]);
-		i--;
-	}
-	free(map[0]);
-	free(map);
-	return (NULL);
-}
+// void	*clear_map(t_dot **map, int i)
+// {
+// 	while (i - 1)
+// 	{
+// 		free(map[i - 1]);
+// 		i--;
+// 	}
+// 	free(map[0]);
+// 	free(map);
+// 	return (NULL);
+// }
 
 void	parse_scene(char *filename, t_scene *scene)
 {
@@ -114,9 +114,7 @@ int	main(int argc, char **argv)
 {
 	t_scene	scene;
 
-	if (ft_check_input(argc, argv))
-		return 1;
-	if (check_map(argv[1]))
+	if (ft_check_input(argc, argv) || check_map(argv[1]))
 		return 1;
 	parse_scene(argv[1], &scene);
 	mlx_run(&scene);

@@ -6,7 +6,8 @@ INC_PATH = ./includes
 MLIBX_PATH = ./mlx
 LIB_PATH =   ./libft/
 
-SRC_FILES =	main.c draw_utils.c error_parser.c map_parser.c check_colour.c check_vector.c check_geometry.c
+SRC_FILES =	main.c draw_utils.c error_parser.c map_parser.c check_colour.c check_vector.c check_geometry.c \
+			get_next_line.c get_next_line_utils.c 
 
 
 LIBFT =   libft.a

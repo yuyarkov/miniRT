@@ -1,38 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_parser.c                                       :+:      :+:    :+:   */
+/*   cylinder_utils_2.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/21 19:04:03 by merlich           #+#    #+#             */
-/*   Updated: 2022/09/02 19:57:07 by merlich          ###   ########.fr       */
+/*   Created: 2022/09/02 22:15:06 by merlich           #+#    #+#             */
+/*   Updated: 2022/09/02 22:15:08 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/miniRT.h"
 
-int	check_map(char *map)
+void	ft_cylinder_lstdelone(t_cylinder *lst)
 {
-	int	fd;
-	
-	fd = open(map, O_RDONLY);
-	if (fd < 0)
+	if (NULL != lst)
 	{
-		printf("Error!\nCannot open the file %s\n", map);
-		return 1;
+		free(lst);
 	}
-	
-	close(fd);
-	return 0;
 }
 
-
-
-
-
-void	ft_print_error(void)
+void	ft_cylinder_lstclear(t_cylinder **head)
 {
+	t_cylinder	*tmp;
 
+	while (*head)
+	{
+		tmp = *head;
+		*head = tmp->next;
+		ft_cylinder_lstdelone(tmp);
+	}
 }
-
