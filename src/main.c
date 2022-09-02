@@ -28,6 +28,21 @@ t_data	*create_pic()
 	return (pic);
 }
 
+
+int sphere_intersect(t_vec3 ray_origin, t_vec3 ray_direction, t_vec3 center, float radius )
+{
+    t_vec3 oc = vector_minus(ray_origin, center);
+    float b = vector_dot_product(oc, ray_direction);
+    float c = vector_dot_product(oc, oc) - radius * radius;
+    float h = b * b - c;
+    if (h < 0.0)
+		return 0; //vec2(-1.0); // no intersection
+	else
+		return 1;
+    //h = sqrt(h); это какая-то дополнительная информация, может пригодится дальше
+    //return vec2( -b-h, -b+h );
+}
+
 void	render(t_data *pic, t_scene *scene)
 {
 	int		x;
@@ -35,8 +50,8 @@ void	render(t_data *pic, t_scene *scene)
 	int		color;
 	t_ray	ray;
 
-(void) scene;
 (void) ray;
+(void) scene;
 	printf("\nstarting render, pic->line_len: %d\n\n", pic->line_len);
 	y = 0;
 	while (y < WINDOW_HEIGHT - 1)
@@ -45,7 +60,8 @@ void	render(t_data *pic, t_scene *scene)
 		while (x < WINDOW_WIDTH - 1)
 		{
 			color = GREEN;
-			//ray = ray_from_camera(x, y, scene->camera);
+			// ray = ray_from_camera(x, y, scene->camera);
+			// color = color * sphere_intersect(ray.origin, ray.direction, scene->spheres->center, scene->spheres->radius);
 			//color = ray_cast(&ray, scene, 0);
 			my_mlx_pixel_put(pic, x, y, color);
 			++x;
@@ -73,19 +89,6 @@ void	mlx_run(t_scene *scene)
 	free(pic);
 }
 
-
-void	*clear_map(t_dot **map, int i)
-{
-	while (i - 1)
-	{
-		free(map[i - 1]);
-		i--;
-	}
-	free(map[0]);
-	free(map);
-	return (NULL);
-}
-
 void	parse_scene(char *filename, t_scene *scene)
 {
 	(void) filename;
@@ -107,6 +110,8 @@ void	parse_scene(char *filename, t_scene *scene)
 	sphere.color = WHITE;
 
 	scene->spheres = &sphere;
+	printf("inside parse, camera fov: %d\n", camera.fov);
+	print_vector(camera.position, "camera.position");
 	scene->camera = &camera;
 }
 
