@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_utils_2.c                                      :+:      :+:    :+:   */
+/*   light_utils_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "../includes/miniRT.h"
 
-void	ft_ray_lstdelone(t_ray *lst)
+void	ft_light_lstdelone(t_light *lst)
 {
 	if (NULL != lst)
 	{
@@ -20,14 +20,14 @@ void	ft_ray_lstdelone(t_ray *lst)
 	}
 }
 
-void	ft_ray_lstclear(t_ray **head)
+void	ft_light_lstclear(t_light **head)
 {
-	t_ray	*tmp;
+	t_light	*tmp;
 
 	while (*head)
 	{
 		tmp = *head;
 		*head = tmp->next;
-		ft_ray_lstdelone(tmp);
+		ft_light_lstdelone(tmp);
 	}
 }

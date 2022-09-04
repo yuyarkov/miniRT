@@ -1,12 +1,12 @@
 #ifndef VECTOR_H
 # define VECTOR_H
 
-typedef struct s_vec3
-{
-	float	x;
-	float	y;
-	float	z;
-}				t_vec3;
+// typedef struct s_vec3
+// {
+// 	float	x;
+// 	float	y;
+// 	float	z;
+// }				t_vec3;
 
 t_vec3			vec3_create(float x, float y, float z);
 t_vec3			vector_minus(t_vec3 a, t_vec3 b);

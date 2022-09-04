@@ -6,36 +6,51 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 21:45:59 by merlich           #+#    #+#             */
-/*   Updated: 2022/09/02 22:31:40 by merlich          ###   ########.fr       */
+/*   Updated: 2022/09/04 20:18:01 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/miniRT.h"
 
-t_plane	*ft_plane_lstnew(char *value)
+static void	ft_set_values(t_plane *new, char **ptr)
+{
+	char		**p1;
+	char		**p2;
+	char		**p3;
+
+	p1 = ft_split(ptr[1], ',');
+	p2 = ft_split(ptr[2], ',');
+	p3 = ft_split(ptr[3], ',');
+	new->position.x = ft_atof(p1[0]);
+	new->position.y = ft_atof(p1[1]);
+	new->position.z = ft_atof(p1[2]);
+	new->norm_vector.x = ft_atof(p2[0]);
+	new->norm_vector.y = ft_atof(p2[1]);
+	new->norm_vector.z = ft_atof(p2[2]);
+	new->color.a = 1;
+	new->color.r = ft_atoi(p3[0]);
+	new->color.g = ft_atoi(p3[1]);
+	new->color.b = ft_atoi(p3[2]);
+	new->next = NULL;
+	ft_free_split(p3);
+	ft_free_split(p2);
+	ft_free_split(p1);
+}
+
+t_plane	*ft_plane_lstnew(char **ptr)
 {
 	t_plane	*new;
 
 	new = NULL;
-	if (value)
+	if (ptr)
 	{
 		new = malloc(sizeof(t_plane));
 		if (NULL == new)
 		{
-			free(value);
+			// ft_free_split(ptr);
 			exit (1);
 		}
-		new->position.x = 0;
-		new->position.y = 0;
-		new->position.z = 0;
-		new->norm_vector.x = 0;
-		new->norm_vector.y = 0;
-		new->norm_vector.z = 0;
-		new->color.a = 1;
-		new->color.r = 0xFF;
-		new->color.g = 0xFF;
-		new->color.b = 0xFF;
-		new->next = NULL;
+		ft_set_values(new, ptr);
 	}
 	return (new);
 }

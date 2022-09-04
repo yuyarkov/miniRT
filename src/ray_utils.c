@@ -1,90 +1,59 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_utils.c                                        :+:      :+:    :+:   */
+/*   ray_utils_3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/02 22:22:04 by merlich           #+#    #+#             */
-/*   Updated: 2022/09/02 22:42:14 by merlich          ###   ########.fr       */
+/*   Created: 2022/09/02 22:42:40 by merlich           #+#    #+#             */
+/*   Updated: 2022/09/02 22:42:44 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/miniRT.h"
 
-t_ray	*ft_ray_lstnew(char *value)
+t_ray	ray_create(t_vec3 origin, t_vec3 direction)
 {
-	t_ray	*new;
+	t_ray	result;
 
-	new = NULL;
-	if (value)
-	{
-		new = malloc(sizeof(t_ray));
-		if (NULL == new)
-		{
-			free(value);
-			exit (1);
-		}
-		new->origin.x = 0;
-		new->origin.y = 0;
-		new->origin.z = 0;
-		new->direction.x = 0;
-		new->direction.y = 0;
-		new->direction.z = 0;
-		new->next = NULL;
-	}
-	return (new);
+	result.origin = origin;
+	result.direction = direction;
+	return (result);
 }
 
-int	ft_ray_lstsize(t_ray *head)
+t_vec3	ray_get_direction(int x, int y, t_camera *camera)
 {
-	int	count;
+	double	fov_coeff;
+	double	aspect_ratio;
+	double	p_x;
+	double	p_y;
+	t_vec3	dir;
 
-	count = 0;
-	while (head)
-	{
-		head = head->next;
-		count++;
-	}
-	return (count);
+    printf("inside get_direction, camera->fov: %d\n", camera->fov);
+	fov_coeff = tan(camera->fov / 2 * M_PI / 180);
+	aspect_ratio = (double)WINDOW_WIDTH / (double)WINDOW_HEIGHT;
+	p_x = (2 * (x + 0.5) / (double)WINDOW_WIDTH - 1) * aspect_ratio * fov_coeff;
+	p_y = (1 - 2 * (y + 0.5) / (double)WINDOW_HEIGHT) * fov_coeff;
+	dir = vec3_create(p_x, p_y, -1);
+	vector_normalize(&dir);
+	return (dir);
 }
 
-t_ray	*ft_ray_lstlast(t_ray *head)
+t_ray	ray_from_camera(int x, int y, t_camera *camera)
 {
-	if (head != NULL)
-	{
-		while (head->next != NULL)
-		{
-			head = head->next;
-		}
-	}
-	return (head);
-}
+	t_matrix	view;
+	t_vec3		origin;
+	t_vec3		direction;
 
-void	ft_ray_lstadd_front(t_ray **head, t_ray *new)
-{
-	if (NULL != new)
-	{
-		new->next = *head;
-		*head = new;
-	}
-}
-
-void	ft_ray_lstadd_back(t_ray **head, t_ray *new)
-{
-	t_ray	*lst_last;
-
-	if (NULL != new)
-	{
-		lst_last = ft_ray_lstlast(*head);
-		if (lst_last == NULL)
-		{
-			ft_ray_lstadd_front(head, new);
-		}
-		else
-		{
-			lst_last->next = new;
-			new->next = NULL;
-		}
-	}
+    printf("inside ray_from_camera, camera: %p\n", camera);
+    print_vector(camera->position, "camera->position");
+    print_vector(camera->orientation, "camera->orientation");
+	view = look_at(camera->position, camera->orientation);
+	origin = multiply_by_matrix(vec3_create(0, 0, 0), view);
+    printf("before get_direction, x: %d, y: %d\n", x, y);
+	direction = ray_get_direction(x, y, camera);
+	direction = multiply_by_matrix(direction, view);
+	direction = vector_minus(direction, origin);
+	vector_normalize(&direction);
+	return (ray_create(origin, direction));
 }

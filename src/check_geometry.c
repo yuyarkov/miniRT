@@ -6,13 +6,13 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 20:41:51 by merlich           #+#    #+#             */
-/*   Updated: 2022/08/21 20:55:02 by merlich          ###   ########.fr       */
+/*   Updated: 2022/09/04 20:30:59 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/miniRT.h"
 
-int	ft_check_angle(int fov)
+int	ft_check_angle(float fov)
 {
 	if (fov < 0 || fov > 180)
 	{

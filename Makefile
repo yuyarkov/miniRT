@@ -6,7 +6,7 @@
 #    By: merlich <merlich@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/02 22:45:06 by merlich           #+#    #+#              #
-#    Updated: 2022/09/02 22:45:08 by merlich          ###   ########.fr        #
+#    Updated: 2022/09/04 19:53:30 by merlich          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,8 +23,14 @@ SRC_FILES =	main.c 					draw_utils.c\
 			check_colour.c 			check_vector.c\
 			check_geometry.c		matrix_utils.c\
 			ray_utils.c				vector_operations.c\
-			debug_utils.c			get_next_line.c\
-			get_next_line_utils.c	
+			debug_utils.c			
+			get_next_line.c			get_next_line_utils.c\
+			light_utils.c			light_utils_2.c\
+			camera_utils.c			camera_utils_2.c\
+			ambient_utils.c			ambient_utils_2.c\
+			plane_utils.c			plane_utils_2.c\
+			sphere_utils.c			sphere_utils_2.c\
+			cylinder_utils.c		cylinder_utils_2.c\
 			
 
 

@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 19:50:37 by merlich           #+#    #+#             */
-/*   Updated: 2022/08/21 20:39:12 by merlich          ###   ########.fr       */
+/*   Updated: 2022/09/04 20:31:55 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	ft_perror_count(char **ptr)
 int	ft_check_vector(char *str)
 {
 	int		i;
-	int		num;
+	float	num;
 	char	**ptr;
 
 	i = 0;
@@ -37,7 +37,7 @@ int	ft_check_vector(char *str)
 	ptr = ft_split(str, ',');
 	while (ptr[i])
 	{
-		num = ft_atoi(ptr[i]);
+		num = ft_atof(ptr[i]);
 		if (num < -1 || num > 1)
 			return ft_perror_range(ptr);
 		i++;

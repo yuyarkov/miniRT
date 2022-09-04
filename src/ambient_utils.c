@@ -6,31 +6,41 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 22:28:48 by merlich           #+#    #+#             */
-/*   Updated: 2022/09/02 22:31:13 by merlich          ###   ########.fr       */
+/*   Updated: 2022/09/04 20:05:43 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/miniRT.h"
 
-t_ambient	*ft_ambient_lstnew(char *value)
+static void	ft_set_values(t_ambient *new, char **ptr)
+{
+	char		**p;
+
+	p = ft_split(ptr[2], ',');
+	
+	new->intensity = ft_atof(ptr[1]);
+	new->color.a = 1;
+	new->color.r = ft_atoi(p[0]);
+	new->color.g = ft_atoi(p[1]);
+	new->color.b = ft_atoi(p[2]);
+	new->next = NULL;
+	ft_free_split(p);
+}
+
+t_ambient	*ft_ambient_lstnew(char **ptr)
 {
 	t_ambient	*new;
 
 	new = NULL;
-	if (value)
+	if (ptr)
 	{
 		new = malloc(sizeof(t_ambient));
 		if (NULL == new)
 		{
-			free(value);
+			// ft_free_split(ptr);
 			exit (1);
 		}
-		new->color.a = 0xFF;
-		new->color.r = 0xFF;
-		new->color.g = 0xFF;
-		new->color.b = 0xFF;
-		new->intensity = 1;
-		new->next = NULL;
+		ft_set_values(new, ptr);
 	}
 	return (new);
 }
