@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dirony <dirony@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:12:14 by dirony            #+#    #+#             */
-/*   Updated: 2022/08/21 20:48:53 by merlich          ###   ########.fr       */
+/*   Updated: 2022/09/07 21:02:26 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@
 # define GREEN 0x00FF00
 # define BUFF_SIZE 40096
 # define DEF_COLOR 16777215
-# define WINDOW_WIDTH 900
-# define WINDOW_HEIGHT 600
+# define WINDOW_WIDTH 600
+# define WINDOW_HEIGHT 400
 # define PI_STEP 0.19634954084
 # define M_LEFT 10
 # define M_TOP 10

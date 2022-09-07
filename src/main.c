@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dirony <dirony@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:11:04 by dirony            #+#    #+#             */
-/*   Updated: 2022/08/21 21:18:26 by merlich          ###   ########.fr       */
+/*   Updated: 2022/09/07 21:00:50 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,16 @@ t_data	*create_pic()
 
 int sphere_intersect(t_vec3 ray_origin, t_vec3 ray_direction, t_vec3 center, float radius )
 {
-    t_vec3 oc = vector_minus(ray_origin, center);
-    float b = vector_dot_product(oc, ray_direction);
-    float c = vector_dot_product(oc, oc) - radius * radius;
-    float h = b * b - c;
+    t_vec3 oc;
+	float b;
+	float h;
+	
+	//print_vector(ray_origin, "ray_origin: ");
+	oc = vector_minus(ray_origin, center);
+	//print_vector(oc, "oc: ");
+    b = vector_dot_product(oc, ray_direction);
+    h = b * b - vector_dot_product(oc, oc) - radius * radius;;
+	//printf("inside sphere_intersect, h: %f\n", h);
     if (h < 0.0)
 		return 0; //vec2(-1.0); // no intersection
 	else
@@ -60,8 +66,8 @@ void	render(t_data *pic, t_scene *scene)
 		while (x < WINDOW_WIDTH - 1)
 		{
 			color = GREEN;
-			// ray = ray_from_camera(x, y, scene->camera);
-			// color = color * sphere_intersect(ray.origin, ray.direction, scene->spheres->center, scene->spheres->radius);
+			 ray = ray_from_camera(x, y, scene->camera);
+			 color = color * sphere_intersect(ray.origin, ray.direction, scene->spheres->center, scene->spheres->radius);
 			//color = ray_cast(&ray, scene, 0);
 			my_mlx_pixel_put(pic, x, y, color);
 			++x;
@@ -92,16 +98,18 @@ void	mlx_run(t_scene *scene)
 void	parse_scene(char *filename, t_scene *scene)
 {
 	(void) filename;
-	t_camera camera;
+	t_camera *camera;
 	t_sphere sphere;
 //пока захардкодил пробные значения для сцены. есть камера и одна сфера.
-	camera.position.x = -50;
-	camera.position.y = 0;
-	camera.position.z = 20;
-	camera.orientation.x = 0;
-	camera.orientation.y = 0; 
-	camera.orientation.z = 1; 
-	camera.fov = 70;
+
+	camera = malloc(sizeof(t_camera));
+	camera->position.x = -50;
+	camera->position.y = 0;
+	camera->position.z = 20;
+	camera->orientation.x = 0;
+	camera->orientation.y = 0; 
+	camera->orientation.z = 1; 
+	camera->fov = 70;
 
 	sphere.center.x = 0;
 	sphere.center.x = 0;
@@ -110,9 +118,10 @@ void	parse_scene(char *filename, t_scene *scene)
 	sphere.color = WHITE;
 
 	scene->spheres = &sphere;
-	printf("inside parse, camera fov: %d\n", camera.fov);
-	print_vector(camera.position, "camera.position");
-	scene->camera = &camera;
+	printf("inside parse, camera fov: %d\n", camera->fov);
+	print_vector(camera->position, "camera.position");
+	scene->camera = camera;
+	printf("pointer to camera: %p, fov: %d\n", scene->camera, scene->camera->fov);
 }
 
 int	main(int argc, char **argv)
@@ -121,8 +130,8 @@ int	main(int argc, char **argv)
 
 	if (ft_check_input(argc, argv))
 		return 1;
-	if (check_map(argv[1]))
-		return 1;
+	// if (check_map(argv[1]))
+	// 	return 1;
 	parse_scene(argv[1], &scene);
 	mlx_run(&scene);
 	return (0);

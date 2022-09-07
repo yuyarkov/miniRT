@@ -17,7 +17,7 @@ t_vec3	ray_get_direction(int x, int y, t_camera *camera)
 	double	p_y;
 	t_vec3	dir;
 
-    printf("inside get_direction, camera->fov: %d\n", camera->fov);
+    //printf("inside get_direction, camera: %p\n", camera);
 	fov_coeff = tan(camera->fov / 2 * M_PI / 180);
 	aspect_ratio = (double)WINDOW_WIDTH / (double)WINDOW_HEIGHT;
 	p_x = (2 * (x + 0.5) / (double)WINDOW_WIDTH - 1) * aspect_ratio * fov_coeff;
@@ -33,12 +33,12 @@ t_ray	ray_from_camera(int x, int y, t_camera *camera)
 	t_vec3		origin;
 	t_vec3		direction;
 
-    printf("inside ray_from_camera, camera: %p\n", camera);
-    print_vector(camera->position, "camera->position");
-    print_vector(camera->orientation, "camera->orientation");
+    // printf("inside ray_from_camera, camera: %p\n", camera);
+    // print_vector(camera->position, "camera->position");
+    // print_vector(camera->orientation, "camera->orientation");
 	view = look_at(camera->position, camera->orientation);
 	origin = multiply_by_matrix(vec3_create(0, 0, 0), view);
-    printf("before get_direction, x: %d, y: %d\n", x, y);
+//printf("before get_direction, x: %d, y: %d, camera: %p\n", x, y, camera);
 	direction = ray_get_direction(x, y, camera);
 	direction = multiply_by_matrix(direction, view);
 	direction = vector_minus(direction, origin);
