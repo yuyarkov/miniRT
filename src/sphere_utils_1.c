@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sphere_utils.c                                     :+:      :+:    :+:   */
+/*   sphere_utils_1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 22:07:22 by merlich           #+#    #+#             */
-/*   Updated: 2022/09/04 20:18:26 by merlich          ###   ########.fr       */
+/*   Updated: 2022/09/11 22:18:15 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ static void	ft_set_values(t_sphere *new, char **ptr)
 	new->center.y = ft_atof(p1[1]);
 	new->center.z = ft_atof(p1[2]);
 	new->radius = ft_atof(ptr[2]);
-	new->color.a = 1;
-	new->color.r = ft_atoi(p2[0]);
-	new->color.g = ft_atoi(p2[1]);
-	new->color.b = ft_atoi(p2[2]);
+	new->colour.a = 1;
+	new->colour.r = ft_atoi(p2[0]);
+	new->colour.g = ft_atoi(p2[1]);
+	new->colour.b = ft_atoi(p2[2]);
 	new->next = NULL;
 	ft_free_split(p2);
 	ft_free_split(p1);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ray_utils_3.c                                      :+:      :+:    :+:   */
+/*   ray_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 22:42:40 by merlich           #+#    #+#             */
-/*   Updated: 2022/09/02 22:42:44 by merlich          ###   ########.fr       */
+/*   Updated: 2022/09/11 19:57:50 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ t_vec3	ray_get_direction(int x, int y, t_camera *camera)
 	double	p_y;
 	t_vec3	dir;
 
-    printf("inside get_direction, camera->fov: %d\n", camera->fov);
+    printf("inside get_direction, camera->fov: %f\n", camera->fov);
 	fov_coeff = tan(camera->fov / 2 * M_PI / 180);
 	aspect_ratio = (double)WINDOW_WIDTH / (double)WINDOW_HEIGHT;
 	p_x = (2 * (x + 0.5) / (double)WINDOW_WIDTH - 1) * aspect_ratio * fov_coeff;

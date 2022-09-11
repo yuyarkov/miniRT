@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 19:50:37 by merlich           #+#    #+#             */
-/*   Updated: 2022/09/04 20:31:55 by merlich          ###   ########.fr       */
+/*   Updated: 2022/09/11 21:55:22 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,21 @@ int	ft_check_vector(char *str)
 			return ft_perror_range(ptr);
 		i++;
 	}
+	if (i != 3)
+		return ft_perror_count(ptr);
+	ft_free_split(ptr);
+	return 0;
+}
+
+int	ft_check_position(char *str)
+{
+	int		i;
+	char	**ptr;
+
+	i = 0;
+	ptr = ft_split(str, ',');
+	while (ptr[i])
+		i++;
 	if (i != 3)
 		return ft_perror_count(ptr);
 	ft_free_split(ptr);

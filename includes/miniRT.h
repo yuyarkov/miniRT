@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:12:14 by dirony            #+#    #+#             */
-/*   Updated: 2022/09/04 21:14:04 by merlich          ###   ########.fr       */
+/*   Updated: 2022/09/11 22:16:08 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ typedef struct s_camera
 {
 	t_vec3			position;
 	t_vec3			orientation;
-	float			fov;
+	double			fov;
 	struct s_camera	*next;
 }					t_camera;
 
@@ -108,15 +108,15 @@ typedef struct s_light
 	t_vec3				origin;
 	float				intensity;
 	t_color				color;
-	struct s_ambient	*next;
+	struct s_light	*next;
 }						t_light;
 
 typedef struct s_sphere
 {
 	t_vec3			center;
 	float			radius;
-	t_color			color;
-	// int				color;
+	t_color			colour;
+	int				color;
 	struct s_sphere	*next;
 }					t_sphere;
 
@@ -196,6 +196,10 @@ int		ft_check_input(int argc, char **argv);
 
 int		check_map(t_scene *scene, char *map);
 
+/* ft_atof.c */
+
+float	ft_atof(char *str);
+
 /* check_colour.c */
 
 int		ft_check_colour(char *str);
@@ -204,6 +208,7 @@ void	ft_free_split(char **ptr);
 /* check_vector.c */
 
 int		ft_check_vector(char *str);
+int		ft_check_position(char *str);
 
 /* check_geometry.c */
 
@@ -274,9 +279,19 @@ t_ambient	*ft_ambient_lstlast(t_ambient *head);
 void		ft_ambient_lstadd_front(t_ambient **head, t_ambient *new);
 void		ft_ambient_lstadd_back(t_ambient **head, t_ambient *new);
 void		ft_ambient_lstdelone(t_ambient *lst);
-void		ft_ambient_lstclear(t_ambient **head)
+void		ft_ambient_lstclear(t_ambient **head);
 
+/* ft_check_params_1.c */
 
+int			ft_check_params_a(char **ptr);
+int			ft_check_params_c(char **ptr);
+int			ft_check_params_l(char **ptr);
+
+/* ft_check_params_2.c */
+
+int			ft_check_params_sp(char **ptr);
+int			ft_check_params_cy(char **ptr);
+int			ft_check_params_pl(char **ptr);
 
 t_ray	ray_create(t_vec3 origin, t_vec3 direction);
 t_vec3	ray_get_direction(int x, int y, t_camera *camera);

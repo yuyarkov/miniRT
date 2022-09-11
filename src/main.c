@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:11:04 by dirony            #+#    #+#             */
-/*   Updated: 2022/09/04 21:16:17 by merlich          ###   ########.fr       */
+/*   Updated: 2022/09/11 21:55:32 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,33 +110,43 @@ void	parse_scene(char *filename, t_scene *scene)
 	sphere.color = WHITE;
 
 	scene->spheres = &sphere;
-	printf("inside parse, camera fov: %d\n", camera.fov);
+	printf("inside parse, camera fov: %f\n", camera.fov);
 	print_vector(camera.position, "camera.position");
 	scene->camera = &camera;
 }
 
 void	ft_clean_map_data(t_scene *scene)
 {
-	ft_ambient_lstclear(scene->ambient);
-	ft_camera_lstclear(scene->camera);
-	ft_light_lstclear(scene->light);
-	ft_sphere_lstclear(scene->spheres);
-	ft_plane_lstclear(scene->planes);
-	ft_cylinder_lstclear(scene->cylinders);
+	ft_ambient_lstclear(&scene->ambient);
+	ft_camera_lstclear(&scene->camera);
+	ft_light_lstclear(&scene->light);
+	ft_sphere_lstclear(&scene->spheres);
+	ft_plane_lstclear(&scene->planes);
+	ft_cylinder_lstclear(&scene->cylinders);
 }
 
 int	main(int argc, char **argv)
 {
 	t_scene	scene;
 
-	(t_scene) scene;
+	scene = (t_scene) {};
+	// printf("%f\n", ft_atof("-1234.567"));
+	// printf("%f\n", ft_atof("-1234.5S7"));
+	// printf("%f\n", ft_atof("-12EE4.5S7"));
 	if (ft_check_input(argc, argv) || check_map(&scene, argv[1]))
 	{
 		ft_clean_map_data(&scene);
 		return 1;
 	}
+	// scene.cylinders_head = scene.cylinders;
+	// while (scene.cylinders_head != NULL)
+	// {
+	// 	printf("%f\n", scene.cylinders_head->diameter);
+	// 	scene.cylinders_head = scene.cylinders_head->next;
+	// }
 	parse_scene(argv[1], &scene);
 	mlx_run(&scene);
 	// ft_clean_all(); // очистка структуры
+	
 	return (0);
 }
