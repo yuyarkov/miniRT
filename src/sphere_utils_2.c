@@ -1,43 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_geometry.c                                   :+:      :+:    :+:   */
+/*   sphere_utils_2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/21 20:41:51 by merlich           #+#    #+#             */
-/*   Updated: 2022/09/04 20:30:59 by merlich          ###   ########.fr       */
+/*   Created: 2022/09/02 22:09:06 by merlich           #+#    #+#             */
+/*   Updated: 2022/09/02 22:09:08 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/miniRT.h"
 
-int	ft_check_angle(float fov)
+void	ft_sphere_lstdelone(t_sphere *lst)
 {
-	if (fov < 0 || fov > 180)
+	if (NULL != lst)
 	{
-		printf("Error!\nHorizontal field of view is out of range [0, 180]");
-		return 1;
+		free(lst);
 	}
-	return 0;
 }
 
-int	ft_check_ratio(float k)
+void	ft_sphere_lstclear(t_sphere **head)
 {
-	if (k < 0 || k > 1)
-	{
-		printf("Error!\nLightning ratio is out of range [0.0, 1.0]");
-		return 1;
-	}
-	return 0;
-}
+	t_sphere	*tmp;
 
-int	ft_check_lparam(float l)
-{
-	if (l < 0)
+	while (*head)
 	{
-		printf("Error!\nLinear parameters should be greater than/(equal to) zero");
-		return 1;
+		tmp = *head;
+		*head = tmp->next;
+		ft_sphere_lstdelone(tmp);
 	}
-	return 0;
 }

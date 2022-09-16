@@ -1,3 +1,5 @@
 .DS_Store
 libft/libft.a
-.vscode
+*.o
+*.d
+miniRT

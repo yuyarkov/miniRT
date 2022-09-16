@@ -1,11 +1,14 @@
+#include "miniRT.h"
+
 #ifndef RAY_H
 # define RAY_H
 
 typedef struct s_ray
 {
-	t_vec3	origin;
-	t_vec3	direction;
-}				t_ray;
+	t_vec3			origin;
+	t_vec3			direction;
+	struct s_ray	*next;
+}					t_ray;
 
 t_ray	ray_create(t_vec3 origin, t_vec3 direction);
 t_vec3	ray_get_direction(int x, int y, t_camera *camera);

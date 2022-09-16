@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 19:04:20 by dirony            #+#    #+#             */
-/*   Updated: 2022/09/16 21:02:48 by merlich          ###   ########.fr       */
+/*   Updated: 2022/09/16 21:23:29 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ t_vec3	ray_get_direction(int x, int y, t_camera *camera)
 	t_vec3	dir;
 
     //printf("inside get_direction, camera: %p\n", camera);
+    // printf("inside get_direction, camera->fov: %f\n", camera->fov); // MERLICH: new type for camera->fov
 	fov_coeff = tan(camera->fov / 2 * M_PI / 180);
 	aspect_ratio = (double)WINDOW_WIDTH / (double)WINDOW_HEIGHT;
 	p_x = (2 * (x + 0.5) / (double)WINDOW_WIDTH - 1) * aspect_ratio * fov_coeff;

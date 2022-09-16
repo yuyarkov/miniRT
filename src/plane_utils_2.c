@@ -1,43 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_geometry.c                                   :+:      :+:    :+:   */
+/*   plane_utils copy.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/21 20:41:51 by merlich           #+#    #+#             */
-/*   Updated: 2022/09/04 20:30:59 by merlich          ###   ########.fr       */
+/*   Created: 2022/09/02 22:01:45 by merlich           #+#    #+#             */
+/*   Updated: 2022/09/02 22:02:55 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/miniRT.h"
 
-int	ft_check_angle(float fov)
+void	ft_plane_lstdelone(t_plane *lst)
 {
-	if (fov < 0 || fov > 180)
+	if (NULL != lst)
 	{
-		printf("Error!\nHorizontal field of view is out of range [0, 180]");
-		return 1;
+		free(lst);
 	}
-	return 0;
 }
 
-int	ft_check_ratio(float k)
+void	ft_plane_lstclear(t_plane **head)
 {
-	if (k < 0 || k > 1)
-	{
-		printf("Error!\nLightning ratio is out of range [0.0, 1.0]");
-		return 1;
-	}
-	return 0;
-}
+	t_plane	*tmp;
 
-int	ft_check_lparam(float l)
-{
-	if (l < 0)
+	while (*head)
 	{
-		printf("Error!\nLinear parameters should be greater than/(equal to) zero");
-		return 1;
+		tmp = *head;
+		*head = tmp->next;
+		ft_plane_lstdelone(tmp);
 	}
-	return 0;
 }

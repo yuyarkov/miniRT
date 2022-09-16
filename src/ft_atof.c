@@ -1,43 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_geometry.c                                   :+:      :+:    :+:   */
+/*   ft_atof.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/21 20:41:51 by merlich           #+#    #+#             */
-/*   Updated: 2022/09/04 20:30:59 by merlich          ###   ########.fr       */
+/*   Created: 2022/08/21 21:19:57 by merlich           #+#    #+#             */
+/*   Updated: 2022/09/11 20:56:33 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/miniRT.h"
 
-int	ft_check_angle(float fov)
+float	ft_atof(char *str)
 {
-	if (fov < 0 || fov > 180)
-	{
-		printf("Error!\nHorizontal field of view is out of range [0, 180]");
-		return 1;
-	}
-	return 0;
-}
+	int		count;
+	float	res;
+	int		i;
+	int		f;
+	int		tmp;
 
-int	ft_check_ratio(float k)
-{
-	if (k < 0 || k > 1)
+	count = 0;
+	res = 0;
+	i = ft_atoi(str);
+	f = ft_atoi((ft_strchr(str, '.')));
+	tmp = f;
+	while ((tmp % 10) != 0)
 	{
-		printf("Error!\nLightning ratio is out of range [0.0, 1.0]");
-		return 1;
+		// printf("%d\n", tmp);
+		tmp = tmp / 10;
+		count++;
 	}
-	return 0;
-}
-
-int	ft_check_lparam(float l)
-{
-	if (l < 0)
-	{
-		printf("Error!\nLinear parameters should be greater than/(equal to) zero");
-		return 1;
-	}
-	return 0;
+	// printf("i = %d\n", i);
+	// printf("f = %d\n", f);
+	// printf("float_part = %f\n", f * pow(10, -count));
+	res = i + f * pow(10, -count);
+	// printf("res = %f\n", res);
+	return res;
 }
