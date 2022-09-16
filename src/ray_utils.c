@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
+/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 19:04:20 by dirony            #+#    #+#             */
-/*   Updated: 2022/09/16 20:03:50 by dirony           ###   ########.fr       */
+/*   Updated: 2022/09/16 21:02:48 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,4 @@ t_ray	ray_from_camera(int x, int y, t_camera *camera)
 	return (ray_create(origin, direction));
 }
 
-t_ray	ray_by_x_y(x, y, scene);
+//t_ray	ray_by_x_y(ix, y, scene);

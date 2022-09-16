@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
+/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:11:04 by dirony            #+#    #+#             */
-/*   Updated: 2022/09/16 20:03:35 by dirony           ###   ########.fr       */
+/*   Updated: 2022/09/16 21:03:04 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	render(t_data *pic, t_scene *scene)
 		while (x < WINDOW_WIDTH - 1)
 		{
 			color = GREEN;
-			ray = ray_by_x_y(x, y, scene);
+			//ray = ray_by_x_y(x, y, scene);
 			 ray = ray_from_camera(x, y, scene->camera);
 			 color = color * sphere_intersect(ray.origin, ray.direction, scene->spheres->center, scene->spheres->radius);
 			//color = ray_cast(&ray, scene, 0);
