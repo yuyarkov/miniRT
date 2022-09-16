@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dirony <dirony@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:12:14 by dirony            #+#    #+#             */
-/*   Updated: 2022/09/07 21:02:26 by dirony           ###   ########.fr       */
+/*   Updated: 2022/09/16 19:31:55 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@
 # include "vector.h"
 # include "camera.h"
 # include "sphere.h"
+# include "scene.h"
 # include "ray.h"
 # include "matrix.h"
+
 
 # include "debug.h" //чтобы выводить на экран вектора, матрицы и т.д. удалить перед сдачей
 

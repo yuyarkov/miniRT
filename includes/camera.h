@@ -13,5 +13,4 @@ typedef struct s_camera
 
 t_camera		*camera_create(t_vec3 pos, t_vec3 rot, int fov);
 
-
 #endif

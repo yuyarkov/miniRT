@@ -11,7 +11,8 @@ SRC_FILES =	main.c 				draw_utils.c\
 			check_colour.c 		check_vector.c\
 			check_geometry.c	matrix_utils.c\
 			ray_utils.c			vector_operations.c\
-			debug_utils.c
+			debug_utils.c		sphere_utils.c\
+			scene_utils.c
 			
 
 
@@ -22,7 +23,7 @@ OBJS = ${addprefix ${OBJ_PATH}/,${SRC_FILES:.c=.o}}
 
 INCLUDES = -I${INC_PATH} -I${MLIBX_PATH}
 
-CFLAGS = -Wall -Werror -Wextra -MMD -O2 -g
+CFLAGS = -Wall -Werror -Wextra -MMD -O2 -fsanitize=address
 LFLAGS = -Lmlx -lmlx -framework OpenGL -framework AppKit
 
 all : libmake $(NAME)

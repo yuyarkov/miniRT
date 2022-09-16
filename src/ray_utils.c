@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ray_utils.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/16 19:04:20 by dirony            #+#    #+#             */
+/*   Updated: 2022/09/16 20:03:50 by dirony           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/miniRT.h"
 
 t_ray	ray_create(t_vec3 origin, t_vec3 direction)
@@ -45,3 +57,5 @@ t_ray	ray_from_camera(int x, int y, t_camera *camera)
 	vector_normalize(&direction);
 	return (ray_create(origin, direction));
 }
+
+t_ray	ray_by_x_y(x, y, scene);
