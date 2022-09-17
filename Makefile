@@ -6,7 +6,7 @@
 #    By: merlich <merlich@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/02 22:45:06 by merlich           #+#    #+#              #
-#    Updated: 2022/09/16 21:21:12 by merlich          ###   ########.fr        #
+#    Updated: 2022/09/16 21:50:47 by merlich          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRC_FILES =	main.c 					draw_utils.c\
 			cylinder_utils_1.c		cylinder_utils_2.c\
 			ft_atof.c\
 			ft_check_params_1.c		ft_check_params_2.c\
+			scene_utils.c			sphere_utils.c\
 			
 			
 
