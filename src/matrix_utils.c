@@ -8,12 +8,12 @@ t_vec3	camera_up(t_vec3 cam_vec)
 		&& (cam_vec.z == 0 || cam_vec.z == 0))
 	{
 		if (cam_vec.y == -1)
-			vec = vec3_create(0, 0, -1);
+			vec = vector_create(0, 0, -1);
 		if (cam_vec.y == 1)
-			vec = vec3_create(0, 0, 1);
+			vec = vector_create(0, 0, 1);
 	}
 	else
-		vec = vec3_create(0, 1, 0);
+		vec = vector_create(0, 1, 0);
 	return (vec);
 }
 

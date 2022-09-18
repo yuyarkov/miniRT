@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:11:04 by dirony            #+#    #+#             */
-/*   Updated: 2022/09/16 21:26:05 by merlich          ###   ########.fr       */
+/*   Updated: 2022/09/18 16:53:23 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,8 @@ void	render(t_data *pic, t_scene *scene)
 	int		x;
 	int		y;
 	int		color;
-	t_ray	ray;
+	t_vec3	ray;
 
-(void) ray;
-(void) scene;
 	printf("\nstarting render, pic->line_len: %d\n\n", pic->line_len);
 	y = 0;
 	while (y < WINDOW_HEIGHT - 1)
@@ -45,10 +43,9 @@ void	render(t_data *pic, t_scene *scene)
 		x = 0;
 		while (x < WINDOW_WIDTH - 1)
 		{
-			color = GREEN;
-			//ray = ray_by_x_y(x, y, scene);
-			 ray = ray_from_camera(x, y, scene->camera);
-			 color = color * sphere_intersect(ray.origin, ray.direction, scene->spheres->center, scene->spheres->radius);
+			color = BLACK;
+			ray = ray_by_x_y(x, y, scene);
+			color = sphere_intersect(ray, scene->spheres->center, scene->spheres->radius, scene->spheres->color);
 			//color = ray_cast(&ray, scene, 0);
 			my_mlx_pixel_put(pic, x, y, color);
 			++x;
@@ -92,23 +89,20 @@ void	parse_scene(char *filename, t_scene *scene)
 	camera->orientation.y = 0; 
 	camera->orientation.z = 1; 
 	camera->fov = 70;
-
 	sphere->center.x = 0;
 	sphere->center.y = 0;
-	sphere->center.z = 100;
-	sphere->radius = 50;
-	sphere->color = WHITE;
+	sphere->center.z = 1700;
+	sphere->radius = 650;
+	sphere->color = GREEN;
 
 	scene->spheres = sphere;
 	printf("inside parse, camera fov: %d\n", camera->fov);
 	print_vector(camera->position, "camera.position");
 	scene->camera = camera;
+
 	printf("pointer to camera: %p, fov: %d\n", scene->camera, scene->camera->fov);
-	printf("фокусное расстояние: %f", get_focus_distance(scene));
-	// scene->spheres = &sphere; // MERLICH: CONFLICT MERGE. DELETE THIS PART OF CODE
-	// printf("inside parse, camera fov: %f\n", camera.fov);
-	// print_vector(camera.position, "camera.position");
-	// scene->camera = &camera;
+	camera->f = get_focus_distance(scene);//видимо, нужно добавить эту строку в парсер.
+	printf("фокусное расстояние: %f", camera->f);
 }
 
 void	ft_clean_map_data(t_scene *scene)
