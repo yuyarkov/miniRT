@@ -1,6 +1,6 @@
 #include "miniRT.h"
 
-t_vec3	vec3_create(float x, float y, float z)
+t_vec3	vector_create(float x, float y, float z)
 {
 	t_vec3	result;
 
@@ -10,7 +10,7 @@ t_vec3	vec3_create(float x, float y, float z)
 	return (result);
 }
 
-float	vec3_len(t_vec3 v)
+float	vector_len(t_vec3 v)
 {
 	return (sqrt(v.x * v.x + v.y * v.y + v.z * v.z));
 }
@@ -25,7 +25,7 @@ t_vec3 vector_minus(t_vec3 first, t_vec3 second)
 	return (result);
 }
 
-float	vector_dot_product(t_vec3 a, t_vec3 b) //скалярное произведение
+float	vector_scalar_product(t_vec3 a, t_vec3 b) //скалярное произведение
 {
 	float	result;
 
@@ -37,13 +37,20 @@ void	vector_normalize(t_vec3 *v)
 {
 	double	len;
 
-	len = vec3_len(*v);
+	len = vector_len(*v);
 	if (len > 0)
 	{
 		v->x /= len;
 		v->y /= len;
 		v->z /= len;
 	}
+}
+
+void	vector_stretch(t_vec3 *v, float k)
+{
+	v->x *= k;
+	v->y *= k;
+	v->z *= k;
 }
 
 t_vec3	vec3_cross_product(t_vec3 a, t_vec3 b)

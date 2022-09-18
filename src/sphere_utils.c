@@ -6,28 +6,29 @@
 /*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 18:42:24 by dirony            #+#    #+#             */
-/*   Updated: 2022/09/16 19:23:21 by dirony           ###   ########.fr       */
+/*   Updated: 2022/09/18 16:59:17 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/miniRT.h"
 
-int sphere_intersect(t_vec3 ray_origin, t_vec3 ray_direction, t_vec3 center, float radius )
+int	get_darker_color_from_radius(float h, int c)
 {
-    t_vec3 oc;
-	float b;
+	return (create_argb_color(h, get_r_color(c), get_g_color(c), get_b_color(c)));
+}
+
+int sphere_intersect(t_vec3 ray, t_vec3 center, float radius, int color)
+{
+	float dist_to_sphere;
 	float h;
 	
-	//print_vector(ray_origin, "ray_origin: ");
-	oc = vector_minus(ray_origin, center);
-	//print_vector(oc, "oc: ");
-    b = vector_dot_product(oc, ray_direction);
-    h = b * b - vector_dot_product(oc, oc) - radius * radius;;
-	//printf("inside sphere_intersect, h: %f\n", h);
-    if (h < 0.0)
-		return 0; //vec2(-1.0); // no intersection
+	//print_vector(ray, "ray: ");
+	
+	dist_to_sphere = vector_scalar_product(ray, center);
+	vector_stretch(&ray, dist_to_sphere); //переделать под временный луч, иначе этот луч не получится использовать дальше. Или может получится, нормализовать его снова и т.д.
+	h = vector_len(vector_minus(ray, center));
+    if (h < (radius * 0.999))
+		return get_darker_color_from_radius(h / radius * 256, color); // есть пересечение, верну цвет для эксперимента
 	else
-		return 1;
-    //h = sqrt(h); это какая-то дополнительная информация, может пригодится дальше
-    //return vec2( -b-h, -b+h );
+		return 0;
 }

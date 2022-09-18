@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:12:14 by dirony            #+#    #+#             */
-/*   Updated: 2022/09/17 21:23:37 by merlich          ###   ########.fr       */
+/*   Updated: 2022/09/18 18:31:54 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,14 @@
 # include "debug.h" //чтобы выводить на экран вектора, матрицы и т.д. удалить перед сдачей
 
 
-# define WHITE 0xFFFFFF
-# define GREEN 0x00FF00
+# define WHITE 0x00FFFFFF
+# define GREEN 0x0000FF00
+# define BLACK 0x00000000
+# define RED 0x00FF0000
 # define BUFF_SIZE 40096
 # define DEF_COLOR 16777215
-# define WINDOW_WIDTH 600
-# define WINDOW_HEIGHT 400
+# define WINDOW_WIDTH 900
+# define WINDOW_HEIGHT 600
 # define PI_STEP 0.19634954084
 # define M_LEFT 10
 # define M_TOP 10

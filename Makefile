@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: merlich <merlich@student.42.fr>            +#+  +:+       +#+         #
+#    By: dirony <dirony@21-school.ru>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/02 22:45:06 by merlich           #+#    #+#              #
-#    Updated: 2022/09/16 21:50:47 by merlich          ###   ########.fr        #
+#    Updated: 2022/09/18 16:13:20 by dirony           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ SRC_FILES =	main.c 					draw_utils.c\
 			check_colour.c 			check_vector.c\
 			check_geometry.c		matrix_utils.c\
 			ray_utils.c				vector_operations.c\
-			debug_utils.c\
+			debug_utils.c			color_utils.c\
 			get_next_line.c			get_next_line_utils.c\
 			light_utils_1.c			light_utils_2.c\
 			camera_utils_1.c		camera_utils_2.c\

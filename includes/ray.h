@@ -18,7 +18,7 @@ t_vec3	ray_reflect(t_vec3 dir, t_vec3 normal);
 t_vec3	ray_refract(t_vec3 dir, t_vec3 normal, float eta_t, float eta_i);
 
 
-t_ray	ray_by_x_y(int x, int y, t_scene *scene);
+t_vec3	ray_by_x_y(int x, int y, t_scene *scene);
 
 
 #endif
