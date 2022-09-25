@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
+/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:11:04 by dirony            #+#    #+#             */
-/*   Updated: 2022/09/18 16:53:23 by dirony           ###   ########.fr       */
+/*   Updated: 2022/09/25 18:24:05 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,13 @@ void	render(t_data *pic, t_scene *scene)
 	printf("done render\n");
 }
 
-int simple_exit()
+int simple_exit(int keycode)
 {
-	exit(EXIT_SUCCESS);
+	if (keycode == 53)
+	{
+		exit(EXIT_SUCCESS);
+	}
+	return (0);
 }
 
 void	mlx_run(t_scene *scene)
