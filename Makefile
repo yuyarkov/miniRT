@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dirony <dirony@21-school.ru>               +#+  +:+       +#+         #
+#    By: merlich <merlich@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/02 22:45:06 by merlich           #+#    #+#              #
-#    Updated: 2022/09/18 16:13:20 by dirony           ###   ########.fr        #
+#    Updated: 2022/09/25 20:45:32 by merlich          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,8 @@ SRC_FILES =	main.c 					draw_utils.c\
 			ft_atof.c\
 			ft_check_params_1.c		ft_check_params_2.c\
 			scene_utils.c			sphere_utils.c\
+			ft_handle_button.c		ft_clean_map_data.c\
+			
 			
 			
 

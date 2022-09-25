@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:12:14 by dirony            #+#    #+#             */
-/*   Updated: 2022/09/18 18:31:54 by merlich          ###   ########.fr       */
+/*   Updated: 2022/09/25 20:45:50 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct s_data {
 	int		bits_per_p;
 	int		line_len;
 	int		endian;
+	t_scene	*scene_ptr;
 }	t_data;
 
 char	*read_string_from_file(char *file_name);
@@ -131,14 +132,28 @@ int		ft_check_lparam(float l);
 
 /* ft_check_params_1.c */
 
-int			ft_check_params_a(char **ptr);
-int			ft_check_params_c(char **ptr);
-int			ft_check_params_l(char **ptr);
+int		ft_check_params_a(char **ptr);
+int		ft_check_params_c(char **ptr);
+int		ft_check_params_l(char **ptr);
 
 /* ft_check_params_2.c */
 
-int			ft_check_params_sp(char **ptr);
-int			ft_check_params_cy(char **ptr);
-int			ft_check_params_pl(char **ptr);
+int		ft_check_params_sp(char **ptr);
+int		ft_check_params_cy(char **ptr);
+int		ft_check_params_pl(char **ptr);
+
+/* ft_handle_button.c */
+
+int 	ft_handle_button(int keycode, t_data *pic);
+int 	ft_just_exit(t_data *pic);
+
+/* ft_clean_map_data.c */
+
+void	ft_clean_map_data(t_scene *scene);
+
+
+
+
+
 
 #endif

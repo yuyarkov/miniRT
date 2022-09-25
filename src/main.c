@@ -6,13 +6,13 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:11:04 by dirony            #+#    #+#             */
-/*   Updated: 2022/09/25 18:24:05 by merlich          ###   ########.fr       */
+/*   Updated: 2022/09/25 20:44:50 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/miniRT.h"
 
-t_data	*create_pic()
+t_data	*create_pic(t_scene *scene)
 {
 	t_data	*pic;
 
@@ -24,10 +24,9 @@ t_data	*create_pic()
 	pic->img = mlx_new_image(pic->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	pic->addr = mlx_get_data_addr(pic->img, &pic->bits_per_p,
 			&pic->line_len, &pic->endian);
-	
+	pic->scene_ptr = scene;
 	return (pic);
 }
-
 
 void	render(t_data *pic, t_scene *scene)
 {
@@ -55,22 +54,14 @@ void	render(t_data *pic, t_scene *scene)
 	printf("done render\n");
 }
 
-int simple_exit(int keycode)
-{
-	if (keycode == 53)
-	{
-		exit(EXIT_SUCCESS);
-	}
-	return (0);
-}
-
 void	mlx_run(t_scene *scene)
 {
 	t_data	*pic;
-                                                                                                                                                               
-	pic = create_pic();
-	mlx_hook(pic->window, 17, 0, simple_exit, (void *)pic->mlx); //закрытие по клику
-	mlx_hook(pic->window, 02, 1L << 0, simple_exit, (void *)pic->mlx); //закрытие по Esc
+
+	pic = create_pic(scene);
+	mlx_hook(pic->window, 17, 0, ft_just_exit, pic);  // закрытие по клику
+	mlx_hook(pic->window, 02, 1L << 0, ft_handle_button, pic);  // Обработка кнопок (закрытие по Esc)
+	// mlx_hook(pic->window, 02, 1L << 0, ft_decrease, scene);  // уменьшение размеров фигур на 10
 	render(pic, scene);
 	mlx_put_image_to_window(pic->mlx, pic->window, pic->img, M_LEFT, M_TOP);
 	mlx_loop(pic->mlx);
@@ -107,16 +98,6 @@ void	parse_scene(char *filename, t_scene *scene)
 	printf("pointer to camera: %p, fov: %d\n", scene->camera, scene->camera->fov);
 	camera->f = get_focus_distance(scene);//видимо, нужно добавить эту строку в парсер.
 	printf("фокусное расстояние: %f", camera->f);
-}
-
-void	ft_clean_map_data(t_scene *scene)
-{
-	ft_ambient_lstclear(&scene->ambient);
-	ft_camera_lstclear(&scene->camera);
-	ft_light_lstclear(&scene->light);
-	ft_sphere_lstclear(&scene->spheres);
-	ft_plane_lstclear(&scene->planes);
-	ft_cylinder_lstclear(&scene->cylinders);
 }
 
 int	main(int argc, char **argv)
