@@ -23,55 +23,25 @@ int ft_handle_button(int keycode, t_data *pic)
 		exit(EXIT_SUCCESS);
 	}
 	else if (keycode == 27)
-	{
 		printf("-\n");
-		// scene->ambient_head = NULL;
-	}
 	else if (keycode == 24)
-	{
 		printf("+\n");
-		// scene->ambient_head = NULL;
-	}
 	else if (keycode == 13)
-	{
 		printf("W\n");
-		// scene->ambient_head = NULL;
-	}
 	else if (keycode == 0)
-	{
 		printf("A\n");
-		// scene->ambient_head = NULL;
-	}
 	else if (keycode == 1)
-	{
 		printf("S\n");
-		// scene->ambient_head = NULL;
-	}
 	else if (keycode == 2)
-	{
 		printf("D\n");
-		// scene->ambient_head = NULL;
-	}
 	else if (keycode == 12)
-	{
 		printf("Q\n");
-		// scene->ambient_head = NULL;
-	}
 	else if (keycode == 14)
-	{
 		printf("E\n");
-		// scene->ambient_head = NULL;
-	}
-		else if (keycode == 257 || keycode == 258)
-	{
+	else if (keycode == 257 || keycode == 258)
 		printf("shift\n");
-		// scene->ambient_head = NULL;
-	}
-		else if (keycode == 49)
-	{
+	else if (keycode == 49)
 		printf("space\n");
-		// scene->ambient_head = NULL;
-	}
 	return (0);
 }
 

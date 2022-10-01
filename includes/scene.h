@@ -18,20 +18,14 @@ typedef struct s_scene
 	t_camera	*camera;
 	t_ambient	*ambient;
 
-
 	/* Указатели на голову списков */
-	t_plane		*planes;
-	t_sphere	*spheres;
-	t_cylinder	*cylinders;
+	t_figure	*figures;
 
 	// t_camera	*camera;
 	t_light		*light;
-	// t_ambient	*ambient;
 
 	/* Итераторы */
-	t_plane		*planes_head;
-	t_sphere	*spheres_head;
-	t_cylinder	*cylinders_head;
+	t_figure	*figures_head;
 
 	t_camera	*camera_head;
 	t_light		*light_head;

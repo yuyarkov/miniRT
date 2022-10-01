@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:11:04 by dirony            #+#    #+#             */
-/*   Updated: 2022/09/25 20:44:50 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/01 21:56:25 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	render(t_data *pic, t_scene *scene)
 		{
 			color = BLACK;
 			ray = ray_by_x_y(x, y, scene);
-			color = sphere_intersect(ray, scene->spheres->center, scene->spheres->radius, scene->spheres->color);
+			color = sphere_intersect(ray, scene->figures->position, scene->figures->radius, scene->figures->colour);
 			//color = ray_cast(&ray, scene, 0);
 			my_mlx_pixel_put(pic, x, y, color);
 			++x;
@@ -72,11 +72,12 @@ void	parse_scene(char *filename, t_scene *scene)
 {
 	(void) filename;
 	t_camera *camera;
-	t_sphere *sphere;
+	t_figure *sphere;
+
 //пока захардкодил пробные значения для сцены. есть камера и одна сфера.
 
 	camera = malloc(sizeof(t_camera));
-	sphere = malloc(sizeof(t_sphere));
+	// sphere = malloc(sizeof(t_figure));
 	camera->position.x = 0;
 	camera->position.y = 0;
 	camera->position.z = 0;
@@ -84,19 +85,26 @@ void	parse_scene(char *filename, t_scene *scene)
 	camera->orientation.y = 0; 
 	camera->orientation.z = 1; 
 	camera->fov = 70;
-	sphere->center.x = 0;
-	sphere->center.y = 0;
-	sphere->center.z = 1700;
-	sphere->radius = 650;
-	sphere->color = GREEN;
+	// sphere->type = SPHERE;
+	// sphere->position.x = 0;
+	// sphere->position.y = 0;
+	// sphere->position.z = 1700;
+	// sphere->radius = 650;
+	// sphere->colour = GREEN;
 
-	scene->spheres = sphere;
+	sphere = ft_sphere_lstnew(ft_split("sp 0,0,1700 650 0,255,0", ' '));
+	printf("radius = %f\n", sphere->radius);
+
+	ft_figure_lstadd_front(&(scene->figures), sphere);
+	printf("radius = %f\n", scene->figures->radius);
+	printf("type = %d\n", scene->figures->type);
+	
 	printf("inside parse, camera fov: %d\n", camera->fov);
 	print_vector(camera->position, "camera.position");
 	scene->camera = camera;
 
 	printf("pointer to camera: %p, fov: %d\n", scene->camera, scene->camera->fov);
-	camera->f = get_focus_distance(scene);//видимо, нужно добавить эту строку в парсер.
+	camera->f = get_focus_distance(scene);  // видимо, нужно добавить эту строку в парсер.
 	printf("фокусное расстояние: %f", camera->f);
 }
 
@@ -105,6 +113,7 @@ int	main(int argc, char **argv)
 	t_scene	scene;
 
 	scene = (t_scene) {};
+	scene.figures = NULL;
 	if (ft_check_input(argc, argv) || check_map(&scene, argv[1]))
 	{
 		ft_clean_map_data(&scene);

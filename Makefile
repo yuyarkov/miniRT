@@ -6,7 +6,7 @@
 #    By: merlich <merlich@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/02 22:45:06 by merlich           #+#    #+#              #
-#    Updated: 2022/09/25 20:45:32 by merlich          ###   ########.fr        #
+#    Updated: 2022/10/01 21:28:56 by merlich          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,17 +28,12 @@ SRC_FILES =	main.c 					draw_utils.c\
 			light_utils_1.c			light_utils_2.c\
 			camera_utils_1.c		camera_utils_2.c\
 			ambient_utils_1.c		ambient_utils_2.c\
-			plane_utils_1.c			plane_utils_2.c\
-			sphere_utils_1.c		sphere_utils_2.c\
-			cylinder_utils_1.c		cylinder_utils_2.c\
 			ft_atof.c\
 			ft_check_params_1.c		ft_check_params_2.c\
 			scene_utils.c			sphere_utils.c\
 			ft_handle_button.c		ft_clean_map_data.c\
+			figures_utils_1.c		figures_utils_2.c\
 			
-			
-			
-
 
 LIBFT =   libft.a
 			

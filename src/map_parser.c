@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 19:04:03 by merlich           #+#    #+#             */
-/*   Updated: 2022/09/11 22:34:28 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/01 21:24:23 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,15 @@ static int	ft_fill_list(t_scene *scene, char **ptr)
 		}
 		else if (!ft_strcmp(ptr[0], "sp") && !ft_check_params_sp(ptr))
 		{
-			ft_sphere_lstadd_back(&scene->spheres, ft_sphere_lstnew(ptr));
+			ft_figure_lstadd_back(&scene->figures, ft_sphere_lstnew(ptr));
 		}
 		else if (!ft_strcmp(ptr[0], "cy") && !ft_check_params_cy(ptr))
 		{
-			ft_cylinder_lstadd_back(&scene->cylinders, ft_cylinder_lstnew(ptr));
+			ft_figure_lstadd_back(&scene->figures, ft_cylinder_lstnew(ptr));
 		}
 		else if (!ft_strcmp(ptr[0], "pl") && !ft_check_params_pl(ptr))
 		{
-			ft_plane_lstadd_back(&scene->planes, ft_plane_lstnew(ptr));
+			ft_figure_lstadd_back(&scene->figures, ft_plane_lstnew(ptr));
 		}
 		else
 			return ft_perror();

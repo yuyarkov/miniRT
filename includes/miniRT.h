@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:12:14 by dirony            #+#    #+#             */
-/*   Updated: 2022/09/25 20:45:50 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/01 21:09:45 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,9 @@
 # include "colour.h"
 # include "ambient.h"
 # include "vector.h"
-# include "plane.h"
-# include "cylinder.h"
 # include "light.h"
 # include "camera.h"
-# include "sphere.h"
+# include "figures.h"
 # include "scene.h"
 # include "ray.h"
 # include "matrix.h"
@@ -59,6 +57,23 @@
 # define VALID_SYMBOLS "-,0x123456789abcdefABCDEF"
 # define BASE_LOWER "0123456789abcdef"
 # define BASE_UPPER "0123456789ABCDEF"
+# define ESC 53
+# define UP 126
+# define DOWN 125
+# define LEFT 123
+# define RIGHT 124
+# define PLUS 24
+# define MINUS 27
+# define Q 12
+# define E 14
+# define W 13
+# define A 0
+# define S 1
+# define D 2
+# define SHIFT 257
+# define R_SHIFT 258
+# define SPACE 49
+
 
 typedef struct s_pixel
 {
