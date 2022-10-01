@@ -6,21 +6,23 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 20:27:27 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/01 21:53:59 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/01 22:13:47 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../includes/miniRT.h"
 
-// t_figure	*ft_figure_lstnew(void)
-// {
-// 	t_figure	*new;
+t_figure	*ft_figure_lstnew(void)
+{
+	t_figure	*new;
 
-// 	new = malloc(sizeof(t_figure));
-// 	if (NULL == new)
-// 		exit (1);
-// }
+	new = malloc(sizeof(t_figure));
+	if (NULL == new)
+		exit (1);
+	*new = (t_figure) {};
+	return (new);
+}
 
 t_figure	*ft_sphere_lstnew(char **ptr)
 {
@@ -28,9 +30,11 @@ t_figure	*ft_sphere_lstnew(char **ptr)
 	char		**p1;
 	char		**p2;
 
-	new = malloc(sizeof(t_figure));
-	if (NULL == new)
-		exit (1);
+	// new = malloc(sizeof(t_figure));
+	// if (NULL == new)
+	// 	exit (1);
+	// *new = (t_figure) {};
+	new = ft_figure_lstnew();
 	p1 = ft_split(ptr[1], ',');
 	p2 = ft_split(ptr[3], ',');
 	new->type = SPHERE;
@@ -56,9 +60,10 @@ t_figure	*ft_plane_lstnew(char **ptr)
 	char		**p2;
 	char		**p3;
 
-	new = malloc(sizeof(t_figure));
-	if (NULL == new)
-		exit (1);
+	// new = malloc(sizeof(t_figure));
+	// if (NULL == new)
+	// 	exit (1);
+	new = ft_figure_lstnew();
 	p1 = ft_split(ptr[1], ',');
 	p2 = ft_split(ptr[2], ',');
 	p3 = ft_split(ptr[3], ',');
@@ -88,9 +93,10 @@ t_figure	*ft_cylinder_lstnew(char **ptr)
 	char		**p2;
 	char		**p3;
 
-	new = malloc(sizeof(t_figure));
-	if (NULL == new)
-		exit (1);
+	// new = malloc(sizeof(t_figure));
+	// if (NULL == new)
+	// 	exit (1);
+	new = ft_figure_lstnew();
 	p1 = ft_split(ptr[1], ',');
 	p2 = ft_split(ptr[2], ',');
 	p3 = ft_split(ptr[5], ',');

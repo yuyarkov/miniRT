@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:11:04 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/01 21:56:25 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/01 22:16:28 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,11 +91,13 @@ void	parse_scene(char *filename, t_scene *scene)
 	// sphere->position.z = 1700;
 	// sphere->radius = 650;
 	// sphere->colour = GREEN;
-
+	
+	scene->figures = NULL;
+	printf("adress = %p\n", scene->figures);
 	sphere = ft_sphere_lstnew(ft_split("sp 0,0,1700 650 0,255,0", ' '));
 	printf("radius = %f\n", sphere->radius);
 
-	ft_figure_lstadd_front(&(scene->figures), sphere);
+	ft_figure_lstadd_back(&(scene->figures), sphere);
 	printf("radius = %f\n", scene->figures->radius);
 	printf("type = %d\n", scene->figures->type);
 	
@@ -113,12 +115,13 @@ int	main(int argc, char **argv)
 	t_scene	scene;
 
 	scene = (t_scene) {};
-	scene.figures = NULL;
+	printf("adress = %p\n", scene.figures);
 	if (ft_check_input(argc, argv) || check_map(&scene, argv[1]))
 	{
 		ft_clean_map_data(&scene);
 		return 1;
 	}
+	(void) argc;
 	parse_scene(argv[1], &scene);
 	mlx_run(&scene);
 	// ft_clean_all(); // очистка структуры
