@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:12:14 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/02 20:11:38 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/02 20:38:00 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,12 @@
 # define D 2
 # define Z 6
 # define X 7
+# define F 3
+# define H 4
+# define T 17
+# define G 5
+# define R 15
+# define Y 16
 # define SHIFT 257
 # define R_SHIFT 258
 # define SPACE 49

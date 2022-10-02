@@ -39,7 +39,8 @@ int ft_handle_buttons(int keycode, t_data *pic)
 		ft_resize(-SIZE_STEP, pic);
 	else if (keycode == PLUS)
 		ft_resize(SIZE_STEP, pic);
-	else if (keycode == Q || keycode == E)
+	else if (keycode == F || keycode == H || keycode == T || keycode == G || \
+			keycode == R || keycode == Y)
 		ft_rotate_figure(keycode, ROT_ANGLE, pic);
 	else if (keycode == FOV_PLUS || keycode == FOV_MINUS)
 		ft_change_fov(keycode, CAM_STEP, pic);
