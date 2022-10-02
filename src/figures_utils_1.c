@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 20:27:27 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/01 22:13:47 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/02 17:37:26 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,6 @@ t_figure	*ft_sphere_lstnew(char **ptr)
 	char		**p1;
 	char		**p2;
 
-	// new = malloc(sizeof(t_figure));
-	// if (NULL == new)
-	// 	exit (1);
-	// *new = (t_figure) {};
 	new = ft_figure_lstnew();
 	p1 = ft_split(ptr[1], ',');
 	p2 = ft_split(ptr[3], ',');
@@ -41,7 +37,7 @@ t_figure	*ft_sphere_lstnew(char **ptr)
 	new->position.x = ft_atof(p1[0]);
 	new->position.y = ft_atof(p1[1]);
 	new->position.z = ft_atof(p1[2]);
-	new->radius = ft_atof(ptr[2]);
+	new->diameter = ft_atof(ptr[2]);
 	new->color.a = 1;
 	new->color.r = ft_atoi(p2[0]);
 	new->color.g = ft_atoi(p2[1]);
@@ -60,9 +56,6 @@ t_figure	*ft_plane_lstnew(char **ptr)
 	char		**p2;
 	char		**p3;
 
-	// new = malloc(sizeof(t_figure));
-	// if (NULL == new)
-	// 	exit (1);
 	new = ft_figure_lstnew();
 	p1 = ft_split(ptr[1], ',');
 	p2 = ft_split(ptr[2], ',');
@@ -93,9 +86,6 @@ t_figure	*ft_cylinder_lstnew(char **ptr)
 	char		**p2;
 	char		**p3;
 
-	// new = malloc(sizeof(t_figure));
-	// if (NULL == new)
-	// 	exit (1);
 	new = ft_figure_lstnew();
 	p1 = ft_split(ptr[1], ',');
 	p2 = ft_split(ptr[2], ',');

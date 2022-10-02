@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 20:14:24 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/01 21:55:38 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/02 20:10:33 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct s_figure
 	t_vec3				norm_vector;
 	float				diameter; // cylinder
 	float				height;
-	float				radius; // sphere
+	// float				radius; // sphere
 	t_color				color;
 	int					colour;
 	struct s_figure 	*next;
@@ -48,8 +48,8 @@ void		ft_figure_lstclear(t_figure **head);
 
 /* sphere_utils.c */
 
-t_figure		*sphere_create(t_vec3 center, float radius);
-t_vec3			sphere_get_normal(t_vec3 point, t_figure sphere);
-int 			sphere_intersect(t_vec3 ray, t_vec3 center, float radius, int color);
+// t_figure	*sphere_create(t_vec3 center, float radius);
+// t_vec3		sphere_get_normal(t_vec3 point, t_figure sphere);
+int 		sphere_intersect(t_vec3 ray, t_vec3 center, float radius, int color);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:11:04 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/01 22:16:28 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/02 20:18:36 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	render(t_data *pic, t_scene *scene)
 		{
 			color = BLACK;
 			ray = ray_by_x_y(x, y, scene);
-			color = sphere_intersect(ray, scene->figures->position, scene->figures->radius, scene->figures->colour);
+			color = sphere_intersect(ray, scene->figures->position, scene->figures->diameter / 2, scene->figures->colour);
 			//color = ray_cast(&ray, scene, 0);
 			my_mlx_pixel_put(pic, x, y, color);
 			++x;
@@ -60,7 +60,7 @@ void	mlx_run(t_scene *scene)
 
 	pic = create_pic(scene);
 	mlx_hook(pic->window, 17, 0, ft_just_exit, pic);  // закрытие по клику
-	mlx_hook(pic->window, 02, 1L << 0, ft_handle_button, pic);  // Обработка кнопок (закрытие по Esc)
+	mlx_hook(pic->window, 02, 1L << 0, ft_handle_buttons, pic);  // Обработка кнопок (закрытие по Esc)
 	// mlx_hook(pic->window, 02, 1L << 0, ft_decrease, scene);  // уменьшение размеров фигур на 10
 	render(pic, scene);
 	mlx_put_image_to_window(pic->mlx, pic->window, pic->img, M_LEFT, M_TOP);
@@ -95,10 +95,10 @@ void	parse_scene(char *filename, t_scene *scene)
 	scene->figures = NULL;
 	printf("adress = %p\n", scene->figures);
 	sphere = ft_sphere_lstnew(ft_split("sp 0,0,1700 650 0,255,0", ' '));
-	printf("radius = %f\n", sphere->radius);
+	printf("radius = %f\n", sphere->diameter / 2);
 
 	ft_figure_lstadd_back(&(scene->figures), sphere);
-	printf("radius = %f\n", scene->figures->radius);
+	printf("radius = %f\n", sphere->diameter / 2);
 	printf("type = %d\n", scene->figures->type);
 	
 	printf("inside parse, camera fov: %d\n", camera->fov);

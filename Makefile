@@ -6,7 +6,7 @@
 #    By: merlich <merlich@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/02 22:45:06 by merlich           #+#    #+#              #
-#    Updated: 2022/10/01 21:28:56 by merlich          ###   ########.fr        #
+#    Updated: 2022/10/02 20:18:04 by merlich          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRC_FILES =	main.c 					draw_utils.c\
 			error_parser.c  		map_parser.c\
 			check_colour.c 			check_vector.c\
 			check_geometry.c		matrix_utils.c\
-			ray_utils.c				vector_operations.c\
+			ray_utils.c\
+			vector_operations.c		vectors_rotation.c\
 			debug_utils.c			color_utils.c\
 			get_next_line.c			get_next_line_utils.c\
 			light_utils_1.c			light_utils_2.c\
@@ -31,9 +32,9 @@ SRC_FILES =	main.c 					draw_utils.c\
 			ft_atof.c\
 			ft_check_params_1.c		ft_check_params_2.c\
 			scene_utils.c			sphere_utils.c\
-			ft_handle_button.c		ft_clean_map_data.c\
+			ft_clean_map_data.c\
 			figures_utils_1.c		figures_utils_2.c\
-			
+			ft_handle_buttons_1.c	ft_handle_buttons_2.c		
 
 LIBFT =   libft.a
 			

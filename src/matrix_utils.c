@@ -8,12 +8,12 @@ t_vec3	camera_up(t_vec3 cam_vec)
 		&& (cam_vec.z == 0 || cam_vec.z == 0))
 	{
 		if (cam_vec.y == -1)
-			vec = vector_create(0, 0, -1);
+			vec = ft_build_vector(0, 0, -1);
 		if (cam_vec.y == 1)
-			vec = vector_create(0, 0, 1);
+			vec = ft_build_vector(0, 0, 1);
 	}
 	else
-		vec = vector_create(0, 1, 0);
+		vec = ft_build_vector(0, 1, 0);
 	return (vec);
 }
 
@@ -35,11 +35,11 @@ t_matrix	look_at(t_vec3 origin, t_vec3 cam_vector)
 	t_vec3		up;
 
 	or = camera_up(cam_vector);
-	vector_normalize(&or);
+	ft_normalize_vector(&or);
 	right = vec3_cross_product(or, cam_vector);
-	vector_normalize(&right);
+	ft_normalize_vector(&right);
 	up = vec3_cross_product(cam_vector, right);
-	vector_normalize(&up);
+	ft_normalize_vector(&up);
 	m.d[0][0] = right.x;
 	m.d[0][1] = right.y;
 	m.d[0][2] = right.z;

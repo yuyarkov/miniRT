@@ -1,6 +1,6 @@
 #include "miniRT.h"
 
-t_vec3	vector_create(float x, float y, float z)
+t_vec3	ft_build_vector(float x, float y, float z)
 {
 	t_vec3	result;
 
@@ -13,6 +13,16 @@ t_vec3	vector_create(float x, float y, float z)
 float	vector_len(t_vec3 v)
 {
 	return (sqrt(v.x * v.x + v.y * v.y + v.z * v.z));
+}
+
+t_vec3 vector_sum(t_vec3 first, t_vec3 second)
+{
+    t_vec3	result;
+
+	result.x = first.x + second.x;
+	result.y = first.y + second.y;
+	result.z = first.z + second.z;
+	return (result);
 }
 
 t_vec3 vector_minus(t_vec3 first, t_vec3 second)
@@ -33,7 +43,7 @@ float	vector_scalar_product(t_vec3 a, t_vec3 b) //скалярное произ�
 	return (result);
 }
 
-void	vector_normalize(t_vec3 *v)
+void	ft_normalize_vector(t_vec3 *v)
 {
 	double	len;
 

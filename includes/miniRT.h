@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:12:14 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/01 21:09:45 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/02 20:11:38 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,18 @@
 # define A 0
 # define S 1
 # define D 2
+# define Z 6
+# define X 7
 # define SHIFT 257
 # define R_SHIFT 258
 # define SPACE 49
+# define FOV_PLUS 69
+# define FOV_MINUS 78
 
+# define SIZE_STEP 10
+# define MOVE_STEP 10
+# define CAM_STEP 10
+# define ROT_ANGLE M_PI / 12
 
 typedef struct s_pixel
 {
@@ -157,17 +165,27 @@ int		ft_check_params_sp(char **ptr);
 int		ft_check_params_cy(char **ptr);
 int		ft_check_params_pl(char **ptr);
 
-/* ft_handle_button.c */
+/* ft_handle_buttons_1.c */
 
-int 	ft_handle_button(int keycode, t_data *pic);
-int 	ft_just_exit(t_data *pic);
+void	ft_redraw_image(t_data *pic);
+int		ft_just_exit(t_data *pic);
+int		ft_handle_buttons(int keycode, t_data *pic);
+
+/* ft_handle_buttons_2.c */
+
+void	ft_resize(int step, t_data *pic);
+void	ft_move(int keycode, int step, t_data *pic);
+void	ft_change_fov(int keycode, int step, t_data *pic);
+void	ft_rotate_figure(int keycode, int angle, t_data *pic);
+
 
 /* ft_clean_map_data.c */
 
 void	ft_clean_map_data(t_scene *scene);
 
+/* main.c */
 
-
+void	render(t_data *pic, t_scene *scene);
 
 
 
