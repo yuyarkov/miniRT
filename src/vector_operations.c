@@ -43,7 +43,7 @@ float	vector_scalar_product(t_vec3 a, t_vec3 b) //скалярное произ�
 	return (result);
 }
 
-void	ft_normalize_vector(t_vec3 *v)
+void	vector_normalize(t_vec3 *v)
 {
 	double	len;
 

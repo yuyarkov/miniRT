@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:11:04 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/02 20:18:36 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/04 20:14:44 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	render(t_data *pic, t_scene *scene)
 		{
 			color = BLACK;
 			ray = ray_by_x_y(x, y, scene);
-			color = sphere_intersect(ray, scene->figures->position, scene->figures->diameter / 2, scene->figures->colour);
+			color = sphere_intersect(ray, scene);
 			//color = ray_cast(&ray, scene, 0);
 			my_mlx_pixel_put(pic, x, y, color);
 			++x;
@@ -73,6 +73,8 @@ void	parse_scene(char *filename, t_scene *scene)
 	(void) filename;
 	t_camera *camera;
 	t_figure *sphere;
+	t_figure *sphere2;
+
 
 //пока захардкодил пробные значения для сцены. есть камера и одна сфера.
 
@@ -97,7 +99,11 @@ void	parse_scene(char *filename, t_scene *scene)
 	sphere = ft_sphere_lstnew(ft_split("sp 0,0,1700 650 0,255,0", ' '));
 	printf("radius = %f\n", sphere->diameter / 2);
 
+	sphere2 = ft_sphere_lstnew(ft_split("sp 500,-300,1200 250 255,255,0", ' '));
+	printf("radius = %f\n", sphere2->diameter / 2);
+
 	ft_figure_lstadd_back(&(scene->figures), sphere);
+	ft_figure_lstadd_back(&(scene->figures), sphere2);
 	printf("radius = %f\n", sphere->diameter / 2);
 	printf("type = %d\n", scene->figures->type);
 	

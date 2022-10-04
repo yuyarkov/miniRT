@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   figures.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 20:14:24 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/02 20:10:33 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/04 20:18:16 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,6 @@ void		ft_figure_lstclear(t_figure **head);
 
 // t_figure	*sphere_create(t_vec3 center, float radius);
 // t_vec3		sphere_get_normal(t_vec3 point, t_figure sphere);
-int 		sphere_intersect(t_vec3 ray, t_vec3 center, float radius, int color);
+
 
 #endif

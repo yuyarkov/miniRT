@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:12:14 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/02 20:38:00 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/04 20:18:29 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,6 +193,6 @@ void	ft_clean_map_data(t_scene *scene);
 
 void	render(t_data *pic, t_scene *scene);
 
-
+int 		sphere_intersect(t_vec3 ray_original, t_scene *scene);
 
 #endif

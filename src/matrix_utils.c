@@ -35,11 +35,11 @@ t_matrix	look_at(t_vec3 origin, t_vec3 cam_vector)
 	t_vec3		up;
 
 	or = camera_up(cam_vector);
-	ft_normalize_vector(&or);
+	vector_normalize(&or);
 	right = vec3_cross_product(or, cam_vector);
-	ft_normalize_vector(&right);
+	vector_normalize(&right);
 	up = vec3_cross_product(cam_vector, right);
-	ft_normalize_vector(&up);
+	vector_normalize(&up);
 	m.d[0][0] = right.x;
 	m.d[0][1] = right.y;
 	m.d[0][2] = right.z;

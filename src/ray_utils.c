@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 19:04:20 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/02 19:47:50 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/04 20:23:07 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_vec3	ray_get_direction(int x, int y, t_camera *camera)
 	p_x = (2 * (x + 0.5) / (double)WINDOW_WIDTH - 1) * aspect_ratio * fov_coeff;
 	p_y = (1 - 2 * (y + 0.5) / (double)WINDOW_HEIGHT) * fov_coeff;
 	dir = ft_build_vector(p_x, p_y, -1);
-	ft_normalize_vector(&dir);
+	vector_normalize(&dir);
 	return (dir);
 }
 
@@ -55,7 +55,7 @@ t_ray	ray_from_camera(int x, int y, t_camera *camera)
 	direction = ray_get_direction(x, y, camera);
 	direction = multiply_by_matrix(direction, view);
 	direction = vector_minus(direction, origin);
-	ft_normalize_vector(&direction);
+	vector_normalize(&direction);
 	return (ray_create(origin, direction));
 }
 
@@ -68,6 +68,6 @@ t_vec3	ray_by_x_y(int x, int y, t_scene *scene)
 	ray_x = - WINDOW_WIDTH / 2 + x;
 	ray_y = - WINDOW_HEIGHT / 2 + y;
 	result = ft_build_vector(ray_x, ray_y, scene->camera->f);
-	ft_normalize_vector(&result);
+	vector_normalize(&result);
 	return (result);
 }

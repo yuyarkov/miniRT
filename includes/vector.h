@@ -12,7 +12,7 @@ typedef struct s_vec3
 
 t_vec3			ft_build_vector(float x, float y, float z);
 t_vec3			vector_minus(t_vec3 a, t_vec3 b);
-void			ft_normalize_vector(t_vec3 *v);
+void			vector_normalize(t_vec3 *v);
 t_vec3 			vector_sum(t_vec3 first, t_vec3 second);
 float			vector_scalar_product(t_vec3 a, t_vec3 b);
 void			vector_stretch(t_vec3 *v, float k);
