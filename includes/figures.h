@@ -6,7 +6,7 @@
 /*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 20:14:24 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/04 20:18:16 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/05 20:50:41 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 typedef struct s_figure
 {
 	int					type;
-	t_vec3				position;
+	t_vec3				center;
 	t_vec3				norm_vector;
-	float				diameter; // cylinder
+	float				radius; // cylinder
 	float				height;
 	// float				radius; // sphere
 	t_color				color;

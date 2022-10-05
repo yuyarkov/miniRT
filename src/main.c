@@ -6,7 +6,7 @@
 /*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:11:04 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/04 20:14:44 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/05 20:53:31 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,27 +88,27 @@ void	parse_scene(char *filename, t_scene *scene)
 	camera->orientation.z = 1; 
 	camera->fov = 70;
 	// sphere->type = SPHERE;
-	// sphere->position.x = 0;
-	// sphere->position.y = 0;
-	// sphere->position.z = 1700;
+	// sphere->center.x = 0;
+	// sphere->center.y = 0;
+	// sphere->center.z = 1700;
 	// sphere->radius = 650;
 	// sphere->colour = GREEN;
 	
 	scene->figures = NULL;
 	printf("adress = %p\n", scene->figures);
 	sphere = ft_sphere_lstnew(ft_split("sp 0,0,1700 650 0,255,0", ' '));
-	printf("radius = %f\n", sphere->diameter / 2);
+	printf("radius = %f\n", sphere->radius);
 
 	sphere2 = ft_sphere_lstnew(ft_split("sp 500,-300,1200 250 255,255,0", ' '));
-	printf("radius = %f\n", sphere2->diameter / 2);
+	printf("radius = %f\n", sphere2->radius);
 
 	ft_figure_lstadd_back(&(scene->figures), sphere);
 	ft_figure_lstadd_back(&(scene->figures), sphere2);
-	printf("radius = %f\n", sphere->diameter / 2);
+	printf("radius = %f\n", sphere->radius);
 	printf("type = %d\n", scene->figures->type);
 	
 	printf("inside parse, camera fov: %d\n", camera->fov);
-	print_vector(camera->position, "camera.position");
+	print_vector(camera->position, "camera.center");
 	scene->camera = camera;
 
 	printf("pointer to camera: %p, fov: %d\n", scene->camera, scene->camera->fov);

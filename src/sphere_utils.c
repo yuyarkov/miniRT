@@ -6,7 +6,7 @@
 /*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 18:42:24 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/04 20:20:14 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/05 20:52:21 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,14 +61,14 @@ float	get_reflection_angle(t_vec3 ray, float h, float dist_to_sphere, t_figure *
 	t_vec3	normal_in_closest_intersection;
 	t_vec3	ray_from_sphere_to_light;
 
-	if (h >= sphere->diameter / 2)
+	if (h >= sphere->radius / 2)
 		return (255);
-	cut_extra_from_ray = sqrt(sphere->diameter * sphere->diameter / 4 - h * h);
+	cut_extra_from_ray = sqrt(sphere->radius * sphere->radius / 4 - h * h);
 	vector_normalize(&ray);
 	vector_stretch(&ray, dist_to_sphere - cut_extra_from_ray);//теперь ray указывает в точку ближайшего пересечения со сферой
 
 	ray_from_sphere_to_light = vector_minus(light->origin, ray);
-	normal_in_closest_intersection = vector_minus(ray, sphere->position);//точно ли нормаль смотрит из центра сферы в точку пересечения?
+	normal_in_closest_intersection = vector_minus(ray, sphere->center);//точно ли нормаль смотрит из центра сферы в точку пересечения?
 	vector_normalize(&normal_in_closest_intersection);
 	vector_normalize(&ray);
 
@@ -103,12 +103,12 @@ int sphere_intersect(t_vec3 ray_original, t_scene *scene)
 	while (sphere && sphere->type == SPHERE)
 	{
 		ray = ray_original;
-		dist_to_sphere = vector_scalar_product(ray, sphere->position);
+		dist_to_sphere = vector_scalar_product(ray, sphere->center);
 		vector_stretch(&ray, dist_to_sphere);
-		h = vector_len(vector_minus(ray, sphere->position));
-    	if (h < sphere->diameter * 2)
+		h = vector_len(vector_minus(ray, sphere->center));
+    	if (h < sphere->radius * 2)
 		{
-			if (h < sphere->diameter)
+			if (h < sphere->radius)
 				lightness = get_reflection_angle(ray, h, dist_to_sphere, sphere, scene->light);
 			else
 				lightness = 255;

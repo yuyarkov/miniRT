@@ -22,15 +22,15 @@ void	ft_resize(int step, t_data *pic)
 	{
 		if (figures->type == SPHERE)
 		{
-			figures->diameter += step;
-			if (figures->diameter < 0)
-				figures->diameter = 0;
+			figures->radius += step;
+			if (figures->radius < 0)
+				figures->radius = 0;
 		}
 		else if (figures->type == CYLINDER)
 		{
-			figures->diameter += step;
-			if (figures->diameter < 0)
-				figures->diameter = 0;
+			figures->radius += step;
+			if (figures->radius < 0)
+				figures->radius = 0;
 			figures->height += step;
 			if (figures->height < 0)
 				figures->height = 0;
@@ -47,17 +47,17 @@ void	ft_move(int keycode, int step, t_data *pic)
 	while (figures)
 	{
 		if (keycode == W)
-			figures->position.y -= step;
+			figures->center.y -= step;
 		else if (keycode == S)
-			figures->position.y += step;
+			figures->center.y += step;
 		else if (keycode == A)
-			figures->position.x -= step;
+			figures->center.x -= step;
 		else if (keycode == D)
-			figures->position.x += step;
+			figures->center.x += step;
 		else if (keycode == SPACE || keycode == X)
-			figures->position.z -= step;
+			figures->center.z -= step;
 		else if (keycode == SHIFT || keycode == Z)
-			figures->position.z += step;
+			figures->center.z += step;
 		figures = figures->next;
 	}
 }
