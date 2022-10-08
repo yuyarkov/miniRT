@@ -44,8 +44,8 @@ int ft_handle_buttons(int keycode, t_data *pic)
 		ft_rotate_figure(keycode, ROT_ANGLE, pic);
 	else if (keycode == FOV_PLUS || keycode == FOV_MINUS)
 		ft_change_fov(keycode, CAM_STEP, pic);
-	if (keycode == W || keycode == A || keycode == S || keycode == D || \
-		keycode == SHIFT || keycode == X || keycode == SPACE || keycode == Z)
+	else if (keycode == W || keycode == A || keycode == S || keycode == D || \
+			keycode == SHIFT || keycode == X || keycode == SPACE || keycode == Z)
 		ft_move(keycode, MOVE_STEP, pic);
 	ft_redraw_image(pic);
 	return (0);

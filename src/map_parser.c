@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 19:04:03 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/01 21:24:23 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/08 16:51:16 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,27 +46,27 @@ static int	ft_fill_list(t_scene *scene, char **ptr)
 	{
 		if (!ft_strcmp(ptr[0], "A") && !ft_check_params_a(ptr))
 		{
-			ft_ambient_lstadd_back(&scene->ambient, ft_ambient_lstnew(ptr));
+			ft_ambient_lstadd_back(&(scene->ambient), ft_ambient_lstnew(ptr));
 		}
 		else if (!ft_strcmp(ptr[0], "C") && !ft_check_params_c(ptr))
 		{
-			ft_camera_lstadd_back(&scene->camera, ft_camera_lstnew(ptr));
+			ft_camera_lstadd_back(&(scene->camera), ft_camera_lstnew(ptr));
 		}
 		else if (!ft_strcmp(ptr[0], "L") && !ft_check_params_l(ptr))
 		{
-			ft_light_lstadd_back(&scene->light, ft_light_lstnew(ptr));
+			ft_light_lstadd_back(&(scene->light), ft_light_lstnew(ptr));
 		}
 		else if (!ft_strcmp(ptr[0], "sp") && !ft_check_params_sp(ptr))
 		{
-			ft_figure_lstadd_back(&scene->figures, ft_sphere_lstnew(ptr));
+			ft_figure_lstadd_back(&(scene->figures), ft_sphere_lstnew(ptr));
 		}
 		else if (!ft_strcmp(ptr[0], "cy") && !ft_check_params_cy(ptr))
 		{
-			ft_figure_lstadd_back(&scene->figures, ft_cylinder_lstnew(ptr));
+			ft_figure_lstadd_back(&(scene->figures), ft_cylinder_lstnew(ptr));
 		}
 		else if (!ft_strcmp(ptr[0], "pl") && !ft_check_params_pl(ptr))
 		{
-			ft_figure_lstadd_back(&scene->figures, ft_plane_lstnew(ptr));
+			ft_figure_lstadd_back(&(scene->figures), ft_plane_lstnew(ptr));
 		}
 		else
 			return ft_perror();
@@ -101,6 +101,19 @@ int	check_map(t_scene *scene, char *map)
 		str = get_next_line(fd);
 	}
 	close(fd);
+//////////////////
+	t_figure	*figures;
+
+	figures = scene->figures;
+	while (figures)
+	{
+		printf("type = %d\n", figures->type);
+		figures = figures->next;
+	}
+////////////////
+	printf("pointer to camera: %p, fov: %d\n", scene->camera, scene->camera->fov);
+	scene->camera->f = get_focus_distance(scene);  // видимо, нужно добавить эту строку в парсер.
+	printf("фокусное расстояние: %f", scene->camera->f);
 	if (ft_check_doubles(scene) || err)
 		return 1;
 	return 0;

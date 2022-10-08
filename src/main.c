@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
+/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:11:04 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/05 20:53:31 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/08 16:50:08 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,8 +127,8 @@ int	main(int argc, char **argv)
 		ft_clean_map_data(&scene);
 		return 1;
 	}
-	(void) argc;
-	parse_scene(argv[1], &scene);
+	// (void) argc;
+	// parse_scene(argv[1], &scene);
 	mlx_run(&scene);
 	// ft_clean_all(); // очистка структуры
 	

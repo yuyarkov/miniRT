@@ -35,6 +35,7 @@ void	ft_resize(int step, t_data *pic)
 			if (figures->height < 0)
 				figures->height = 0;
 		}
+		printf("radius = %f\n", figures->radius);
 		figures = figures->next;
 	}
 }
