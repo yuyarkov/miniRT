@@ -8,6 +8,8 @@ typedef struct s_camera
 	t_vec3			orientation;
 	int				fov;
 	float			f;//фокусное расстояние
+	float			angle_y;
+	float			angle_z;
 	struct s_camera	*next;
 }					t_camera;
 

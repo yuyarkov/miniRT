@@ -21,6 +21,7 @@ t_vec3			vec3_cross_product(t_vec3 a, t_vec3 b);
 float			vector_len(t_vec3 vector);
 float			vec3_len2(t_vec3 v);
 double			vec3_dist(t_vec3 vec1, t_vec3 vec2);
+t_vec3			vector_mult_s(t_vec3 v, float k);
 
 /* vectors_rotation.c */
 

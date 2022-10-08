@@ -63,6 +63,14 @@ void	vector_stretch(t_vec3 *v, float k)
 	v->z *= k;
 }
 
+t_vec3	vector_mult_s(t_vec3 v, float k)
+{
+	v.x *= k;
+	v.y *= k;
+	v.z *= k;
+	return (v);
+}
+
 t_vec3	vec3_cross_product(t_vec3 a, t_vec3 b)
 {
 	t_vec3	result;

@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:11:04 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/08 16:50:08 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/08 18:56:27 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,26 @@ t_data	*create_pic(t_scene *scene)
 	return (pic);
 }
 
+t_vec3	ft_rotate_ray(t_camera *cam, t_vec3 *dir)
+{
+	float	new_x;
+	float	new_y;
+	float	new_z;
+	float	cut;
+
+	cut = cam->angle_y;
+	new_x = dir->x * cos(cut) - dir->z * sin(cut);
+	new_z = dir->x * sin(cut) + dir->z * cos(cut);
+	*dir = ft_build_vector(new_x, dir->y, new_z);
+	vector_normalize(dir);
+	cut = cam->angle_z;
+	new_x = dir->x * cos(cut) - dir->y * sin(cut);
+	new_y = dir->x * sin(cut) + dir->y * cos(cut);
+	*dir = ft_build_vector(new_x, new_y, dir->z);
+	vector_normalize(dir);
+	return (*dir);
+}
+
 void	render(t_data *pic, t_scene *scene)
 {
 	int		x;
@@ -44,6 +64,7 @@ void	render(t_data *pic, t_scene *scene)
 		{
 			color = BLACK;
 			ray = ray_by_x_y(x, y, scene);
+			ray = ft_rotate_ray(scene->camera, &ray);
 			color = sphere_intersect(ray, scene);
 			//color = ray_cast(&ray, scene, 0);
 			my_mlx_pixel_put(pic, x, y, color);
@@ -68,53 +89,53 @@ void	mlx_run(t_scene *scene)
 	free(pic);
 }
 
-void	parse_scene(char *filename, t_scene *scene)
-{
-	(void) filename;
-	t_camera *camera;
-	t_figure *sphere;
-	t_figure *sphere2;
+// void	parse_scene(char *filename, t_scene *scene)
+// {
+// 	(void) filename;
+// 	t_camera *camera;
+// 	t_figure *sphere;
+// 	t_figure *sphere2;
 
 
-//пока захардкодил пробные значения для сцены. есть камера и одна сфера.
+// //пока захардкодил пробные значения для сцены. есть камера и одна сфера.
 
-	camera = malloc(sizeof(t_camera));
-	// sphere = malloc(sizeof(t_figure));
-	camera->position.x = 0;
-	camera->position.y = 0;
-	camera->position.z = 0;
-	camera->orientation.x = 0;
-	camera->orientation.y = 0; 
-	camera->orientation.z = 1; 
-	camera->fov = 70;
-	// sphere->type = SPHERE;
-	// sphere->center.x = 0;
-	// sphere->center.y = 0;
-	// sphere->center.z = 1700;
-	// sphere->radius = 650;
-	// sphere->colour = GREEN;
+// 	camera = malloc(sizeof(t_camera));
+// 	// sphere = malloc(sizeof(t_figure));
+// 	camera->position.x = 0;
+// 	camera->position.y = 0;
+// 	camera->position.z = 0;
+// 	camera->orientation.x = 0;
+// 	camera->orientation.y = 0; 
+// 	camera->orientation.z = 1; 
+// 	camera->fov = 70;
+// 	// sphere->type = SPHERE;
+// 	// sphere->center.x = 0;
+// 	// sphere->center.y = 0;
+// 	// sphere->center.z = 1700;
+// 	// sphere->radius = 650;
+// 	// sphere->colour = GREEN;
 	
-	scene->figures = NULL;
-	printf("adress = %p\n", scene->figures);
-	sphere = ft_sphere_lstnew(ft_split("sp 0,0,1700 650 0,255,0", ' '));
-	printf("radius = %f\n", sphere->radius);
+// 	scene->figures = NULL;
+// 	printf("adress = %p\n", scene->figures);
+// 	sphere = ft_sphere_lstnew(ft_split("sp 0,0,1700 650 0,255,0", ' '));
+// 	printf("radius = %f\n", sphere->radius);
 
-	sphere2 = ft_sphere_lstnew(ft_split("sp 500,-300,1200 250 255,255,0", ' '));
-	printf("radius = %f\n", sphere2->radius);
+// 	sphere2 = ft_sphere_lstnew(ft_split("sp 500,-300,1200 250 255,255,0", ' '));
+// 	printf("radius = %f\n", sphere2->radius);
 
-	ft_figure_lstadd_back(&(scene->figures), sphere);
-	ft_figure_lstadd_back(&(scene->figures), sphere2);
-	printf("radius = %f\n", sphere->radius);
-	printf("type = %d\n", scene->figures->type);
+// 	ft_figure_lstadd_back(&(scene->figures), sphere);
+// 	ft_figure_lstadd_back(&(scene->figures), sphere2);
+// 	printf("radius = %f\n", sphere->radius);
+// 	printf("type = %d\n", scene->figures->type);
 	
-	printf("inside parse, camera fov: %d\n", camera->fov);
-	print_vector(camera->position, "camera.center");
-	scene->camera = camera;
+// 	printf("inside parse, camera fov: %d\n", camera->fov);
+// 	print_vector(camera->position, "camera.center");
+// 	scene->camera = camera;
 
-	printf("pointer to camera: %p, fov: %d\n", scene->camera, scene->camera->fov);
-	camera->f = get_focus_distance(scene);  // видимо, нужно добавить эту строку в парсер.
-	printf("фокусное расстояние: %f", camera->f);
-}
+// 	printf("pointer to camera: %p, fov: %d\n", scene->camera, scene->camera->fov);
+// 	camera->f = get_focus_distance(scene);  // видимо, нужно добавить эту строку в парсер.
+// 	printf("фокусное расстояние: %f", camera->f);
+// }
 
 int	main(int argc, char **argv)
 {

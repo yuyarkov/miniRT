@@ -13,7 +13,7 @@
 
 #include "../includes/miniRT.h"
 
-void	ft_resize(int step, t_data *pic)
+void	ft_resize_figure(int step, t_data *pic)
 {
 	t_figure	*figures;
 
@@ -40,7 +40,7 @@ void	ft_resize(int step, t_data *pic)
 	}
 }
 
-void	ft_move(int keycode, int step, t_data *pic)
+void	ft_move_figure(int keycode, int step, t_data *pic)
 {
 	t_figure	*figures;
 

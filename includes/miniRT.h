@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
+/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:12:14 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/04 20:18:29 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/08 18:54:09 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,10 @@
 # define SPACE 49
 # define FOV_PLUS 69
 # define FOV_MINUS 78
+# define ROT_UP 91
+# define ROT_DOWN 87
+# define ROT_LEFT 86
+# define ROT_RIGHT 88
 
 # define SIZE_STEP 10
 # define MOVE_STEP 10
@@ -175,12 +179,14 @@ int		ft_check_params_pl(char **ptr);
 
 void	ft_redraw_image(t_data *pic);
 int		ft_just_exit(t_data *pic);
+void	ft_move_camera(int keycode, float step, t_data *pic);
+void	ft_rotate_camera(int keycode, float angle, t_data *pic);
 int		ft_handle_buttons(int keycode, t_data *pic);
 
 /* ft_handle_buttons_2.c */
 
-void	ft_resize(int step, t_data *pic);
-void	ft_move(int keycode, int step, t_data *pic);
+void	ft_resize_figure(int step, t_data *pic);
+void	ft_move_figure(int keycode, int step, t_data *pic);
 void	ft_change_fov(int keycode, int step, t_data *pic);
 void	ft_rotate_figure(int keycode, int angle, t_data *pic);
 
@@ -191,8 +197,9 @@ void	ft_clean_map_data(t_scene *scene);
 
 /* main.c */
 
+t_vec3	ft_rotate_ray(t_camera *cam, t_vec3 *dir);
 void	render(t_data *pic, t_scene *scene);
 
-int 		sphere_intersect(t_vec3 ray_original, t_scene *scene);
+int 	sphere_intersect(t_vec3 ray_original, t_scene *scene);
 
 #endif
