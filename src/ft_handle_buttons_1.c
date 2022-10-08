@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 20:22:22 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/08 22:08:31 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/08 22:26:04 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,6 @@ int ft_handle_buttons(int keycode, t_data *pic)
 	else if (keycode == I || keycode == K || keycode == J || \
 			keycode == L || keycode == U || keycode == O)
 		ft_move_light(keycode, MOVE_STEP, pic);
-	else if (keycode == ROT_X_PLUS || keycode == ROT_X_MINUS || keycode == ROT_Y_PLUS || \
-			keycode == ROT_Y_MINUS || keycode == ROT_Z_PLUS || keycode == ROT_Z_MINUS)
-		ft_rotate_light(keycode, ROT_ANGLE, pic);
 	ft_redraw_image(pic);
 	return (0);
 }

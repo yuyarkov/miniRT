@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 21:37:32 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/08 22:12:52 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/08 22:25:45 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,44 +14,23 @@
 
 void	ft_move_light(int keycode, float step, t_data *pic)
 {
-	t_light	*ray;
+	t_light	*light;
 
-	ray = pic->scene_ptr->light;
+	light = pic->scene_ptr->light;
 
 	if (keycode == K)
-		ray->origin.y += step;
+		light->origin.y += step;
 	else if (keycode == I)
-		ray->origin.y -= step;
+		light->origin.y -= step;
 	else if (keycode == J)
-		ray->origin.x -= step;
+		light->origin.x -= step;
 	else if (keycode == L)
-		ray->origin.x += step;
+		light->origin.x += step;
 	else if (keycode == U)
-		ray->origin.z += step;
+		light->origin.z += step;
 	else if (keycode == O)
-		ray->origin.z -= step;
-	printf("RAY.X = %f\n", ray->origin.x);
-	printf("RAY.Y = %f\n", ray->origin.y);
-	printf("RAY.Z = %f\n", ray->origin.z);
-}
-
-void	ft_rotate_light(int keycode, float angle, t_data *pic)
-{
-	t_light	*ray;
-
-	ray = pic->scene_ptr->light;
-
-	if (keycode == ROT_X_PLUS)
-		ray. -= angle;
-	else if (keycode == ROT_X_MINUS)
-		ray->origin.y -= angle;
-	else if (keycode == ROT_Y_PLUS)
-		ray->origin.z -= angle;
-	else if (keycode == ROT_Y_MINUS)
-		ray->origin.z += angle;
-	else if (keycode == ROT_Z_PLUS)
-		ray->origin.z -= angle;
-	else if (keycode == ROT_Z_MINUS)
-		ray->origin.z += angle;
-
+		light->origin.z -= step;
+	printf("light.X = %f\n", light->origin.x);
+	printf("light.Y = %f\n", light->origin.y);
+	printf("light.Z = %f\n", light->origin.z);
 }

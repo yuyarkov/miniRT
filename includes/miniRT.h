@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:12:14 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/08 22:10:24 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/08 22:25:18 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,14 +116,6 @@
 # define L 37  // RIGHT X_AXIS
 # define U 32  // Z_AXIS
 # define O 31  // Z_AXIS
-
-/* Rotate camera */
-# define ROT_X_PLUS 42 // ROT_UP "\"
-# define ROT_X_MINUS 41 // ROT_DOWN ";"
-# define ROT_Y_PLUS 33 // ROT_LEFT "'"
-# define ROT_Y_MINUS 39 // ROT_RIGHT "["
-# define ROT_Z_PLUS 35 // ROT_FRONT "P"
-# define ROT_Z_MINUS 30 // ROT_BACK "]"
 
 /* Move/Rotate steps */
 # define SIZE_STEP 10

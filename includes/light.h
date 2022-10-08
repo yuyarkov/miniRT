@@ -6,7 +6,7 @@ typedef struct s_light
 	t_vec3				origin;
 	float				intensity;
 	t_color				color;
-	struct s_light	*next;
+	struct s_light		*next;
 }						t_light;
 
 /* light_utils.c */
