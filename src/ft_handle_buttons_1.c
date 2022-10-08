@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 20:22:22 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/08 18:26:33 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/08 21:15:32 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,18 @@ void	ft_move_camera(int keycode, float step, t_data *pic)
 
 void	ft_rotate_camera(int keycode, float angle, t_data *pic)
 {
-	if (keycode == ROT_UP)
-		pic->scene_ptr->camera->angle_y += angle;
-	else if (keycode == ROT_DOWN)
-		pic->scene_ptr->camera->angle_y -= angle;
-	else if (keycode == ROT_LEFT)
-		pic->scene_ptr->camera->angle_z -= angle;
-	else if (keycode == ROT_RIGHT)
+	if (keycode == ROT_FRONT)
 		pic->scene_ptr->camera->angle_z += angle;
+	else if (keycode == ROT_BACK)
+		pic->scene_ptr->camera->angle_z -= angle;
+	else if (keycode == ROT_LEFT)
+		pic->scene_ptr->camera->angle_y -= angle;
+	else if (keycode == ROT_RIGHT)
+		pic->scene_ptr->camera->angle_y += angle;
+	else if (keycode == ROT_UP)
+		pic->scene_ptr->camera->angle_x += angle;
+	else if (keycode == ROT_DOWN)
+		pic->scene_ptr->camera->angle_x -= angle;
 }
 
 int ft_handle_buttons(int keycode, t_data *pic)
@@ -82,9 +86,12 @@ int ft_handle_buttons(int keycode, t_data *pic)
 	else if (keycode == UP || keycode == DOWN || keycode == LEFT || \
 			keycode == RIGHT)
 		ft_move_camera(keycode, MOVE_STEP, pic);
-	else if (keycode == UP || keycode == DOWN || keycode == LEFT || \
-			keycode == RIGHT)
+	else if (keycode == ROT_UP || keycode == ROT_DOWN || keycode == ROT_LEFT \
+			|| keycode == ROT_RIGHT || keycode == ROT_FRONT || keycode == ROT_BACK)
 		ft_rotate_camera(keycode, ROT_ANGLE, pic);
+	else if (keycode == L_UP || keycode == L_DOWN || keycode == L_LEFT || \
+			keycode == L_RIGHT)
+		ft_move_light(keycode, MOVE_STEP, pic);
 	// printf("CAM.X = %f\n", pic->scene_ptr->camera->position.x);
 	ft_redraw_image(pic);
 	return (0);

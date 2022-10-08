@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:11:04 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/08 18:56:27 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/08 21:16:42 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,24 +28,11 @@ t_data	*create_pic(t_scene *scene)
 	return (pic);
 }
 
-t_vec3	ft_rotate_ray(t_camera *cam, t_vec3 *dir)
+void	ft_rotate_ray(t_camera *cam, t_vec3 *dir)
 {
-	float	new_x;
-	float	new_y;
-	float	new_z;
-	float	cut;
-
-	cut = cam->angle_y;
-	new_x = dir->x * cos(cut) - dir->z * sin(cut);
-	new_z = dir->x * sin(cut) + dir->z * cos(cut);
-	*dir = ft_build_vector(new_x, dir->y, new_z);
-	vector_normalize(dir);
-	cut = cam->angle_z;
-	new_x = dir->x * cos(cut) - dir->y * sin(cut);
-	new_y = dir->x * sin(cut) + dir->y * cos(cut);
-	*dir = ft_build_vector(new_x, new_y, dir->z);
-	vector_normalize(dir);
-	return (*dir);
+	*dir = ft_rotate_x(*dir, cam->angle_x);
+	*dir = ft_rotate_y(*dir, cam->angle_y);
+	*dir = ft_rotate_z(*dir, cam->angle_z);
 }
 
 void	render(t_data *pic, t_scene *scene)
@@ -64,7 +51,7 @@ void	render(t_data *pic, t_scene *scene)
 		{
 			color = BLACK;
 			ray = ray_by_x_y(x, y, scene);
-			ray = ft_rotate_ray(scene->camera, &ray);
+			ft_rotate_ray(scene->camera, &ray);
 			color = sphere_intersect(ray, scene);
 			//color = ray_cast(&ray, scene, 0);
 			my_mlx_pixel_put(pic, x, y, color);

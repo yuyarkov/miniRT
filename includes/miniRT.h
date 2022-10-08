@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:12:14 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/08 18:54:09 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/08 20:54:39 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,13 @@
 
 # include "debug.h" //чтобы выводить на экран вектора, матрицы и т.д. удалить перед сдачей
 
-
+/* Colors */
 # define WHITE 0x00FFFFFF
 # define GREEN 0x0000FF00
 # define BLACK 0x00000000
 # define RED 0x00FF0000
+
+/* Common params */
 # define BUFF_SIZE 40096
 # define DEF_COLOR 16777215
 # define WINDOW_WIDTH 900
@@ -57,21 +59,32 @@
 # define VALID_SYMBOLS "-,0x123456789abcdefABCDEF"
 # define BASE_LOWER "0123456789abcdef"
 # define BASE_UPPER "0123456789ABCDEF"
+
+/* Esc button */
 # define ESC 53
+
+/* Move camera */
 # define UP 126
 # define DOWN 125
 # define LEFT 123
 # define RIGHT 124
+
+/* Resize figure */
 # define PLUS 24
 # define MINUS 27
+
 # define Q 12
 # define E 14
+
+/* Move figure */
 # define W 13
 # define A 0
 # define S 1
 # define D 2
 # define Z 6
 # define X 7
+
+/* Rotate figure */
 # define F 3
 # define H 4
 # define T 17
@@ -83,11 +96,22 @@
 # define SPACE 49
 # define FOV_PLUS 69
 # define FOV_MINUS 78
+
+/* Rotate camera */
 # define ROT_UP 91
 # define ROT_DOWN 87
 # define ROT_LEFT 86
 # define ROT_RIGHT 88
+# define ROT_FRONT 89
+# define ROT_BACK 92
 
+/* Move light */
+# define L_UP 34
+# define L_DOWN 40
+# define L_LEFT 38
+# define L_RIGHT 37
+
+/* Move/Rotate steps */
 # define SIZE_STEP 10
 # define MOVE_STEP 10
 # define CAM_STEP 10
@@ -185,6 +209,7 @@ int		ft_handle_buttons(int keycode, t_data *pic);
 
 /* ft_handle_buttons_2.c */
 
+void	ft_move_light(int keycode, float step, t_data *pic);
 void	ft_resize_figure(int step, t_data *pic);
 void	ft_move_figure(int keycode, int step, t_data *pic);
 void	ft_change_fov(int keycode, int step, t_data *pic);
@@ -197,9 +222,9 @@ void	ft_clean_map_data(t_scene *scene);
 
 /* main.c */
 
-t_vec3	ft_rotate_ray(t_camera *cam, t_vec3 *dir);
+void	ft_rotate_ray(t_camera *cam, t_vec3 *dir);
 void	render(t_data *pic, t_scene *scene);
-
+t_vec3	ft_rotate_dir(t_vec3 dir, t_camera *camera);
 int 	sphere_intersect(t_vec3 ray_original, t_scene *scene);
 
 #endif

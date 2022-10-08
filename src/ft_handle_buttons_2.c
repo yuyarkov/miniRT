@@ -13,6 +13,29 @@
 
 #include "../includes/miniRT.h"
 
+void	ft_move_light(int keycode, float step, t_data *pic)
+{
+	t_light	*ray;
+
+	ray = pic->scene_ptr->light;
+
+	if (keycode == UP)
+		ray->origin.x += step;
+	else if (keycode == DOWN)
+		ray->origin.y -= step;
+	else if (keycode == UP)
+		ray->origin.y += step;
+	else if (keycode == DOWN)
+		ray->origin.y -= step;
+	else if (keycode == LEFT)
+		ray->origin.z -= step;
+	else if (keycode == RIGHT)
+		ray->origin.z += step;
+	printf("RAY.X = %f\n", ray->origin.x);
+	printf("RAY.Y = %f\n", ray->origin.y);
+	printf("RAY.Z = %f\n", ray->origin.z);
+}
+
 void	ft_resize_figure(int step, t_data *pic)
 {
 	t_figure	*figures;

@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 22:25:03 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/08 18:55:46 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/08 20:23:19 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static void	ft_set_values(t_camera *new, char **ptr)
 	new->orientation.y = ft_atof(p2[1]);
 	new->orientation.z = ft_atof(p2[2]);
 	new->fov = ft_atof(ptr[3]);
+	new->angle_x = 0;
 	new->angle_y = 0;
 	new->angle_z = 0;
 	new->next = NULL;

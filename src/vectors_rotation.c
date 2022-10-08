@@ -48,21 +48,28 @@ t_vec3	ft_rotate_z(t_vec3 vector, float phi)
 	return (vector);
 }
 
-// t_vector	rotate_dir(t_vector dir, t_data *data)
-// {
-// 	float	n_x;
-// 	float	n_y;
-// 	float	n_z;
-// 	float	a;
+t_vec3	ft_rotate_dir(t_vec3 dir, t_camera *camera)
+{
+	float	n_x;
+	float	n_y;
+	float	n_z;
+	float	a;
 
-// 	a = data->camera->angle_y;
-// 	n_x = dir.x * cos(a) - dir.z * sin(a);
-// 	n_z = dir.x * sin(a) + dir.z * cos(a);
-// 	dir = v_norm(vector(n_x, dir.y, n_z));
-// 	a = data->camera->angle_z;
-// 	n_x = dir.x * cos(a) - dir.y * sin(a);
-// 	n_y = dir.x * sin(a) + dir.y * cos(a);
-// 	dir = v_norm(vector(n_x, n_y, dir.z));
-// 	return (dir);
-// }
+	// a = camera->angle_x;
+	// n_y = dir.y * cos(a) + dir.z * sin(a);
+	// n_z = -dir.y * sin(a) + dir.z * cos(a);
+	// dir = ft_build_vector(dir.x, n_y, n_z);
+	// vector_normalize(&dir);
+	a = camera->angle_y;
+	n_x = dir.x * cos(a) - dir.z * sin(a);
+	n_z = dir.x * sin(a) + dir.z * cos(a);
+	dir = ft_build_vector(n_x, dir.y, n_z);
+	vector_normalize(&dir);
+	a = camera->angle_z;
+	n_x = dir.x * cos(a) - dir.y * sin(a);
+	n_y = dir.x * sin(a) + dir.y * cos(a);
+	dir = ft_build_vector(n_x, n_y, dir.z);
+	vector_normalize(&dir);
+	return (dir);
+}
 
