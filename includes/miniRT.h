@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:12:14 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/08 20:54:39 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/08 22:10:24 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,18 +63,10 @@
 /* Esc button */
 # define ESC 53
 
-/* Move camera */
-# define UP 126
-# define DOWN 125
-# define LEFT 123
-# define RIGHT 124
-
 /* Resize figure */
 # define PLUS 24
 # define MINUS 27
 
-# define Q 12
-# define E 14
 
 /* Move figure */
 # define W 13
@@ -83,6 +75,8 @@
 # define D 2
 # define Z 6
 # define X 7
+# define Q 12
+# define E 14
 
 /* Rotate figure */
 # define F 3
@@ -94,22 +88,42 @@
 # define SHIFT 257
 # define R_SHIFT 258
 # define SPACE 49
-# define FOV_PLUS 69
-# define FOV_MINUS 78
+
+/* Change camera`s FOV */
+# define FOV_PLUS 69  // NUM_PANEL +
+# define FOV_MINUS 78  // NUM_PANEL -
+
+/* Move camera */
+# define UP 126
+# define DOWN 125
+# define LEFT 123
+# define RIGHT 124
+# define FORWARD 83  // NUM_PANEL 1
+# define BACKWARD 82  // NUM_PANEL 0
 
 /* Rotate camera */
-# define ROT_UP 91
-# define ROT_DOWN 87
-# define ROT_LEFT 86
-# define ROT_RIGHT 88
-# define ROT_FRONT 89
-# define ROT_BACK 92
+# define ROT_UP 91  // NUM_PANEL 8
+# define ROT_DOWN 87  // NUM_PANEL 5
+# define ROT_LEFT 86  // NUM_PANEL 4
+# define ROT_RIGHT 88  // NUM_PANEL 6
+# define ROT_FRONT 89  // NUM_PANEL 7
+# define ROT_BACK 92  // NUM_PANEL 9
 
 /* Move light */
-# define L_UP 34
-# define L_DOWN 40
-# define L_LEFT 38
-# define L_RIGHT 37
+# define I 34  // UP Y_AXIS
+# define K 40  // DOWN Y_AXIS
+# define J 38  // LEFT X_AXIS
+# define L 37  // RIGHT X_AXIS
+# define U 32  // Z_AXIS
+# define O 31  // Z_AXIS
+
+/* Rotate camera */
+# define ROT_X_PLUS 42 // ROT_UP "\"
+# define ROT_X_MINUS 41 // ROT_DOWN ";"
+# define ROT_Y_PLUS 33 // ROT_LEFT "'"
+# define ROT_Y_MINUS 39 // ROT_RIGHT "["
+# define ROT_Z_PLUS 35 // ROT_FRONT "P"
+# define ROT_Z_MINUS 30 // ROT_BACK "]"
 
 /* Move/Rotate steps */
 # define SIZE_STEP 10
@@ -203,18 +217,24 @@ int		ft_check_params_pl(char **ptr);
 
 void	ft_redraw_image(t_data *pic);
 int		ft_just_exit(t_data *pic);
-void	ft_move_camera(int keycode, float step, t_data *pic);
-void	ft_rotate_camera(int keycode, float angle, t_data *pic);
 int		ft_handle_buttons(int keycode, t_data *pic);
 
 /* ft_handle_buttons_2.c */
 
-void	ft_move_light(int keycode, float step, t_data *pic);
 void	ft_resize_figure(int step, t_data *pic);
 void	ft_move_figure(int keycode, int step, t_data *pic);
 void	ft_change_fov(int keycode, int step, t_data *pic);
 void	ft_rotate_figure(int keycode, int angle, t_data *pic);
 
+/* ft_handle_buttons_3.c */
+
+void	ft_move_camera(int keycode, float step, t_data *pic);
+void	ft_rotate_camera(int keycode, float angle, t_data *pic);
+
+/* ft_handle_buttons_4.c */
+
+void	ft_move_light(int keycode, float step, t_data *pic);
+void	ft_rotate_light(int keycode, float angle, t_data *pic);
 
 /* ft_clean_map_data.c */
 

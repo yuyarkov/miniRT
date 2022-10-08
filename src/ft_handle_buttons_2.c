@@ -1,40 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_handle_buttons_2.c                               :+:      :+:    :+:   */
+/*   ft_handle_buttons_2.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 19:59:47 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/02 19:59:48 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/08 21:37:54 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "../includes/miniRT.h"
-
-void	ft_move_light(int keycode, float step, t_data *pic)
-{
-	t_light	*ray;
-
-	ray = pic->scene_ptr->light;
-
-	if (keycode == UP)
-		ray->origin.x += step;
-	else if (keycode == DOWN)
-		ray->origin.y -= step;
-	else if (keycode == UP)
-		ray->origin.y += step;
-	else if (keycode == DOWN)
-		ray->origin.y -= step;
-	else if (keycode == LEFT)
-		ray->origin.z -= step;
-	else if (keycode == RIGHT)
-		ray->origin.z += step;
-	printf("RAY.X = %f\n", ray->origin.x);
-	printf("RAY.Y = %f\n", ray->origin.y);
-	printf("RAY.Z = %f\n", ray->origin.z);
-}
 
 void	ft_resize_figure(int step, t_data *pic)
 {
@@ -78,29 +54,12 @@ void	ft_move_figure(int keycode, int step, t_data *pic)
 			figures->center.x -= step;
 		else if (keycode == D)
 			figures->center.x += step;
-		else if (keycode == SPACE || keycode == X)
+		else if (keycode == SPACE || keycode == X || keycode == E)
 			figures->center.z -= step;
-		else if (keycode == SHIFT || keycode == Z)
+		else if (keycode == SHIFT || keycode == Z || keycode == Q)
 			figures->center.z += step;
 		figures = figures->next;
 	}
-}
-
-void	ft_change_fov(int keycode, int step, t_data *pic)
-{
-	if (keycode == FOV_PLUS)
-	{
-		pic->scene_ptr->camera->fov += step;
-		if (pic->scene_ptr->camera->fov >= 170)
-			pic->scene_ptr->camera->fov = 170;
-	}
-	else if (keycode == FOV_MINUS)
-	{
-		pic->scene_ptr->camera->fov -= step;
-		if (pic->scene_ptr->camera->fov <= 10)
-			pic->scene_ptr->camera->fov = 10;
-	}
-	// printf("FOV = %d\n", pic->scene_ptr->camera->fov);
 }
 
 void	ft_rotate_figure(int keycode, int angle, t_data *pic)

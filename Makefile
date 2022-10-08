@@ -6,7 +6,7 @@
 #    By: merlich <merlich@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/02 22:45:06 by merlich           #+#    #+#              #
-#    Updated: 2022/10/02 20:18:04 by merlich          ###   ########.fr        #
+#    Updated: 2022/10/08 21:44:28 by merlich          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ SRC_FILES =	main.c 					draw_utils.c\
 			scene_utils.c			sphere_utils.c\
 			ft_clean_map_data.c\
 			figures_utils_1.c		figures_utils_2.c\
-			ft_handle_buttons_1.c	ft_handle_buttons_2.c		
+			ft_handle_buttons_1.c	ft_handle_buttons_2.c\
+			ft_handle_buttons_3.c	ft_handle_buttons_4.c
 
 LIBFT =   libft.a
 			

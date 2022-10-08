@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 20:22:22 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/08 21:15:32 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/08 22:08:31 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,41 +30,6 @@ int ft_just_exit(t_data *pic)
 	return (0);
 }
 
-void	ft_move_camera(int keycode, float step, t_data *pic)
-{
-	t_camera	*camera;
-
-	camera = pic->scene_ptr->camera;
-
-	if (keycode == UP)
-		camera->position.y += step;
-	else if (keycode == DOWN)
-		camera->position.y -= step;
-	else if (keycode == LEFT)
-		camera->position.z -= step;
-	else if (keycode == RIGHT)
-		camera->position.z += step;
-	printf("CAM.X = %f\n", pic->scene_ptr->camera->position.x);
-	printf("CAM.Y = %f\n", pic->scene_ptr->camera->position.y);
-	printf("CAM.Z = %f\n", pic->scene_ptr->camera->position.z);
-}
-
-void	ft_rotate_camera(int keycode, float angle, t_data *pic)
-{
-	if (keycode == ROT_FRONT)
-		pic->scene_ptr->camera->angle_z += angle;
-	else if (keycode == ROT_BACK)
-		pic->scene_ptr->camera->angle_z -= angle;
-	else if (keycode == ROT_LEFT)
-		pic->scene_ptr->camera->angle_y -= angle;
-	else if (keycode == ROT_RIGHT)
-		pic->scene_ptr->camera->angle_y += angle;
-	else if (keycode == ROT_UP)
-		pic->scene_ptr->camera->angle_x += angle;
-	else if (keycode == ROT_DOWN)
-		pic->scene_ptr->camera->angle_x -= angle;
-}
-
 int ft_handle_buttons(int keycode, t_data *pic)
 {
 	printf("%d\n", keycode);
@@ -81,18 +46,20 @@ int ft_handle_buttons(int keycode, t_data *pic)
 		ft_change_fov(keycode, CAM_STEP, pic);
 	else if (keycode == W || keycode == A || keycode == S || keycode == D || \
 			keycode == SHIFT || keycode == X || keycode == SPACE || \
-			keycode == Z)
+			keycode == Z || keycode == Q || keycode == E)
 		ft_move_figure(keycode, MOVE_STEP, pic);
 	else if (keycode == UP || keycode == DOWN || keycode == LEFT || \
-			keycode == RIGHT)
+			keycode == RIGHT || keycode == FORWARD || keycode == BACKWARD)
 		ft_move_camera(keycode, MOVE_STEP, pic);
 	else if (keycode == ROT_UP || keycode == ROT_DOWN || keycode == ROT_LEFT \
 			|| keycode == ROT_RIGHT || keycode == ROT_FRONT || keycode == ROT_BACK)
 		ft_rotate_camera(keycode, ROT_ANGLE, pic);
-	else if (keycode == L_UP || keycode == L_DOWN || keycode == L_LEFT || \
-			keycode == L_RIGHT)
+	else if (keycode == I || keycode == K || keycode == J || \
+			keycode == L || keycode == U || keycode == O)
 		ft_move_light(keycode, MOVE_STEP, pic);
-	// printf("CAM.X = %f\n", pic->scene_ptr->camera->position.x);
+	else if (keycode == ROT_X_PLUS || keycode == ROT_X_MINUS || keycode == ROT_Y_PLUS || \
+			keycode == ROT_Y_MINUS || keycode == ROT_Z_PLUS || keycode == ROT_Z_MINUS)
+		ft_rotate_light(keycode, ROT_ANGLE, pic);
 	ft_redraw_image(pic);
 	return (0);
 }
