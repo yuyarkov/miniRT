@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ambient_utils.c                                    :+:      :+:    :+:   */
+/*   ambient_utils_1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 22:28:48 by merlich           #+#    #+#             */
-/*   Updated: 2022/09/04 20:05:43 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/08 17:48:57 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	ft_set_values(t_ambient *new, char **ptr)
 	p = ft_split(ptr[2], ',');
 	
 	new->intensity = ft_atof(ptr[1]);
-	new->color.a = 1;
+	new->color.t = 1;
 	new->color.r = ft_atoi(p[0]);
 	new->color.g = ft_atoi(p[1]);
 	new->color.b = ft_atoi(p[2]);

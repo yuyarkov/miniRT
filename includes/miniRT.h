@@ -6,7 +6,7 @@
 /*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:12:14 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/04 20:18:29 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/08 20:04:39 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # include "mlx.h"
 # include "../libft/libft.h"
 # include <math.h>
-
+# include <float.h>
 # include <stddef.h>
 # include "limits.h"
 
@@ -38,6 +38,7 @@
 # include "scene.h"
 # include "ray.h"
 # include "matrix.h"
+# include "sphere.h"
 
 
 # include "debug.h" //чтобы выводить на экран вектора, матрицы и т.д. удалить перед сдачей
@@ -111,6 +112,16 @@ typedef struct s_data {
 	int		endian;
 	t_scene	*scene_ptr;
 }	t_data;
+
+typedef struct s_hit //структура для поиска пересечения с фигурами
+{
+	t_figure	*hit_figure;
+	t_ray		hit_ray;
+	t_vec3		hit;
+	t_vec3		hit_normal;
+	int			reflect_color;
+	int			refract_color;
+}	t_hit;
 
 char	*read_string_from_file(char *file_name);
 int		get_width(char *s);
@@ -193,6 +204,14 @@ void	ft_clean_map_data(t_scene *scene);
 
 void	render(t_data *pic, t_scene *scene);
 
-int 		sphere_intersect(t_vec3 ray_original, t_scene *scene);
+int	intersect_figure(t_ray *ray, t_figure *figure, double *t);
+t_vec3	get_figure_normal(t_vec3 hit, t_figure *figure, t_hit *info);
+int	scene_intersect(t_figure *objects, t_hit *info);
+int	is_in_shadow(t_figure *objects, t_light *light, t_hit *info);
+
+
+//int 		sphere_intersect(t_vec3 ray_original, t_scene *scene);
+int	sphere_intersect(t_ray ray, t_sphere sphere, double *t);
+void	get_pixel_color(t_scene *scene, t_hit *hit_info, t_color_r *material, int lights_num);
 
 #endif

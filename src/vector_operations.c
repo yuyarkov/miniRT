@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vector_operations.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/08 16:44:14 by dirony            #+#    #+#             */
+/*   Updated: 2022/10/08 20:05:31 by dirony           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "miniRT.h"
 
-t_vec3	ft_build_vector(float x, float y, float z)
+t_vec3	vector_create(float x, float y, float z)
 {
 	t_vec3	result;
 
@@ -63,7 +75,17 @@ void	vector_stretch(t_vec3 *v, float k)
 	v->z *= k;
 }
 
-t_vec3	vec3_cross_product(t_vec3 a, t_vec3 b)
+t_vec3	vector_multiply(t_vec3 vec1, double x) //то же самое, что stretch, только эта функция выдаёт вектор результатом
+{
+	t_vec3	result;
+
+	result.x = vec1.x * x;
+	result.y = vec1.y * x;
+	result.z = vec1.z * x;
+	return (result);
+}
+
+t_vec3	vector_cross_product(t_vec3 a, t_vec3 b)
 {
 	t_vec3	result;
 
@@ -73,4 +95,9 @@ t_vec3	vec3_cross_product(t_vec3 a, t_vec3 b)
 	return (result);
 }
 
-
+double	vector_dist(t_vec3 vec1, t_vec3 vec2)
+{
+	return (sqrt(pow(vec2.x - vec1.x, 2)
+			+ pow(vec2.y - vec1.y, 2)
+			+ pow(vec2.z - vec1.z, 2)));
+}

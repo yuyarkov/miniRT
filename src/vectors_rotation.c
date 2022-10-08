@@ -19,7 +19,7 @@ t_vec3	ft_rotate_x(t_vec3 vector, float phi)
 
 	new_y = vector.y * cos(phi) + vector.z * sin(phi);
 	new_z = -vector.y * sin(phi) + vector.z * cos(phi);
-	vector = ft_build_vector(vector.x, new_y, new_z);
+	vector = vector_create(vector.x, new_y, new_z);
 	vector_normalize(&vector);
 	return (vector);
 }
@@ -31,7 +31,7 @@ t_vec3	ft_rotate_y(t_vec3 vector, float phi)
 
 	new_x = vector.x * cos(phi) - vector.z * sin(phi);
 	new_z = vector.x * sin(phi) + vector.z * cos(phi);
-	vector = ft_build_vector(new_x, vector.y, new_z);
+	vector = vector_create(new_x, vector.y, new_z);
 	vector_normalize(&vector);
 	return (vector);
 }
@@ -43,7 +43,7 @@ t_vec3	ft_rotate_z(t_vec3 vector, float phi)
 
 	new_x = vector.x * cos(phi) - vector.y * sin(phi);
 	new_y = vector.x * sin(phi) + vector.y * cos(phi);
-	vector = ft_build_vector(new_x, new_y, vector.z);
+	vector = vector_create(new_x, new_y, vector.z);
 	vector_normalize(&vector);
 	return (vector);
 }

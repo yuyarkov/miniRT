@@ -6,7 +6,7 @@
 /*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 18:42:24 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/05 20:52:21 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/08 19:42:34 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,34 +89,67 @@ return (result);
 }
 
 
-int sphere_intersect(t_vec3 ray_original, t_scene *scene)
-{
-	t_figure	*sphere;
-	float	dist_to_sphere;
-	float	h;
-	float	lightness;
-	int		result_color;
-	t_vec3	ray;
+// int sphere_intersect(t_vec3 ray_original, t_scene *scene)
+// {
+// 	t_figure	*sphere;
+// 	float	dist_to_sphere;
+// 	float	h;
+// 	float	lightness;
+// 	int		result_color;
+// 	t_vec3	ray;
 	
-	result_color = BLACK;
-	sphere = scene->figures;
-	while (sphere && sphere->type == SPHERE)
-	{
-		ray = ray_original;
-		dist_to_sphere = vector_scalar_product(ray, sphere->center);
-		vector_stretch(&ray, dist_to_sphere);
-		h = vector_len(vector_minus(ray, sphere->center));
-    	if (h < sphere->radius * 2)
-		{
-			if (h < sphere->radius)
-				lightness = get_reflection_angle(ray, h, dist_to_sphere, sphere, scene->light);
-			else
-				lightness = 255;
-			result_color = build_color(lightness, sphere->colour); // есть пересечение, верну цвет для эксперимента
-		}
-//		printf("inside sphere_intersect, sphere: %p\n", sphere);
-		sphere = sphere->next;
-		//sphere = NULL;
-	}
-	return (result_color);
+// 	result_color = BLACK;
+// 	sphere = scene->figures;
+// 	while (sphere && sphere->type == SPHERE)
+// 	{
+// 		ray = ray_original;
+// 		dist_to_sphere = vector_scalar_product(ray, sphere->center);
+// 		vector_stretch(&ray, dist_to_sphere);
+// 		h = vector_len(vector_minus(ray, sphere->center));
+//     	if (h < sphere->radius * 2)
+// 		{
+// 			if (h < sphere->radius)
+// 				lightness = get_reflection_angle(ray, h, dist_to_sphere, sphere, scene->light);
+// 			else
+// 				lightness = 255;
+// 			result_color = build_color(lightness, sphere->colour); // есть пересечение, верну цвет для эксперимента
+// 		}
+// //		printf("inside sphere_intersect, sphere: %p\n", sphere);
+// 		sphere = sphere->next;
+// 		//sphere = NULL;
+// 	}
+// 	return (result_color);
+// }
+
+
+int	sphere_intersect(t_ray ray, t_sphere sphere, double *t)
+{
+	t_vec3	l;
+	float	a;
+	float	b;
+	float	d;
+	float	t1;
+
+	l = vector_minus(sphere.center, ray.origin);
+	a = vector_scalar_product(l, ray.direction);
+	d = vector_scalar_product(l, l) - a * a;
+	if (d > sphere.radius * sphere.radius)
+		return (0);
+	b = sqrtf(sphere.radius * sphere.radius - d);
+	*t = a - b;
+	t1 = a + b;
+	if (*t < 0)
+		*t = t1;
+	if (*t < 0)
+		return (0);
+	return (1);
+}
+
+t_vec3	sphere_get_normal(t_vec3 point, t_sphere sphere)
+{
+	t_vec3	normal;
+
+	normal = vector_minus(point, sphere.center);
+	vector_normalize(&normal);
+	return (normal);
 }

@@ -6,7 +6,7 @@
 /*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 20:14:24 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/05 20:50:41 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/08 17:54:40 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 typedef struct s_figure
 {
 	int					type;
+	void				*pointer; //указатель на саму фигуру, пригодится при вызове разных функций на пересечение
 	t_vec3				center;
 	t_vec3				norm_vector;
 	float				radius; // cylinder
@@ -27,6 +28,7 @@ typedef struct s_figure
 	// float				radius; // sphere
 	t_color				color;
 	int					colour;
+	float				albedo[6];
 	struct s_figure 	*next;
 
 }						t_figure;

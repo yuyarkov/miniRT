@@ -7,7 +7,7 @@ typedef struct s_ray
 {
 	t_vec3			origin;
 	t_vec3			direction;
-	struct s_ray	*next;
+	//struct s_ray	*next; зачем нам next?
 }					t_ray;
 
 t_ray	ray_create(t_vec3 origin, t_vec3 direction);

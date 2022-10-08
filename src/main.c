@@ -6,7 +6,7 @@
 /*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:11:04 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/05 20:53:31 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/08 19:44:52 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,12 @@ void	render(t_data *pic, t_scene *scene)
 	int		x;
 	int		y;
 	int		color;
-	t_vec3	ray;
+	t_ray	ray;
 
 	printf("\nstarting render, pic->line_len: %d\n\n", pic->line_len);
+	ray.origin.x = 0;
+	ray.origin.y = 0;
+	ray.origin.z = 0;
 	y = 0;
 	while (y < WINDOW_HEIGHT - 1)
 	{
@@ -43,9 +46,8 @@ void	render(t_data *pic, t_scene *scene)
 		while (x < WINDOW_WIDTH - 1)
 		{
 			color = BLACK;
-			ray = ray_by_x_y(x, y, scene);
-			color = sphere_intersect(ray, scene);
-			//color = ray_cast(&ray, scene, 0);
+			ray.direction = ray_by_x_y(x, y, scene);
+			color = ray_cast(&ray, scene, 0);
 			my_mlx_pixel_put(pic, x, y, color);
 			++x;
 		}

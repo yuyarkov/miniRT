@@ -6,7 +6,7 @@
 /*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 20:27:27 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/05 20:52:41 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/08 17:50:26 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ t_figure	*ft_sphere_lstnew(char **ptr)
 	new->center.y = ft_atof(p1[1]);
 	new->center.z = ft_atof(p1[2]);
 	new->radius = ft_atof(ptr[2]);
-	new->color.a = 1;
+	new->color.t = 1;
 	new->color.r = ft_atoi(p2[0]);
 	new->color.g = ft_atoi(p2[1]);
 	new->color.b = ft_atoi(p2[2]);
-	new->colour = create_argb_color(new->color.a, new->color.r, new->color.g, new->color.b);
+	new->colour = create_argb_color(new->color.t, new->color.r, new->color.g, new->color.b);
 	new->next = NULL;
 	ft_free_split(p2);
 	ft_free_split(p1);
@@ -67,11 +67,11 @@ t_figure	*ft_plane_lstnew(char **ptr)
 	new->norm_vector.x = ft_atof(p2[0]);
 	new->norm_vector.y = ft_atof(p2[1]);
 	new->norm_vector.z = ft_atof(p2[2]);
-	new->color.a = 1;
+	new->color.t = 1;
 	new->color.r = ft_atoi(p3[0]);
 	new->color.g = ft_atoi(p3[1]);
 	new->color.b = ft_atoi(p3[2]);
-	new->colour = create_argb_color(new->color.a, new->color.r, new->color.g, new->color.b);
+	new->colour = create_argb_color(new->color.t, new->color.r, new->color.g, new->color.b);
 	new->next = NULL;
 	ft_free_split(p3);
 	ft_free_split(p2);
@@ -99,11 +99,11 @@ t_figure	*ft_cylinder_lstnew(char **ptr)
 	new->norm_vector.z = ft_atof(p2[2]);
 	new->radius = ft_atof(ptr[3]);
 	new->height = ft_atof(ptr[4]);
-	new->color.a = 1;
+	new->color.t = 1;
 	new->color.r = ft_atoi(p3[0]);
 	new->color.g = ft_atoi(p3[1]);
 	new->color.b = ft_atoi(p3[2]);
-	new->colour = create_argb_color(new->color.a, new->color.r, new->color.g, new->color.b);
+	new->colour = create_argb_color(new->color.t, new->color.r, new->color.g, new->color.b);
 	new->next = NULL;
 	ft_free_split(p3);
 	ft_free_split(p2);
