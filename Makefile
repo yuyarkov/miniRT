@@ -6,7 +6,7 @@
 #    By: merlich <merlich@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/02 22:45:06 by merlich           #+#    #+#              #
-#    Updated: 2022/10/09 18:54:01 by merlich          ###   ########.fr        #
+#    Updated: 2022/10/09 20:01:59 by merlich          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,27 +18,27 @@ INC_PATH = ./includes
 MLIBX_PATH = ./mlx
 LIB_PATH =   ./libft/
 
-SRC_FILES =	main.c 					draw_utils.c\
-			error_parser.c  		map_parser.c\
-			check_colour.c 			check_vector.c\
-			check_geometry.c		matrix_utils.c\
+SRC_FILES =	main.c 							draw_utils.c\
+			check_colour.c 					check_vector.c\
+			check_geometry.c				matrix_utils.c\
 			ray_utils.c\
-			intersect_utils_1.c		intersect_utils_2.c\
+			intersect_utils_1.c				intersect_utils_2.c\
 			light_utils.c\
-			vector_operations.c		vectors_rotation.c\
+			vector_operations.c				vectors_rotation.c\
 			debug_utils.c\
-			color_utils_1.c			color_utils_2.c\
-			get_next_line.c			get_next_line_utils.c\
-			light_utils_1.c			light_utils_2.c\
-			camera_utils_1.c		camera_utils_2.c\
-			ambient_utils_1.c		ambient_utils_2.c\
-			ft_atof.c\
-			ft_check_params_1.c		ft_check_params_2.c\
-			scene_utils.c			sphere_utils.c\
+			color_utils_1.c					color_utils_2.c\
+			scene_utils.c					sphere_utils.c\
 			ft_clean_map_data.c\
-			figures_utils_1.c		figures_utils_2.c\
-			ft_handle_buttons_1.c	ft_handle_buttons_2.c\
-			ft_handle_buttons_3.c	ft_handle_buttons_4.c
+			./parser/error_parser.c  		./parser/map_parser.c\
+			./parser/get_next_line.c		./parser/get_next_line_utils.c\
+			./parser/light_utils_1.c		./parser/light_utils_2.c\
+			./parser/camera_utils_1.c		./parser/camera_utils_2.c\
+			./parser/ambient_utils_1.c		./parser/ambient_utils_2.c\
+			./parser/ft_atof.c\
+			./parser/ft_check_params_1.c	./parser/ft_check_params_2.c\
+			./parser/figures_utils_1.c		./parser/figures_utils_2.c\
+			./buttons/ft_handle_buttons_1.c	./buttons/ft_handle_buttons_2.c\
+			./buttons/ft_handle_buttons_3.c	./buttons/ft_handle_buttons_4.c
 
 LIBFT =   libft.a
 			

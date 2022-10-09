@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
+/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:11:04 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/09 17:04:13 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/09 19:54:46 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void	mlx_run(t_scene *scene)
 	pic = create_pic(scene);
 	mlx_hook(pic->window, 17, 0, ft_just_exit, pic);  // закрытие по клику
 	mlx_hook(pic->window, 02, 1L << 0, ft_handle_buttons, pic);  // Обработка кнопок (закрытие по Esc)
-	// mlx_hook(pic->window, 02, 1L << 0, ft_decrease, scene);  // уменьшение размеров фигур на 10
 	render(pic, scene);
 	mlx_put_image_to_window(pic->mlx, pic->window, pic->img, M_LEFT, M_TOP);
 	mlx_loop(pic->mlx);
@@ -135,10 +134,9 @@ int	main(int argc, char **argv)
 		ft_clean_map_data(&scene);
 		return 1;
 	}
-	// (void) argc;
 	// parse_scene(argv[1], &scene);
 	mlx_run(&scene);
-	// ft_clean_all(); // очистка структуры
+	ft_clean_map_data(&scene); // очистка структуры
 	
 	return (0);
 }
