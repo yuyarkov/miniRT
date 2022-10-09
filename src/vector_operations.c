@@ -56,6 +56,20 @@ void	vector_normalize(t_vec3 *v)
 	}
 }
 
+t_vec3	get_norm_vector(t_vec3 *v)
+{
+	double	len;
+
+	len = vector_len(*v);
+	if (len > 0)
+	{
+		v->x /= len;
+		v->y /= len;
+		v->z /= len;
+	}
+	return (*v);
+}
+
 void	vector_stretch(t_vec3 *v, float k)
 {
 	v->x *= k;
