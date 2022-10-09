@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 19:59:47 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/09 19:29:02 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/09 20:43:27 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,17 +70,9 @@ void	ft_rotate_figure(int keycode, int angle, t_data *pic)
 	while (figures)
 	{
 		if (keycode == T)
-		{
-			printf("x1 = %f\ny1 = %f\nz1 = %f\n", figures->norm_vector.x, figures->norm_vector.y, figures->norm_vector.z);
 			figures->norm_vector = ft_rotate_x(figures->norm_vector, angle);
-			printf("x2 = %f\ny2 = %f\nz2 = %f\n", figures->norm_vector.x, figures->norm_vector.y, figures->norm_vector.z);
-		}
 		else if (keycode == G)
-		{
-			printf("x1 = %f\ny1 = %f\nz1 = %f\n", figures->norm_vector.x, figures->norm_vector.y, figures->norm_vector.z);
 			figures->norm_vector = ft_rotate_x(figures->norm_vector, -angle);
-			printf("x1 = %f\ny1 = %f\nz1 = %f\n", figures->norm_vector.x, figures->norm_vector.y, figures->norm_vector.z);
-		}
 		else if (keycode == H)
 			figures->norm_vector = ft_rotate_y(figures->norm_vector, angle);
 		else if (keycode == F)
@@ -89,8 +81,8 @@ void	ft_rotate_figure(int keycode, int angle, t_data *pic)
 			figures->norm_vector = ft_rotate_z(figures->norm_vector, angle);
 		else if (keycode == R)
 			figures->norm_vector = ft_rotate_z(figures->norm_vector, -angle);
-		printf("x1 = %f\ny1 = %f\nz1 = %f\n", figures->norm_vector.x, figures->norm_vector.y, figures->norm_vector.z);
-
+		printf("x1 = %f\ny1 = %f\nz1 = %f\n", figures->norm_vector.x, \
+				figures->norm_vector.y, figures->norm_vector.z);
 		figures = figures->next;
 	}
 }

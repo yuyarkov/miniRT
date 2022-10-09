@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ambient_utils.c                                    :+:      :+:    :+:   */
+/*   ambient_utils_1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 22:28:48 by merlich           #+#    #+#             */
-/*   Updated: 2022/09/04 20:05:43 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/09 20:23:49 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static void	ft_set_values(t_ambient *new, char **ptr)
 	char		**p;
 
 	p = ft_split(ptr[2], ',');
-	
 	new->intensity = ft_atof(ptr[1]);
 	new->color.a = 1;
 	new->color.r = ft_atoi(p[0]);
@@ -36,10 +35,7 @@ t_ambient	*ft_ambient_lstnew(char **ptr)
 	{
 		new = malloc(sizeof(t_ambient));
 		if (NULL == new)
-		{
-			// ft_free_split(ptr);
 			exit (1);
-		}
 		ft_set_values(new, ptr);
 	}
 	return (new);
@@ -76,24 +72,5 @@ void	ft_ambient_lstadd_front(t_ambient **head, t_ambient *new)
 	{
 		new->next = *head;
 		*head = new;
-	}
-}
-
-void	ft_ambient_lstadd_back(t_ambient **head, t_ambient *new)
-{
-	t_ambient	*lst_last;
-
-	if (NULL != new)
-	{
-		lst_last = ft_ambient_lstlast(*head);
-		if (lst_last == NULL)
-		{
-			ft_ambient_lstadd_front(head, new);
-		}
-		else
-		{
-			lst_last->next = new;
-			new->next = NULL;
-		}
 	}
 }

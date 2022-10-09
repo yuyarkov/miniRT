@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   debug_utils.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/09 20:52:32 by merlich           #+#    #+#             */
+/*   Updated: 2022/10/09 20:52:55 by merlich          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/miniRT.h"
 
-void    print_vector(t_vec3 vec, char *s)
+void	print_vector(t_vec3 vec, char *s)
 {
-    printf("%s: (%f, %f, %f)\n", s, vec.x, vec.y, vec.z);
+	printf("%s: (%f, %f, %f)\n", s, vec.x, vec.y, vec.z);
 }

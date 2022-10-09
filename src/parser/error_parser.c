@@ -1,35 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atof.c                                          :+:      :+:    :+:   */
+/*   error_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/21 21:19:57 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/02 17:20:12 by merlich          ###   ########.fr       */
+/*   Created: 2022/08/21 18:12:02 by merlich           #+#    #+#             */
+/*   Updated: 2022/10/09 20:32:10 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/miniRT.h"
 
-float	ft_atof(char *str)
+static int	ft_print_msg(void)
 {
-	int		count;
-	float	res;
-	int		i;
-	int		f;
-	int		tmp;
+	printf("---------------------------\n");
+	printf("Error!\nBad arguments.\n");
+	printf("Example: ./miniRT map.rt\n");
+	printf("---------------------------\n");
+	return (1);
+}
 
-	count = 0;
-	res = 0;
-	i = ft_atoi(str);
-	f = ft_atoi((ft_strchr(str, '.')));
-	tmp = f;
-	while ((tmp % 10) != 0)
+int	ft_check_input(int argc, char **argv)
+{
+	char	*ptr;
+
+	ptr = NULL;
+	if (argc != 2)
+		return (ft_print_msg());
+	else
 	{
-		tmp = tmp / 10;
-		count++;
+		ptr = ft_strrchr(argv[1], '.');
+		if (!ptr || ft_strncmp(ptr, ".rt", 4))
+			return (ft_print_msg());
 	}
-	res = i + f * pow(10, -count);
-	return res;
+	return (0);
 }

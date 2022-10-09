@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 21:37:32 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/08 22:25:45 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/09 20:38:28 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	ft_move_light(int keycode, float step, t_data *pic)
 	t_light	*light;
 
 	light = pic->scene_ptr->light;
-
 	if (keycode == K)
 		light->origin.y += step;
 	else if (keycode == I)

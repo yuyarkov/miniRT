@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:11:04 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/09 19:54:46 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/09 20:49:58 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_data	*create_pic(t_scene *scene)
 	if (NULL == pic)
 		return (NULL);
 	pic->mlx = mlx_init();
-	pic->window = mlx_new_window(pic->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "test_window");
+	pic->window = mlx_new_window(pic->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "RT");
 	pic->img = mlx_new_image(pic->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	pic->addr = mlx_get_data_addr(pic->img, &pic->bits_per_p,
 			&pic->line_len, &pic->endian);
@@ -132,11 +132,10 @@ int	main(int argc, char **argv)
 	if (ft_check_input(argc, argv) || check_map(&scene, argv[1]))
 	{
 		ft_clean_map_data(&scene);
-		return 1;
+		return (1);
 	}
 	// parse_scene(argv[1], &scene);
 	mlx_run(&scene);
 	ft_clean_map_data(&scene); // очистка структуры
-	
 	return (0);
 }

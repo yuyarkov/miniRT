@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   light_utils.c                                        :+:      :+:    :+:   */
+/*   light_utils_1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 22:22:04 by merlich           #+#    #+#             */
-/*   Updated: 2022/09/04 19:43:00 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/09 20:35:11 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	ft_set_values(t_light *new, char **ptr)
 	// new->color.b = ft_atoi(p2[2]);
 	// ft_free_split(p2);
 	new->next = NULL;
-	ft_free_split(p1);	
+	ft_free_split(p1);
 }
 
 t_light	*ft_light_lstnew(char **ptr)
@@ -42,10 +42,7 @@ t_light	*ft_light_lstnew(char **ptr)
 	{
 		new = malloc(sizeof(t_light));
 		if (NULL == new)
-		{
-			// ft_free_split(ptr);
 			exit (1);
-		}
 		ft_set_values(new, ptr);
 	}
 	return (new);
@@ -82,24 +79,5 @@ void	ft_light_lstadd_front(t_light **head, t_light *new)
 	{
 		new->next = *head;
 		*head = new;
-	}
-}
-
-void	ft_light_lstadd_back(t_light **head, t_light *new)
-{
-	t_light	*lst_last;
-
-	if (NULL != new)
-	{
-		lst_last = ft_light_lstlast(*head);
-		if (lst_last == NULL)
-		{
-			ft_light_lstadd_front(head, new);
-		}
-		else
-		{
-			lst_last->next = new;
-			new->next = NULL;
-		}
 	}
 }

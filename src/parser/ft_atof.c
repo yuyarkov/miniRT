@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   light_utils_2.c                                      :+:      :+:    :+:   */
+/*   ft_atof.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/02 22:22:59 by merlich           #+#    #+#             */
-/*   Updated: 2022/09/02 22:23:01 by merlich          ###   ########.fr       */
+/*   Created: 2022/08/21 21:19:57 by merlich           #+#    #+#             */
+/*   Updated: 2022/10/09 20:31:40 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/miniRT.h"
 
-void	ft_light_lstdelone(t_light *lst)
+float	ft_atof(char *str)
 {
-	if (NULL != lst)
-	{
-		free(lst);
-	}
-}
+	int		count;
+	float	res;
+	int		i;
+	int		f;
+	int		tmp;
 
-void	ft_light_lstclear(t_light **head)
-{
-	t_light	*tmp;
-
-	while (*head)
+	count = 0;
+	res = 0;
+	i = ft_atoi(str);
+	f = ft_atoi((ft_strchr(str, '.')));
+	tmp = f;
+	while ((tmp % 10) != 0)
 	{
-		tmp = *head;
-		*head = tmp->next;
-		ft_light_lstdelone(tmp);
+		tmp = tmp / 10;
+		count++;
 	}
+	res = i + f * pow(10, -count);
+	return (res);
 }

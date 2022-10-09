@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 22:25:03 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/08 20:23:19 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/09 20:24:22 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,7 @@ t_camera	*ft_camera_lstnew(char **ptr)
 	{
 		new = malloc(sizeof(t_camera));
 		if (NULL == new)
-		{
-			// ft_free_split(ptr);
 			exit (1);
-		}
 		ft_set_values(new, ptr);
 	}
 	return (new);
@@ -83,24 +80,5 @@ void	ft_camera_lstadd_front(t_camera **head, t_camera *new)
 	{
 		new->next = *head;
 		*head = new;
-	}
-}
-
-void	ft_camera_lstadd_back(t_camera **head, t_camera *new)
-{
-	t_camera	*lst_last;
-
-	if (NULL != new)
-	{
-		lst_last = ft_camera_lstlast(*head);
-		if (lst_last == NULL)
-		{
-			ft_camera_lstadd_front(head, new);
-		}
-		else
-		{
-			lst_last->next = new;
-			new->next = NULL;
-		}
 	}
 }

@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   figures_utils_1.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
+/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 20:27:27 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/05 20:52:41 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/09 20:37:57 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../includes/miniRT.h"
 
@@ -20,7 +19,7 @@ t_figure	*ft_figure_lstnew(void)
 	new = malloc(sizeof(t_figure));
 	if (NULL == new)
 		exit (1);
-	*new = (t_figure) {};
+	*new = (t_figure){};
 	return (new);
 }
 
@@ -42,7 +41,8 @@ t_figure	*ft_sphere_lstnew(char **ptr)
 	new->color.r = ft_atoi(p2[0]);
 	new->color.g = ft_atoi(p2[1]);
 	new->color.b = ft_atoi(p2[2]);
-	new->colour = create_argb_color(new->color.a, new->color.r, new->color.g, new->color.b);
+	new->colour = create_argb_color(new->color.a, new->color.r, \
+									new->color.g, new->color.b);
 	new->next = NULL;
 	ft_free_split(p2);
 	ft_free_split(p1);
@@ -71,7 +71,8 @@ t_figure	*ft_plane_lstnew(char **ptr)
 	new->color.r = ft_atoi(p3[0]);
 	new->color.g = ft_atoi(p3[1]);
 	new->color.b = ft_atoi(p3[2]);
-	new->colour = create_argb_color(new->color.a, new->color.r, new->color.g, new->color.b);
+	new->colour = create_argb_color(new->color.a, new->color.r, \
+									new->color.g, new->color.b);
 	new->next = NULL;
 	ft_free_split(p3);
 	ft_free_split(p2);
@@ -103,7 +104,8 @@ t_figure	*ft_cylinder_lstnew(char **ptr)
 	new->color.r = ft_atoi(p3[0]);
 	new->color.g = ft_atoi(p3[1]);
 	new->color.b = ft_atoi(p3[2]);
-	new->colour = create_argb_color(new->color.a, new->color.r, new->color.g, new->color.b);
+	new->colour = create_argb_color(new->color.a, new->color.r, \
+									new->color.g, new->color.b);
 	new->next = NULL;
 	ft_free_split(p3);
 	ft_free_split(p2);

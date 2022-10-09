@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vectorors.c                                          :+:      :+:    :+:   */
+/*   vectors_rotation.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 19:16:53 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/02 19:22:43 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/09 20:45:12 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,6 @@ t_vec3	ft_rotate_dir(t_vec3 dir, t_camera *camera)
 	float	n_z;
 	float	a;
 
-	// a = camera->angle_x;
-	// n_y = dir.y * cos(a) + dir.z * sin(a);
-	// n_z = -dir.y * sin(a) + dir.z * cos(a);
-	// dir = ft_build_vector(dir.x, n_y, n_z);
-	// vector_normalize(&dir);
 	a = camera->angle_y;
 	n_x = dir.x * cos(a) - dir.z * sin(a);
 	n_z = dir.x * sin(a) + dir.z * cos(a);
@@ -72,4 +67,3 @@ t_vec3	ft_rotate_dir(t_vec3 dir, t_camera *camera)
 	vector_normalize(&dir);
 	return (dir);
 }
-

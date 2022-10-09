@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   intersect_utils.c                                  :+:      :+:    :+:   */
+/*   intersect_utils_1.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:38:09 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/09 18:45:45 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/09 20:51:57 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/miniRT.h"
 
-float	ft_plane_intersect(t_figure *plane, t_vec3 *cam_origin, 
+float	ft_plane_intersect(t_figure *plane, t_vec3 *cam_origin, \
 															t_vec3 *direction)
 {
 	float	t;

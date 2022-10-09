@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 17:30:18 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/09 19:02:36 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/09 20:50:48 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,9 @@ int	ft_drop_shadow(t_scene *scene, t_figure *figure, t_vec3 *inter_point)
 		dist = find_distance(iter, inter_point, &dir);
 		if (iter->type != figure->type)
 		{
-			if (dist > 0 && dist < ft_find_dist(*inter_point, scene->light->origin) \
-			&& iter != figure)
+			if (dist > 0 && \
+				dist < ft_find_dist(*inter_point, scene->light->origin) && \
+				iter != figure)
 				return (1);
 		}
 		iter = iter->next;

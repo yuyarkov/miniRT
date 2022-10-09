@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 21:35:31 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/08 22:02:08 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/09 20:38:48 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	ft_move_camera(int keycode, float step, t_data *pic)
 	t_camera	*camera;
 
 	camera = pic->scene_ptr->camera;
-
 	if (keycode == UP)
 		camera->position.y -= step;
 	else if (keycode == DOWN)
@@ -65,5 +64,4 @@ void	ft_change_fov(int keycode, int step, t_data *pic)
 		if (pic->scene_ptr->camera->fov <= 10)
 			pic->scene_ptr->camera->fov = 10;
 	}
-	// printf("FOV = %d\n", pic->scene_ptr->camera->fov);
 }
