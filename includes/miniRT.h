@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
+/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:12:14 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/09 17:05:52 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/09 17:49:41 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,6 +232,19 @@ void	ft_rotate_light(int keycode, float angle, t_data *pic);
 
 void	ft_clean_map_data(t_scene *scene);
 
+/* intersect_utils_1.c */
+
+float	ft_plane_intersect(t_figure *plane, t_vec3 *cam_origin, 
+															t_vec3 *direction);
+float	ft_sphere_intersect(t_figure *sphere, t_vec3 *cam_origin, \
+											t_vec3 *direction, t_discrmn box);
+float	find_distance(t_figure *figure, t_vec3 *cam_origin, t_vec3 *ray);
+int		ft_intersection(t_scene *scene, t_vec3 *ray);											
+
+/* intersect_utils_2.c */
+
+
+
 /* main.c */
 
 void	ft_rotate_ray(t_camera *cam, t_vec3 *dir);
@@ -239,7 +252,7 @@ void	render(t_data *pic, t_scene *scene);
 t_vec3	ft_rotate_dir(t_vec3 dir, t_camera *camera);
 int 	sphere_intersect(t_vec3 ray_original, t_scene *scene);
 
-int	ft_intersection(t_scene *scene, t_vec3 *ray);
+// int	ft_intersection(t_scene *scene, t_vec3 *ray);
 
 
 #endif

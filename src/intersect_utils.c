@@ -6,26 +6,26 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:38:09 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/09 17:29:12 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/09 17:45:27 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/miniRT.h"
 
-// float	ft_plane_intersect(t_figure *plane, t_vec3 *cam_origin, 
-// 															t_vec3 *direction)
-// {
-// 	float	t;
-// 	t_vec3	subtraction;
-// 	float	dot_product_1;
-// 	float	dot_product_2;
+float	ft_plane_intersect(t_figure *plane, t_vec3 *cam_origin, 
+															t_vec3 *direction)
+{
+	float	t;
+	t_vec3	subtraction;
+	float	dot_product_1;
+	float	dot_product_2;
 
-// 	subtraction = ft_sub(cam_origin, &plane->pos);
-// 	dot_product_1 = ft_dot(&subtraction, &plane->direction);
-// 	dot_product_2 = ft_dot(direction, &plane->direction);
-// 	t = -dot_product_1 / dot_product_2;
-// 	return (t);
-// }
+	subtraction = vector_minus(*cam_origin, plane->center);
+	dot_product_1 = vector_scalar_product(subtraction, plane->norm_vector);
+	dot_product_2 = vector_scalar_product(*direction, plane->norm_vector);
+	t = -dot_product_1 / dot_product_2;
+	return (t);
+}
 
 float	ft_sphere_intersect(t_figure *sphere, t_vec3 *cam_origin, \
 											t_vec3 *direction, t_discrmn box)
@@ -62,10 +62,10 @@ float	find_distance(t_figure *figure, t_vec3 *cam_origin, t_vec3 *ray)
 	distance = 0;
 	if (figure->type == SPHERE)
 		distance = ft_sphere_intersect(figure, cam_origin, ray, box);
-	// else if (figure->type == PLANE)
-	// 	distance = ft_plane_intersect(figure, cam_origin, ray);
-	// else if (figure->type == CYLINDER)
-	// 	distance = ft_cylinder_intersect(figure, cam_origin, ray, box);
+	else if (figure->type == PLANE)
+		distance = ft_plane_intersect(figure, cam_origin, ray);
+	else if (figure->type == CYLINDER)
+		distance = ft_cylinder_intersect(figure, cam_origin, ray, box);
 	return (distance);
 }
 
