@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
+/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:38:09 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/09 17:06:20 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/09 17:29:12 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	ft_intersection(t_scene *scene, t_vec3 *ray)
 	iter = scene->figures;
 	while (iter)
 	{
-		dist = find_distance(iter, &(scene->camera->orientation), ray);
+		dist = find_distance(iter, &(scene->camera->position), ray);
 		if (dist > 0 && dist < dist_min)
 		{
 			dist_min = dist;
