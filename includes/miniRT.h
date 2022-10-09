@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:12:14 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/09 17:49:41 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/09 18:55:21 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@
 
 # include <stdio.h>
 
+# include "vector.h"
 # include "colour.h"
 # include "ambient.h"
-# include "vector.h"
 # include "light.h"
 # include "camera.h"
 # include "figures.h"
@@ -122,6 +122,11 @@
 # define MOVE_STEP 10
 # define CAM_STEP 10
 # define ROT_ANGLE M_PI / 12
+
+/* Parameters */
+# define DIFF 2
+# define SPEC 4
+# define SHADOW -30
 
 typedef struct s_pixel
 {
@@ -232,6 +237,15 @@ void	ft_rotate_light(int keycode, float angle, t_data *pic);
 
 void	ft_clean_map_data(t_scene *scene);
 
+/* light_utils.c */
+
+float	ft_diff_light(t_vec3 normale, t_vec3 inter_point, t_scene *scene);
+float	ft_spec_light(t_vec3 normale, t_vec3 direction, t_vec3 inter_point, \
+																t_scene *scene);
+t_vec3	ft_normal_surface(t_vec3 inter_point, t_figure *figure);
+int		ft_lighting(t_scene *scene, t_figure *figure, t_vec3 *ray, float dist);
+int		ft_drop_shadow(t_scene *scene, t_figure *figure, t_vec3 *inter_point);
+
 /* intersect_utils_1.c */
 
 float	ft_plane_intersect(t_figure *plane, t_vec3 *cam_origin, 
@@ -243,7 +257,11 @@ int		ft_intersection(t_scene *scene, t_vec3 *ray);
 
 /* intersect_utils_2.c */
 
-
+float	ft_cylinder_intersect(t_figure *cyl, t_vec3 *cam_origin, \
+											t_vec3 *direction, t_discrmn box);
+float	ft_cylinder_intersect_2(t_figure *cyl, t_vec3 *cam_origin, \
+											t_vec3 *direction, t_discrmn box);
+t_vec3	ft_cylinder_norm(t_figure *cyl, t_vec3 *inter_point);																					
 
 /* main.c */
 

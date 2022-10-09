@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:38:09 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/09 17:45:27 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/09 18:45:45 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,6 @@ int	ft_intersection(t_scene *scene, t_vec3 *ray)
 		iter = iter->next;
 	}
 	if (result != NULL)
-		color = GREEN;//ft_lighting(data, res, &direction, dist_min);
+		color = ft_lighting(scene, result, ray, dist_min);
 	return (color);
 }

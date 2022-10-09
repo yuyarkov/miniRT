@@ -3,41 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   light_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
+/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 17:30:18 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/09 17:48:06 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/09 19:02:36 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/miniRT.h"
 
-
-float	ft_diff_lght(t_vec3 nrmlz, t_vec3 inter_point, t_main *data)
+float	ft_diff_light(t_vec3 normale, t_vec3 inter_point, t_scene *scene)
 {
 	t_vec3	spot;
 	t_vec3	tmp;
 	float	res;
 
-	tmp = ft_sub(&(data->scene.lght.pos), &inter_point);
-	spot = ft_norm(&tmp);
-	res = ft_dot(&nrmlz, &spot);
-	return (res * data->scene.lght.bright);
+	tmp = vector_minus(scene->light->origin, inter_point);
+	spot = get_norm_vector(&tmp);
+	res = vector_scalar_product(normale, spot);
+	return (res * scene->light->intensity);
 }
 
-float	ft_spec_lght(t_vec3	nrmlz, t_vec3 direction, t_vec3 inter_point, \
-																t_main *data)
+float	ft_spec_light(t_vec3 normale, t_vec3 direction, t_vec3 inter_point, \
+																t_scene *scene)
 {
-	float	bright;
+	float	intensity;
 	t_vec3	reflect;
 	t_vec3	spot;
 	t_vec3	tmp;
 
-	bright = data->scene.lght.bright;
-	tmp = ft_sub(&(data->scene.lght.pos), &inter_point);
-	spot = ft_norm(&tmp);
-	reflect = ft_reflect(&direction, &nrmlz);
-	return (pow(fmax(ft_dot(&reflect, &spot), 0), 32) * bright);
+	intensity = scene->light->intensity;
+	tmp = vector_minus(scene->light->origin, inter_point);
+	spot = get_norm_vector(&tmp);
+	reflect = ft_reflect_vector(direction, normale);
+	return (pow(fmax(vector_scalar_product(reflect, spot), 0), 32) * intensity);
 }
 
 int	ft_drop_shadow(t_scene *scene, t_figure *figure, t_vec3 *inter_point)
@@ -52,10 +51,10 @@ int	ft_drop_shadow(t_scene *scene, t_figure *figure, t_vec3 *inter_point)
 	iter = scene->figures;
 	while (iter)
 	{
-		dist = ft_find_dist(iter, inter_point, &dir);
+		dist = find_distance(iter, inter_point, &dir);
 		if (iter->type != figure->type)
 		{
-			if (dist > 0 && dist < ft_dist(*inter_point, scene->light->origin) \
+			if (dist > 0 && dist < ft_find_dist(*inter_point, scene->light->origin) \
 			&& iter != figure)
 				return (1);
 		}
@@ -73,32 +72,33 @@ t_vec3	ft_normal_surface(t_vec3 inter_point, t_figure *figure)
 		normale = vector_minus(inter_point, figure->center);
 		vector_normalize(&normale);
 	}
-	// else if (sh->type == PLANE)
-	// 	nrmlz = ft_norm(&(sh->direction));
-	// else if (sh->type == CYLINDER)
-	// 	nrmlz = ft_cylinder_norm(sh, &inter_point);
+	else if (figure->type == PLANE)
+		normale = get_norm_vector(&(figure->norm_vector));
+	else if (figure->type == CYLINDER)
+		normale = ft_cylinder_norm(figure, &inter_point);
 	return (normale);
 }
 
 int	ft_lighting(t_scene *scene, t_figure *figure, t_vec3 *ray, float dist)
 {
 	t_vec3	inter_point;
-	t_vec3	nrmlz;
+	t_vec3	normale;
 	t_vec3	tmp;
 	int		drop;
 	int		clr;
 
 	tmp = vec3_multiply(*ray, dist);
 	inter_point = vector_sum(scene->camera->orientation, tmp);
-	nrmlz = ft_normal_surface(inter_point, figure);
+	normale = ft_normal_surface(inter_point, figure);
 	drop = ft_drop_shadow(scene, figure, &inter_point);
+	clr = BLACK;
 	if (drop == 0)
-		clr = ft_add_clr3(ft_mul_clr(figure->color, data->scene.amb.bright), \
-		ft_mul_clr(figure->color, ft_diff_lght(nrmlz, inter_point, data) * DIFF), \
-ft_mul_clr(figure->color, ft_spec_lght(nrmlz, *ray, inter_point, data) * SPEC));
+		clr = ft_add_clr3(ft_mul_clr(figure->color, scene->ambient->intensity), \
+		ft_mul_clr(figure->color, ft_diff_light(normale, inter_point, scene) * DIFF), \
+		ft_mul_clr(figure->color, ft_spec_light(normale, *ray, inter_point, scene) * SPEC));
 	else if (drop == 1)
 		clr = ft_add_clr(ft_add_clr3 \
-		(ft_mul_clr(figure->color, data->scene.amb.bright), \
-ft_mul_clr(figure->color, ft_diff_lght(nrmlz, inter_point, data) * DIFF), 0), SHADOW);
+		(ft_mul_clr(figure->color, scene->ambient->intensity), \
+		ft_mul_clr(figure->color, ft_diff_light(normale, inter_point, scene) * DIFF), 0), SHADOW);
 	return (clr);
 }

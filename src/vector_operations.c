@@ -77,6 +77,14 @@ void	vector_stretch(t_vec3 *v, float k)
 	v->z *= k;
 }
 
+t_vec3	vec3_multiply(t_vec3 v, float k)
+{
+	v.x *= k;
+	v.y *= k;
+	v.z *= k;
+	return (v);
+}
+
 t_vec3	vector_mult_s(t_vec3 v, float k)
 {
 	v.x *= k;
@@ -95,4 +103,23 @@ t_vec3	vec3_cross_product(t_vec3 a, t_vec3 b)
 	return (result);
 }
 
+t_vec3	ft_reflect_vector(t_vec3 direction, t_vec3 normale)
+{
+	t_vec3	reflect;
+	t_vec3	tmp;
 
+	tmp = vector_mult_s(normale, (2 * vector_scalar_product(normale, direction)));
+	reflect = vector_minus(direction, tmp);
+	reflect = get_norm_vector(&reflect);
+	return (reflect);
+}
+
+float	ft_find_dist(t_vec3 a, t_vec3 b)
+{
+	float	dist;
+	t_vec3	sub;
+
+	sub = vector_minus(b, a);
+	dist = vector_len(sub);
+	return (dist);
+}
