@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:12:14 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/08 22:25:18 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/09 17:05:52 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,5 +238,8 @@ void	ft_rotate_ray(t_camera *cam, t_vec3 *dir);
 void	render(t_data *pic, t_scene *scene);
 t_vec3	ft_rotate_dir(t_vec3 dir, t_camera *camera);
 int 	sphere_intersect(t_vec3 ray_original, t_scene *scene);
+
+int	ft_intersection(t_scene *scene, t_vec3 *ray);
+
 
 #endif

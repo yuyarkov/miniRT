@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:11:04 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/08 21:16:42 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/09 17:04:13 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	render(t_data *pic, t_scene *scene)
 			color = BLACK;
 			ray = ray_by_x_y(x, y, scene);
 			ft_rotate_ray(scene->camera, &ray);
-			color = sphere_intersect(ray, scene);
+			color = ft_intersection(scene, &ray);
 			//color = ray_cast(&ray, scene, 0);
 			my_mlx_pixel_put(pic, x, y, color);
 			++x;

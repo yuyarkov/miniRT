@@ -8,6 +8,18 @@ typedef struct s_vec3
 	float	z;
 }				t_vec3;
 
+typedef struct s_discrmn
+{
+	float				a;
+	float				b;
+	float				c;
+	float				discr;
+	float				res;
+
+	t_vec3				tmp;
+	t_vec3				ca;
+}	t_discrmn;
+
 /* vectors_operations.c */
 
 t_vec3			ft_build_vector(float x, float y, float z);

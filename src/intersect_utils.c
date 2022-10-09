@@ -1,0 +1,97 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   intersect_utils.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/09 15:38:09 by dirony            #+#    #+#             */
+/*   Updated: 2022/10/09 17:06:20 by dirony           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../includes/miniRT.h"
+
+// float	ft_plane_intersect(t_figure *plane, t_vec3 *cam_origin, 
+// 															t_vec3 *direction)
+// {
+// 	float	t;
+// 	t_vec3	subtraction;
+// 	float	dot_product_1;
+// 	float	dot_product_2;
+
+// 	subtraction = ft_sub(cam_origin, &plane->pos);
+// 	dot_product_1 = ft_dot(&subtraction, &plane->direction);
+// 	dot_product_2 = ft_dot(direction, &plane->direction);
+// 	t = -dot_product_1 / dot_product_2;
+// 	return (t);
+// }
+
+float	ft_sphere_intersect(t_figure *sphere, t_vec3 *cam_origin, \
+											t_vec3 *direction, t_discrmn box)
+{
+	float	dist_1;
+	float	dist_2;
+	float	min;
+	float	max;
+	t_vec3	cam_sphere;
+
+	cam_sphere = vector_minus(*cam_origin, sphere->center);
+	box.b = 2 * (vector_scalar_product(cam_sphere, *direction));
+	box.c = vector_scalar_product(cam_sphere, cam_sphere) - (sphere->radius * sphere->radius);
+	box.discr = (box.b * box.b) - (4 * box.c);
+	if (box.discr < 0)
+		return (0);
+	dist_1 = ((box.b * (-1)) - sqrt(box.discr)) / 2;
+	dist_2 = ((box.b * (-1)) + sqrt(box.discr)) / 2;
+	min = fminf(dist_1, dist_2);
+	max = fmaxf(dist_1, dist_2);
+	if (min >= 0)
+		box.res = min;
+	else
+		box.res = max;
+	return (box.res);
+}
+
+float	find_distance(t_figure *figure, t_vec3 *cam_origin, t_vec3 *ray)
+{
+	float		distance;
+	t_discrmn	box;
+
+	box = (t_discrmn){};
+	distance = 0;
+	if (figure->type == SPHERE)
+		distance = ft_sphere_intersect(figure, cam_origin, ray, box);
+	// else if (figure->type == PLANE)
+	// 	distance = ft_plane_intersect(figure, cam_origin, ray);
+	// else if (figure->type == CYLINDER)
+	// 	distance = ft_cylinder_intersect(figure, cam_origin, ray, box);
+	return (distance);
+}
+
+int	ft_intersection(t_scene *scene, t_vec3 *ray)
+{
+	float		dist;
+	float		dist_min;
+	int			color;
+	t_figure	*iter;
+	t_figure	*result;
+
+	result = NULL;
+	dist_min = MAXFLOAT;
+	color = BLACK;
+	iter = scene->figures;
+	while (iter)
+	{
+		dist = find_distance(iter, &(scene->camera->orientation), ray);
+		if (dist > 0 && dist < dist_min)
+		{
+			dist_min = dist;
+			result = iter;
+		}
+		iter = iter->next;
+	}
+	if (result != NULL)
+		color = GREEN;//ft_lighting(data, res, &direction, dist_min);
+	return (color);
+}
