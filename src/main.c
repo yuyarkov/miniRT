@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:11:04 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/09 20:49:58 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/13 20:29:05 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ void	render(t_data *pic, t_scene *scene)
 	int		color;
 	t_vec3	ray;
 
-	printf("\nstarting render, pic->line_len: %d\n\n", pic->line_len);
+	printf("\nstarting render, camera position: %f, %f, %f\n", scene->camera->position.x,
+			scene->camera->position.y, scene->camera->position.z);
 	y = 0;
 	while (y < WINDOW_HEIGHT - 1)
 	{

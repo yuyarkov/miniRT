@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect_utils_1.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:38:09 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/09 20:51:57 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/13 21:40:51 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ float	ft_sphere_intersect(t_figure *sphere, t_vec3 *cam_origin, \
 		box.res = min;
 	else
 		box.res = max;
+	// if (box.res > 0)
+	// 	printf("inside sphere_intersect, box.res: %f\n", box.res);
 	return (box.res);
 }
 
@@ -91,7 +93,9 @@ int	ft_intersection(t_scene *scene, t_vec3 *ray)
 		}
 		iter = iter->next;
 	}
+	// if (dist_min != MAXFLOAT)
+	// 	printf("inside intersection, dist_min: %f\n", dist_min);
 	if (result != NULL)
-		color = ft_lighting(scene, result, ray, dist_min);
+		color = ft_lighting(scene, result, ray, dist_min);//сцена, в какую фигуру попали, луч, дистанция до первой фигуры
 	return (color);
 }
