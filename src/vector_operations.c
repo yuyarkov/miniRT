@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_operations.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 20:45:59 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/09 20:46:16 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/14 20:50:03 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_vec3	vector_minus(t_vec3 first, t_vec3 second)
 	return (result);
 }
 
-float	vector_scalar_product(t_vec3 a, t_vec3 b) //скалярное произведение
+float	vector_scalar_product(t_vec3 a, t_vec3 b)
 {
 	float	result;
 
@@ -82,27 +82,12 @@ t_vec3	get_norm_vector(t_vec3 *v)
 	return (*v);
 }
 
-void	vector_stretch(t_vec3 *v, float k)
+t_vec3	vector_stretch(t_vec3 vector, float k)//сделать обращение по указателю, должно быть быстрее
 {
-	v->x *= k;
-	v->y *= k;
-	v->z *= k;
-}
-
-t_vec3	vec3_multiply(t_vec3 v, float k)
-{
-	v.x *= k;
-	v.y *= k;
-	v.z *= k;
-	return (v);
-}
-
-t_vec3	vector_mult_s(t_vec3 v, float k)
-{
-	v.x *= k;
-	v.y *= k;
-	v.z *= k;
-	return (v);
+	vector.x *= k;
+	vector.y *= k;
+	vector.z *= k;
+	return (vector);
 }
 
 t_vec3	vec3_cross_product(t_vec3 a, t_vec3 b)
@@ -120,7 +105,7 @@ t_vec3	ft_reflect_vector(t_vec3 direction, t_vec3 normale)
 	t_vec3	reflect;
 	t_vec3	tmp;
 
-	tmp = vector_mult_s(normale, (2 * vector_scalar_product(normale, direction)));
+	tmp = vector_stretch(normale, (2 * vector_scalar_product(normale, direction)));
 	reflect = vector_minus(direction, tmp);
 	reflect = get_norm_vector(&reflect);
 	return (reflect);

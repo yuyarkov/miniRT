@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect_utils_2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 17:46:23 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/09 18:58:08 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/14 20:49:37 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,17 +20,17 @@ t_vec3	ft_cylinder_norm(t_figure *cyl, t_vec3 *inter_point)
 	t_vec3	tmp;
 	float	t;
 
-	tmp = vector_mult_s(cyl->norm_vector, cyl->height);
+	tmp = vector_stretch(cyl->norm_vector, cyl->height);
 	top_center = vector_sum(cyl->center, tmp);
 	if (vector_len(vector_minus(*inter_point, cyl->center)) < cyl->radius)
-		norm = vector_mult_s(cyl->center, -1);
+		norm = vector_stretch(cyl->center, -1);
 	else if (vector_len(vector_minus(*inter_point, top_center)) < cyl->radius)
 		norm = get_norm_vector(&(cyl->norm_vector));
 	else
 	{
 		tmp = vector_minus(*inter_point, cyl->center);
 		t = vector_scalar_product(tmp, cyl->norm_vector);
-		tmp = vector_mult_s(cyl->norm_vector, t);
+		tmp = vector_stretch(cyl->norm_vector, t);
 		pt = vector_sum(cyl->center, tmp);
 		tmp = vector_minus(*inter_point, pt);
 		norm = get_norm_vector(&tmp);
@@ -69,7 +69,7 @@ float	ft_cylinder_intersect_2(t_figure *cyl, t_vec3 *cam_origin, \
 float	ft_cylinder_intersect(t_figure *cyl, t_vec3 *cam_origin, \
 											t_vec3 *direction, t_discrmn box)
 {
-	box.tmp = vector_mult_s(cyl->norm_vector, cyl->height);
+	box.tmp = vector_stretch(cyl->norm_vector, cyl->height);
 	box.tmp = vector_sum(cyl->center, box.tmp);
 	box.ca = vector_minus(box.tmp, cyl->center);
 	box.a = vector_scalar_product(box.ca, box.ca) - vector_scalar_product(box.ca, *direction) * \

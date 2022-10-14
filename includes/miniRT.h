@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:12:14 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/09 18:55:21 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/14 20:36:20 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@
 /* Resize figure */
 # define PLUS 24
 # define MINUS 27
-
 
 /* Move figure */
 # define W 13
@@ -151,19 +150,7 @@ typedef struct s_data {
 	t_scene	*scene_ptr;
 }	t_data;
 
-char	*read_string_from_file(char *file_name);
-int		get_width(char *s);
-int		get_height(char *s);
-
-int		ft_is_hexdigit(char ch);
-int		get_hex_digit(char ch);
-// char	*ft_atoi_hex(char *s, t_dot *dot);
-
 void	my_mlx_pixel_put(t_data *pic, int x, int y, int color);
-void	get_delta(t_pixel *pixel1, t_pixel *pixel2);
-int		get_gradient(t_pixel pixel1, t_pixel pixel2);
-int		get_gradient_color(int color1, int color2, float progress);
-void	draw_line(t_pixel pixel1, t_pixel pixel2, t_data *pic);
 
 /* get_next_line.c */
 
@@ -269,8 +256,6 @@ void	ft_rotate_ray(t_camera *cam, t_vec3 *dir);
 void	render(t_data *pic, t_scene *scene);
 t_vec3	ft_rotate_dir(t_vec3 dir, t_camera *camera);
 int 	sphere_intersect(t_vec3 ray_original, t_scene *scene);
-
-// int	ft_intersection(t_scene *scene, t_vec3 *ray);
 
 
 #endif

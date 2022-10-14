@@ -6,7 +6,7 @@
 /*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 17:30:18 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/13 21:43:02 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/14 20:53:33 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,7 @@ int	ft_drop_shadow(t_scene *scene, t_figure *figure, t_vec3 *inter_point)
 			if (dist > 0 && \
 				dist < ft_find_dist(*inter_point, scene->light->origin) && \
 				iter != figure)
-			{
-		printf("inside drop_shadow, iter->radius: %f, dist: %f\n", iter->radius, dist);
 				return (1);
-			}
 		}
 		iter = iter->next;
 	}
@@ -91,7 +88,7 @@ int	ft_lighting(t_scene *scene, t_figure *figure, t_vec3 *ray, float dist)
 	int		drop;
 	int		result;
 
-	tmp = vec3_multiply(*ray, dist);
+	tmp = vector_stretch(*ray, dist);
 	inter_point = vector_sum(scene->camera->position, tmp);
 	normale = ft_normal_surface(inter_point, figure);
 	drop = ft_drop_shadow(scene, figure, &inter_point);
@@ -101,15 +98,12 @@ int	ft_lighting(t_scene *scene, t_figure *figure, t_vec3 *ray, float dist)
 		result = ft_add_clr3(ft_mul_clr(figure->color, scene->ambient->intensity), \
 		ft_mul_clr(figure->color, ft_diff_light(normale, inter_point, scene) * DIFF), \
 		ft_mul_clr(figure->color, ft_spec_light(normale, *ray, inter_point, scene) * SPEC));
-		if (result == BLACK)
-			printf("inside ft_lightning, result: %d\n", result);
 	}
 	else if (drop == 1)
 	{
 		result = ft_add_clr(ft_add_clr3 \
 		(ft_mul_clr(figure->color, scene->ambient->intensity), \
 		ft_mul_clr(figure->color, ft_diff_light(normale, inter_point, scene) * DIFF), 0), SHADOW);
-		printf("drop = 1\n");
 	}
 	return (result);
 }

@@ -15,7 +15,6 @@ typedef struct s_discrmn
 	float				c;
 	float				discr;
 	float				res;
-
 	t_vec3				tmp;
 	t_vec3				ca;
 }	t_discrmn;
@@ -28,9 +27,7 @@ void			vector_normalize(t_vec3 *v);
 t_vec3			get_norm_vector(t_vec3 *v);
 t_vec3 			vector_sum(t_vec3 first, t_vec3 second);
 float			vector_scalar_product(t_vec3 a, t_vec3 b);
-void			vector_stretch(t_vec3 *v, float k);
-// t_vec3			vec3_multiply(t_vec3 a, double b);//как stretch, только с возвращаемым результатом
-t_vec3			vec3_multiply(t_vec3 v, float k);
+t_vec3			vector_stretch(t_vec3 v, float k);
 t_vec3			vec3_cross_product(t_vec3 a, t_vec3 b);
 float			vector_len(t_vec3 vector);
 float			vec3_len2(t_vec3 v);
