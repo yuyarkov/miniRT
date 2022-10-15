@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 19:59:47 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/09 20:43:27 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/15 18:52:09 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	ft_resize_figure(int step, t_data *pic)
 			if (figures->height < 0)
 				figures->height = 0;
 		}
-		printf("radius = %f\n", figures->radius);
+		// printf("radius = %f\n", figures->radius);
 		figures = figures->next;
 	}
 }
@@ -81,8 +81,8 @@ void	ft_rotate_figure(int keycode, int angle, t_data *pic)
 			figures->norm_vector = ft_rotate_z(figures->norm_vector, angle);
 		else if (keycode == R)
 			figures->norm_vector = ft_rotate_z(figures->norm_vector, -angle);
-		printf("x1 = %f\ny1 = %f\nz1 = %f\n", figures->norm_vector.x, \
-				figures->norm_vector.y, figures->norm_vector.z);
+		// printf("x1 = %f\ny1 = %f\nz1 = %f\n", figures->norm_vector.x, 
+				// figures->norm_vector.y, figures->norm_vector.z);
 		figures = figures->next;
 	}
 }

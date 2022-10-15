@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
+/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:11:04 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/14 20:25:55 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/15 18:09:12 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ t_data	*create_pic(t_scene *scene)
 	if (NULL == pic)
 		return (NULL);
 	pic->mlx = mlx_init();
-	pic->window = mlx_new_window(pic->mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "RT");
-	pic->img = mlx_new_image(pic->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	pic->window = mlx_new_window(pic->mlx, WIN_WIDTH, WIN_HEIGHT, "RT");
+	pic->img = mlx_new_image(pic->mlx, WIN_WIDTH, WIN_HEIGHT);
 	pic->addr = mlx_get_data_addr(pic->img, &pic->bits_per_p,
 			&pic->line_len, &pic->endian);
 	pic->scene_ptr = scene;
@@ -43,10 +43,10 @@ void	render(t_data *pic, t_scene *scene)
 	t_vec3	ray;
 
 	y = 0;
-	while (y < WINDOW_HEIGHT - 1)
+	while (y < WIN_HEIGHT - 1)
 	{
 		x = 0;
-		while (x < WINDOW_WIDTH - 1)
+		while (x < WIN_WIDTH - 1)
 		{
 			color = BLACK;
 			ray = ray_by_x_y(x, y, scene);

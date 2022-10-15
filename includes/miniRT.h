@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
+/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:12:14 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/14 20:36:20 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/15 19:05:59 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@
 # include "figures.h"
 # include "scene.h"
 # include "ray.h"
-# include "matrix.h"
 
 
 # include "debug.h" //чтобы выводить на экран вектора, матрицы и т.д. удалить перед сдачей
@@ -51,8 +50,8 @@
 /* Common params */
 # define BUFF_SIZE 40096
 # define DEF_COLOR 16777215
-# define WINDOW_WIDTH 900
-# define WINDOW_HEIGHT 600
+# define WIN_WIDTH 900
+# define WIN_HEIGHT 600
 # define PI_STEP 0.19634954084
 # define M_LEFT 10
 # define M_TOP 10
@@ -119,6 +118,7 @@
 /* Move/Rotate steps */
 # define SIZE_STEP 10
 # define MOVE_STEP 10
+# define LIGHT_STEP 500
 # define CAM_STEP 10
 # define ROT_ANGLE M_PI / 12
 
@@ -229,7 +229,7 @@ void	ft_clean_map_data(t_scene *scene);
 float	ft_diff_light(t_vec3 normale, t_vec3 inter_point, t_scene *scene);
 float	ft_spec_light(t_vec3 normale, t_vec3 direction, t_vec3 inter_point, \
 																t_scene *scene);
-t_vec3	ft_normal_surface(t_vec3 inter_point, t_figure *figure);
+t_vec3	ft_normale_surface(t_vec3 inter_point, t_figure *figure);
 int		ft_lighting(t_scene *scene, t_figure *figure, t_vec3 *ray, float dist);
 int		ft_drop_shadow(t_scene *scene, t_figure *figure, t_vec3 *inter_point);
 

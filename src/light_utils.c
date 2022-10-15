@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
+/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 17:30:18 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/14 20:53:33 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/15 18:59:43 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ float	ft_diff_light(t_vec3 normale, t_vec3 inter_point, t_scene *scene)
 	t_vec3	tmp;
 	float	res;
 
-	tmp = vector_minus(scene->light->origin, inter_point);
+	tmp = vector_sub(scene->light->origin, inter_point);
 	spot = get_norm_vector(&tmp);
-	res = vector_scalar_product(normale, spot);
+	res = vector_s_prod(normale, spot);
 	return (res * scene->light->intensity);
 }
 
-float	ft_spec_light(t_vec3 normale, t_vec3 direction, t_vec3 inter_point, \
+float	ft_spec_light(t_vec3 normale, t_vec3 ray, t_vec3 inter_point, \
 																t_scene *scene)
 {
 	float	intensity;
@@ -33,10 +33,10 @@ float	ft_spec_light(t_vec3 normale, t_vec3 direction, t_vec3 inter_point, \
 	t_vec3	tmp;
 
 	intensity = scene->light->intensity;
-	tmp = vector_minus(scene->light->origin, inter_point);
+	tmp = vector_sub(scene->light->origin, inter_point);
 	spot = get_norm_vector(&tmp);
-	reflect = ft_reflect_vector(direction, normale);
-	return (pow(fmax(vector_scalar_product(reflect, spot), 0), 32) * intensity);
+	reflect = ft_reflect_vector(ray, normale);
+	return (pow(fmax(vector_s_prod(reflect, spot), 0), 32) * intensity);
 }
 
 int	ft_drop_shadow(t_scene *scene, t_figure *figure, t_vec3 *inter_point)
@@ -46,7 +46,7 @@ int	ft_drop_shadow(t_scene *scene, t_figure *figure, t_vec3 *inter_point)
 	t_figure	*iter;
 	float		dist;
 
-	vec_tmp = vector_minus(scene->light->origin, *inter_point);
+	vec_tmp = vector_sub(scene->light->origin, *inter_point);
 	dir = get_norm_vector(&vec_tmp);
 	iter = scene->figures;
 	while (iter)
@@ -64,13 +64,13 @@ int	ft_drop_shadow(t_scene *scene, t_figure *figure, t_vec3 *inter_point)
 	return (0);
 }
 
-t_vec3	ft_normal_surface(t_vec3 inter_point, t_figure *figure)
+t_vec3	ft_normale_surface(t_vec3 inter_point, t_figure *figure)
 {
 	t_vec3	normale;
 
 	if (figure->type == SPHERE)
 	{
-		normale = vector_minus(inter_point, figure->center);
+		normale = vector_sub(inter_point, figure->center);
 		vector_normalize(&normale);
 	}
 	else if (figure->type == PLANE)
@@ -88,9 +88,9 @@ int	ft_lighting(t_scene *scene, t_figure *figure, t_vec3 *ray, float dist)
 	int		drop;
 	int		result;
 
-	tmp = vector_stretch(*ray, dist);
+	tmp = vector_multiply(*ray, dist);
 	inter_point = vector_sum(scene->camera->position, tmp);
-	normale = ft_normal_surface(inter_point, figure);
+	normale = ft_normale_surface(inter_point, figure);
 	drop = ft_drop_shadow(scene, figure, &inter_point);
 	result = BLACK;
 	if (drop == 0)

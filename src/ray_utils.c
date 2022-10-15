@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
+/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 19:04:20 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/14 20:32:31 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/15 18:09:12 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ t_vec3	ray_by_x_y(int x, int y, t_scene *scene)
 	float	ray_y;
 	t_vec3	result;
 
-	ray_x = - (WINDOW_WIDTH / 2) + x;
-	ray_y = - (WINDOW_HEIGHT / 2) + y;
+	ray_x = - (WIN_WIDTH / 2) + x;
+	ray_y = - (WIN_HEIGHT / 2) + y;
 	result = ft_build_vector(ray_x, ray_y, scene->camera->f);
 	vector_normalize(&result);
 	return (result);

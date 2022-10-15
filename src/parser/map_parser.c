@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 19:04:03 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/09 20:33:56 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/15 18:50:53 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,9 @@ int	check_map(t_scene *scene, char *map)
 		str = get_next_line(fd);
 	}
 	close(fd);
-	printf("pointer to camera: %p, fov: %d\n", scene->camera, scene->camera->fov);
+	// printf("pointer to camera: %p, fov: %d\n", scene->camera, scene->camera->fov);
 	scene->camera->f = get_focus_distance(scene);
-	printf("фокусное расстояние: %f", scene->camera->f);
+	// printf("фокусное расстояние: %f", scene->camera->f);
 	if (ft_check_doubles(scene) || err)
 		return (1);
 	return (0);

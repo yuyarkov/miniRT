@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dirony <dirony@21-school.ru>               +#+  +:+       +#+         #
+#    By: merlich <merlich@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/02 22:45:06 by merlich           #+#    #+#              #
-#    Updated: 2022/10/14 20:29:46 by dirony           ###   ########.fr        #
+#    Updated: 2022/10/15 18:02:05 by merlich          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,14 +19,14 @@ MLIBX_PATH = ./mlx
 LIB_PATH =   ./libft/
 
 SRC_FILES =	main.c 							draw_utils.c\
-			matrix_utils.c\
 			ray_utils.c\
 			intersect_utils_1.c				intersect_utils_2.c\
 			light_utils.c\
-			vector_operations.c				vectors_rotation.c\
+			vector_operations_1.c			vector_operations_2.c\
+			vector_operations_3.c			vectors_rotation.c\
 			debug_utils.c\
 			color_utils_1.c					color_utils_2.c\
-			scene_utils.c					\
+			scene_utils.c\
 			ft_clean_map_data.c\
 			./parser/check_geometry.c\
 			./parser/check_colour.c 		./parser/check_vector.c\

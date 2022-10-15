@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 21:35:31 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/09 20:38:48 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/15 18:51:27 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	ft_move_camera(int keycode, float step, t_data *pic)
 		camera->position.z += step;
 	else if (keycode == BACKWARD)
 		camera->position.z -= step;
-	printf("CAM.X = %f\n", pic->scene_ptr->camera->position.x);
-	printf("CAM.Y = %f\n", pic->scene_ptr->camera->position.y);
-	printf("CAM.Z = %f\n", pic->scene_ptr->camera->position.z);
+	// printf("CAM.X = %f\n", pic->scene_ptr->camera->position.x);
+	// printf("CAM.Y = %f\n", pic->scene_ptr->camera->position.y);
+	// printf("CAM.Z = %f\n", pic->scene_ptr->camera->position.z);
 }
 
 void	ft_rotate_camera(int keycode, float angle, t_data *pic)

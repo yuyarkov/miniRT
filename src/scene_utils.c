@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 19:04:08 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/09 20:48:14 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/15 18:08:59 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ float	get_focus_distance(t_scene *scene)
 	float	half_fov;
 
 	half_fov = scene->camera->fov / 2 * M_PI / 180;
-	result = (float)(WINDOW_WIDTH / 2 / tan(half_fov));
+	result = (float)(WIN_WIDTH / 2 / tan(half_fov));
 	return (result);
 }

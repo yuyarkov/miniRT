@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 20:22:22 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/09 20:55:22 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/15 19:05:36 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_redraw_image(t_data *pic)
 {
 	mlx_destroy_image(pic->mlx, pic->img);
-	pic->img = mlx_new_image(pic->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	pic->img = mlx_new_image(pic->mlx, WIN_WIDTH, WIN_HEIGHT);
 	pic->addr = mlx_get_data_addr(pic->img, &pic->bits_per_p,
 			&pic->line_len, &pic->endian);
 	render(pic, pic->scene_ptr);
@@ -49,7 +49,7 @@ static void	ft_handle_buttons_2(int keycode, t_data *pic)
 
 int	ft_handle_buttons(int keycode, t_data *pic)
 {
-	printf("%d\n", keycode);
+	// printf("%d\n", keycode);
 	ft_handle_buttons_2(keycode, pic);
 	if (keycode == FOV_PLUS || keycode == FOV_MINUS)
 		ft_change_fov(keycode, CAM_STEP, pic);
@@ -61,7 +61,7 @@ int	ft_handle_buttons(int keycode, t_data *pic)
 		ft_rotate_camera(keycode, ROT_ANGLE, pic);
 	else if (keycode == I || keycode == K || keycode == J || \
 			keycode == L || keycode == U || keycode == O)
-		ft_move_light(keycode, MOVE_STEP, pic);
+		ft_move_light(keycode, LIGHT_STEP, pic);
 	ft_redraw_image(pic);
 	return (0);
 }

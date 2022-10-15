@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect_utils_1.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
+/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:38:09 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/13 21:40:51 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/15 18:18:53 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ float	ft_plane_intersect(t_figure *plane, t_vec3 *cam_origin, \
 	float	dot_product_1;
 	float	dot_product_2;
 
-	subtraction = vector_minus(*cam_origin, plane->center);
-	dot_product_1 = vector_scalar_product(subtraction, plane->norm_vector);
-	dot_product_2 = vector_scalar_product(*direction, plane->norm_vector);
+	subtraction = vector_sub(*cam_origin, plane->center);
+	dot_product_1 = vector_s_prod(subtraction, plane->norm_vector);
+	dot_product_2 = vector_s_prod(*direction, plane->norm_vector);
 	t = -dot_product_1 / dot_product_2;
 	return (t);
 }
@@ -36,9 +36,9 @@ float	ft_sphere_intersect(t_figure *sphere, t_vec3 *cam_origin, \
 	float	max;
 	t_vec3	cam_sphere;
 
-	cam_sphere = vector_minus(*cam_origin, sphere->center);
-	box.b = 2 * (vector_scalar_product(cam_sphere, *direction));
-	box.c = vector_scalar_product(cam_sphere, cam_sphere) - (sphere->radius * sphere->radius);
+	cam_sphere = vector_sub(*cam_origin, sphere->center);
+	box.b = 2 * (vector_s_prod(cam_sphere, *direction));
+	box.c = vector_s_prod(cam_sphere, cam_sphere) - (sphere->radius * sphere->radius);
 	box.discr = (box.b * box.b) - (4 * box.c);
 	if (box.discr < 0)
 		return (0);
