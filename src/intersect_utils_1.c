@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:38:09 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/15 18:18:53 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/15 20:17:22 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ float	ft_sphere_intersect(t_figure *sphere, t_vec3 *cam_origin, \
 
 	cam_sphere = vector_sub(*cam_origin, sphere->center);
 	box.b = 2 * (vector_s_prod(cam_sphere, *direction));
-	box.c = vector_s_prod(cam_sphere, cam_sphere) - (sphere->radius * sphere->radius);
+	box.c = vector_s_prod(cam_sphere, cam_sphere) - powf(sphere->radius, 2);
 	box.discr = (box.b * box.b) - (4 * box.c);
 	if (box.discr < 0)
 		return (0);

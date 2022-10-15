@@ -6,7 +6,7 @@
 #    By: merlich <merlich@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/02 22:45:06 by merlich           #+#    #+#              #
-#    Updated: 2022/10/15 18:02:05 by merlich          ###   ########.fr        #
+#    Updated: 2022/10/15 22:07:03 by merlich          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,6 @@ SRC_FILES =	main.c 							draw_utils.c\
 			light_utils.c\
 			vector_operations_1.c			vector_operations_2.c\
 			vector_operations_3.c			vectors_rotation.c\
-			debug_utils.c\
 			color_utils_1.c					color_utils_2.c\
 			scene_utils.c\
 			ft_clean_map_data.c\
@@ -38,6 +37,7 @@ SRC_FILES =	main.c 							draw_utils.c\
 			./parser/ft_atof.c\
 			./parser/ft_check_params_1.c	./parser/ft_check_params_2.c\
 			./parser/figures_utils_1.c		./parser/figures_utils_2.c\
+			./parser/figures_utils_3.c\
 			./buttons/ft_handle_buttons_1.c	./buttons/ft_handle_buttons_2.c\
 			./buttons/ft_handle_buttons_3.c	./buttons/ft_handle_buttons_4.c
 

@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 18:12:02 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/09 20:32:10 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/15 21:38:43 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 static int	ft_print_msg(void)
 {
-	printf("---------------------------\n");
-	printf("Error!\nBad arguments.\n");
-	printf("Example: ./miniRT map.rt\n");
-	printf("---------------------------\n");
+	printf("%s---------------------------\n%s", RED_C, RESET);
+	printf("%sError!\nBad arguments.%s\n", RED_C, RESET);
+	printf("%sExample: ./miniRT map.rt%s\n", YELLOW_C, RESET);
+	printf("%s---------------------------\n%s", RED_C, RESET);
 	return (1);
 }
 

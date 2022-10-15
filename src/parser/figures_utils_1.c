@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 20:27:27 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/09 20:37:57 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/15 22:04:51 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,9 @@ t_figure	*ft_sphere_lstnew(char **ptr)
 	p1 = ft_split(ptr[1], ',');
 	p2 = ft_split(ptr[3], ',');
 	new->type = SPHERE;
-	new->center.x = ft_atof(p1[0]);
-	new->center.y = ft_atof(p1[1]);
-	new->center.z = ft_atof(p1[2]);
+	ft_fill_center(&new->center, p1);
 	new->radius = ft_atof(ptr[2]);
-	new->color.a = 1;
-	new->color.r = ft_atoi(p2[0]);
-	new->color.g = ft_atoi(p2[1]);
-	new->color.b = ft_atoi(p2[2]);
-	new->colour = create_argb_color(new->color.a, new->color.r, \
-									new->color.g, new->color.b);
+	ft_fill_color(&new->color, &new->colour, p2);
 	new->next = NULL;
 	ft_free_split(p2);
 	ft_free_split(p1);
@@ -61,18 +54,9 @@ t_figure	*ft_plane_lstnew(char **ptr)
 	p2 = ft_split(ptr[2], ',');
 	p3 = ft_split(ptr[3], ',');
 	new->type = PLANE;
-	new->center.x = ft_atof(p1[0]);
-	new->center.y = ft_atof(p1[1]);
-	new->center.z = ft_atof(p1[2]);
-	new->norm_vector.x = ft_atof(p2[0]);
-	new->norm_vector.y = ft_atof(p2[1]);
-	new->norm_vector.z = ft_atof(p2[2]);
-	new->color.a = 1;
-	new->color.r = ft_atoi(p3[0]);
-	new->color.g = ft_atoi(p3[1]);
-	new->color.b = ft_atoi(p3[2]);
-	new->colour = create_argb_color(new->color.a, new->color.r, \
-									new->color.g, new->color.b);
+	ft_fill_center(&new->center, p1);
+	ft_fill_norm_vector(&new->norm_vector, p2);
+	ft_fill_color(&new->color, &new->colour, p3);
 	new->next = NULL;
 	ft_free_split(p3);
 	ft_free_split(p2);
@@ -92,20 +76,11 @@ t_figure	*ft_cylinder_lstnew(char **ptr)
 	p2 = ft_split(ptr[2], ',');
 	p3 = ft_split(ptr[5], ',');
 	new->type = CYLINDER;
-	new->center.x = ft_atof(p1[0]);
-	new->center.y = ft_atof(p1[1]);
-	new->center.z = ft_atof(p1[2]);
-	new->norm_vector.x = ft_atof(p2[0]);
-	new->norm_vector.y = ft_atof(p2[1]);
-	new->norm_vector.z = ft_atof(p2[2]);
+	ft_fill_center(&new->center, p1);
+	ft_fill_norm_vector(&new->norm_vector, p2);
 	new->radius = ft_atof(ptr[3]);
 	new->height = ft_atof(ptr[4]);
-	new->color.a = 1;
-	new->color.r = ft_atoi(p3[0]);
-	new->color.g = ft_atoi(p3[1]);
-	new->color.b = ft_atoi(p3[2]);
-	new->colour = create_argb_color(new->color.a, new->color.r, \
-									new->color.g, new->color.b);
+	ft_fill_color(&new->color, &new->colour, p3);
 	new->next = NULL;
 	ft_free_split(p3);
 	ft_free_split(p2);

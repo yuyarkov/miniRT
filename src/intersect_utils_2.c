@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 17:46:23 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/15 18:26:48 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/15 20:15:03 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,39 +51,39 @@ float	ft_calc_t(float ca_co_cp, float cadir, float caca, float res)
 }
 
 float	ft_cylinder_intersect_2(t_figure *cyl, t_vec3 *cam_origin, \
-											t_vec3 *direction, t_discrmn box)
+											t_vec3 *dir, t_discrmn box)
 {
 	box.tmp = vector_sub(*cam_origin, cyl->center);
 	box.res = vector_s_prod(box.ca, box.tmp) + \
-			((-box.b - sqrt(box.discr)) / box.a) * vector_s_prod(box.ca, *direction);
+			((-box.b - sqrt(box.discr)) / box.a) * vector_s_prod(box.ca, *dir);
 	if (box.res > 0 && box.res < vector_s_prod(box.ca, box.ca))
 		return (((-box.b - sqrt((box.b * box.b - box.a * box.c))) / box.a));
 	box.tmp = vector_sub(*cam_origin, cyl->center);
-	box.res = ft_calc_t(vector_s_prod(box.ca, box.tmp), vector_s_prod(box.ca, *direction), \
-											vector_s_prod(box.ca, box.ca), box.res);
+	box.res = ft_calc_t(vector_s_prod(box.ca, box.tmp), \
+		vector_s_prod(box.ca, *dir), vector_s_prod(box.ca, box.ca), box.res);
 	if (fabs(box.b + box.a * box.res) < sqrt(box.discr))
 		return (box.res);
 	return (0);
 }
 
 float	ft_cylinder_intersect(t_figure *cyl, t_vec3 *cam_origin, \
-											t_vec3 *direction, t_discrmn box)
+											t_vec3 *dir, t_discrmn box)
 {
 	box.tmp = vector_multiply(cyl->norm_vector, cyl->height);
 	box.tmp = vector_sum(cyl->center, box.tmp);
 	box.ca = vector_sub(box.tmp, cyl->center);
-	box.a = vector_s_prod(box.ca, box.ca) - vector_s_prod(box.ca, *direction) * \
-													vector_s_prod(box.ca, *direction);
+	box.a = vector_s_prod(box.ca, box.ca) - vector_s_prod(box.ca, *dir) * \
+												vector_s_prod(box.ca, *dir);
 	box.tmp = vector_sub(*cam_origin, cyl->center);
-	box.b = vector_s_prod(box.ca, box.ca) * vector_s_prod(box.tmp, *direction) - \
-						vector_s_prod(box.ca, box.tmp) * vector_s_prod(box.ca, *direction);
+	box.b = vector_s_prod(box.ca, box.ca) * vector_s_prod(box.tmp, *dir) - \
+				vector_s_prod(box.ca, box.tmp) * vector_s_prod(box.ca, *dir);
 	box.tmp = vector_sub(*cam_origin, cyl->center);
 	box.c = vector_s_prod(box.ca, box.ca) * vector_s_prod(box.tmp, box.tmp) - \
-					vector_s_prod(box.ca, box.tmp) * vector_s_prod(box.ca, box.tmp) - \
-								cyl->radius * cyl->radius * vector_s_prod(box.ca, box.ca);
+			vector_s_prod(box.ca, box.tmp) * vector_s_prod(box.ca, box.tmp) - \
+					cyl->radius * cyl->radius * vector_s_prod(box.ca, box.ca);
 	box.discr = box.b * box.b - box.a * box.c;
 	if (box.discr < 0)
 		return (0);
-	box.res = ft_cylinder_intersect_2(cyl, cam_origin, direction, box);
+	box.res = ft_cylinder_intersect_2(cyl, cam_origin, dir, box);
 	return (box.res);
 }

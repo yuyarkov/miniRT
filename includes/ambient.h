@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 17:56:03 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/15 17:56:04 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/15 19:33:37 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 typedef struct s_ambient
 {
-	float				intensity;
+	float				power;
 	t_color				color;
 	struct s_ambient	*next;
 }						t_ambient;

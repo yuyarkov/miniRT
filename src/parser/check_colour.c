@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 19:50:37 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/09 20:25:34 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/15 21:35:37 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,15 @@ void	ft_free_split(char **ptr)
 
 static int	ft_perror_range(char **ptr)
 {
-	printf("Error!\nA value of colour is out of range\n");
+	printf("%sThe value of a colour is out of range!%s\n", RED_C, RESET);
 	ft_free_split(ptr);
 	return (1);
 }
 
 static int	ft_perror_count(char **ptr)
 {
-	printf("Error!\nWrong number of parameters for colour representation\
-																(R,G,B)\n");
+	printf("%sWrong number of parameters to represent color (R,G,B)!%s\n", \
+															RED_C, RESET);
 	ft_free_split(ptr);
 	return (1);
 }

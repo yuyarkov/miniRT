@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 17:55:23 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/15 17:55:25 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/15 19:33:37 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 typedef struct s_light
 {
 	t_vec3				origin;
-	float				intensity;
+	float				power;
 	t_color				color;
 	struct s_light		*next;
 }						t_light;

@@ -6,23 +6,31 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 19:04:03 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/15 18:50:53 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/15 21:38:17 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/miniRT.h"
 
-static int	ft_perror(char *msg)
+int	ft_perror(char *msg)
 {
-	printf(msg);
+	printf("%sMAP ERROR!\n%s%s", YELLOW_C, msg, RESET);
+	return (1);
+}
+
+static int	ft_perror_file(char *msg)
+{
+	printf("%s%s%s", RED_C, msg, RESET);
 	return (1);
 }
 
 static int	ft_check_doubles(t_scene *scene)
 {
+	char	*msg;
+
+	msg = "There must be ONE ambient lightning source in the map!\n";
 	if (ft_ambient_lstsize(scene->ambient) != 1)
-		return (ft_perror("There must be ONE ambient lightning source\
-		in the map!\n"));
+		return (ft_perror(msg));
 	else if (ft_camera_lstsize(scene->camera) != 1)
 		return (ft_perror("There must be ONE camera in the map!\n"));
 	else if (ft_light_lstsize(scene->light) != 1)
@@ -47,7 +55,7 @@ static int	ft_fill_list(t_scene *scene, char **ptr)
 		else if (!ft_strcmp(ptr[0], "pl") && !ft_check_params_pl(ptr))
 			ft_figure_lstadd_back(&(scene->figures), ft_plane_lstnew(ptr));
 		else
-			return (ft_perror("MAP ERROR\n"));
+			return (1);
 	}
 	return (0);
 }
@@ -62,7 +70,7 @@ int	check_map(t_scene *scene, char *map)
 	err = 0;
 	fd = open(map, O_RDONLY);
 	if (fd < 0)
-		return (ft_perror("Error!\nCannot open the file!\n"));
+		return (ft_perror_file("Error!\nCannot open the file!\n"));
 	str = get_next_line(fd);
 	while (str)
 	{
@@ -71,13 +79,10 @@ int	check_map(t_scene *scene, char *map)
 		ft_free_split(ptr);
 		free(str);
 		if (err)
-			break ;
+			exit(1);
 		str = get_next_line(fd);
 	}
 	close(fd);
-	// printf("pointer to camera: %p, fov: %d\n", scene->camera, scene->camera->fov);
-	scene->camera->f = get_focus_distance(scene);
-	// printf("фокусное расстояние: %f", scene->camera->f);
 	if (ft_check_doubles(scene) || err)
 		return (1);
 	return (0);

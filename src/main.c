@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:11:04 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/15 18:09:12 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/15 20:26:52 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int	main(int argc, char **argv)
 		ft_clean_map_data(&scene);
 		return (1);
 	}
+	scene.camera->f = get_focus_distance(&scene);
 	mlx_run(&scene);
 	ft_clean_map_data(&scene);
 	return (0);

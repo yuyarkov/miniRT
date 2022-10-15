@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   figures.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
+/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 20:14:24 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/05 20:50:41 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/15 22:05:20 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,11 @@ typedef struct s_figure
 	int					type;
 	t_vec3				center;
 	t_vec3				norm_vector;
-	float				radius; // cylinder
+	float				radius;
 	float				height;
-	// float				radius; // sphere
 	t_color				color;
 	int					colour;
-	struct s_figure 	*next;
+	struct s_figure		*next;
 
 }						t_figure;
 
@@ -46,10 +45,10 @@ void		ft_figure_lstadd_back(t_figure **head, t_figure *new);
 void		ft_figure_lstdelone(t_figure *lst);
 void		ft_figure_lstclear(t_figure **head);
 
-/* sphere_utils.c */
+/*  ./src/parser/figures_utils_2.c */
 
-// t_figure	*sphere_create(t_vec3 center, float radius);
-// t_vec3		sphere_get_normal(t_vec3 point, t_figure sphere);
-
+void	ft_fill_color(t_color *color, int *colour, char **p2);
+void	ft_fill_center(t_vec3 *center, char **p1);
+void	ft_fill_norm_vector(t_vec3 *norm_vector, char **p2);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 22:22:04 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/09 20:35:11 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/15 19:33:37 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,12 @@
 static void	ft_set_values(t_light *new, char **ptr)
 {
 	char		**p1;
-	// char		**p2;
 
 	p1 = ft_split(ptr[1], ',');
 	new->origin.x = ft_atof(p1[0]);
 	new->origin.y = ft_atof(p1[1]);
 	new->origin.z = ft_atof(p1[2]);
-	new->intensity = ft_atof(ptr[2]);
-	// Bonus part
-	// p2 = ft_split(ptr[3], ',');
-	// new->color.a = 1;
-	// new->color.r = ft_atoi(p2[0]);
-	// new->color.g = ft_atoi(p2[1]);
-	// new->color.b = ft_atoi(p2[2]);
-	// ft_free_split(p2);
+	new->power = ft_atof(ptr[2]);
 	new->next = NULL;
 	ft_free_split(p1);
 }

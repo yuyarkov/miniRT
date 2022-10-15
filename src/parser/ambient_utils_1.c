@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/02 22:28:48 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/09 20:23:49 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/15 19:33:37 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	ft_set_values(t_ambient *new, char **ptr)
 	char		**p;
 
 	p = ft_split(ptr[2], ',');
-	new->intensity = ft_atof(ptr[1]);
+	new->power = ft_atof(ptr[1]);
 	new->color.a = 1;
 	new->color.r = ft_atoi(p[0]);
 	new->color.g = ft_atoi(p[1]);

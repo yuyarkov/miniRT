@@ -6,16 +6,16 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:12:14 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/15 19:05:59 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/15 21:05:19 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 1024
-#endif
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1024
+# endif
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -38,14 +38,17 @@
 # include "scene.h"
 # include "ray.h"
 
-
-# include "debug.h" //чтобы выводить на экран вектора, матрицы и т.д. удалить перед сдачей
-
 /* Colors */
 # define WHITE 0x00FFFFFF
 # define GREEN 0x0000FF00
 # define BLACK 0x00000000
 # define RED 0x00FF0000
+
+/* Console colors */
+#define RESET   "\033[0m"
+#define RED_C     "\033[1;31m"
+#define YELLOW_C  "\033[1;33m"
+#define WHITE_C   "\033[1;37m"
 
 /* Common params */
 # define BUFF_SIZE 40096
@@ -120,7 +123,7 @@
 # define MOVE_STEP 10
 # define LIGHT_STEP 500
 # define CAM_STEP 10
-# define ROT_ANGLE M_PI / 12
+# define ROT_ANGLE PI_STEP
 
 /* Parameters */
 # define DIFF 2
@@ -163,6 +166,7 @@ int		ft_check_input(int argc, char **argv);
 
 /* map_parser.c */
 
+int		ft_perror(char *msg);
 int		check_map(t_scene *scene, char *map);
 
 /* ft_atof.c */
@@ -235,12 +239,12 @@ int		ft_drop_shadow(t_scene *scene, t_figure *figure, t_vec3 *inter_point);
 
 /* intersect_utils_1.c */
 
-float	ft_plane_intersect(t_figure *plane, t_vec3 *cam_origin, 
+float	ft_plane_intersect(t_figure *plane, t_vec3 *cam_origin, \
 															t_vec3 *direction);
 float	ft_sphere_intersect(t_figure *sphere, t_vec3 *cam_origin, \
 											t_vec3 *direction, t_discrmn box);
 float	find_distance(t_figure *figure, t_vec3 *cam_origin, t_vec3 *ray);
-int		ft_intersection(t_scene *scene, t_vec3 *ray);											
+int		ft_intersection(t_scene *scene, t_vec3 *ray);
 
 /* intersect_utils_2.c */
 
@@ -248,14 +252,13 @@ float	ft_cylinder_intersect(t_figure *cyl, t_vec3 *cam_origin, \
 											t_vec3 *direction, t_discrmn box);
 float	ft_cylinder_intersect_2(t_figure *cyl, t_vec3 *cam_origin, \
 											t_vec3 *direction, t_discrmn box);
-t_vec3	ft_cylinder_norm(t_figure *cyl, t_vec3 *inter_point);																					
+t_vec3	ft_cylinder_norm(t_figure *cyl, t_vec3 *inter_point);
 
 /* main.c */
 
 void	ft_rotate_ray(t_camera *cam, t_vec3 *dir);
 void	render(t_data *pic, t_scene *scene);
 t_vec3	ft_rotate_dir(t_vec3 dir, t_camera *camera);
-int 	sphere_intersect(t_vec3 ray_original, t_scene *scene);
-
+int		sphere_intersect(t_vec3 ray_original, t_scene *scene);
 
 #endif
