@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
+/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 21:35:22 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/16 18:19:33 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/16 21:23:33 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,22 @@ void	clean_scene_data(t_scene *scene)
 	ft_camera_lstclear(&scene->camera);
 	ft_light_lstclear(&scene->light);
 	ft_figure_lstclear(&scene->figures);
+}
+
+void	print_manual(char *file)
+{
+	char	*buffer;
+	int		fd;
+
+	fd = open(file, O_RDONLY);
+	if (fd < 0)
+		return ;
+	buffer = get_next_line(fd);
+	while (buffer)
+	{
+		printf("%s%s%s", YELLOW_C, buffer, RESET);
+		free(buffer);
+		buffer = get_next_line(fd);
+	}
+	close(fd);
 }

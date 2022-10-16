@@ -1,0 +1,19 @@
+Controls:
+
+        [esc]                       [+][-]
+        Exit                     Resize object
+
+
+     [Q] [W] [E]                  [R] [T] [Y]
+     [A] [S] [D]                  [F] [G] [H]
+    Object movement              Object rotation
+
+
+    [1]      ᐃ                   [7] [8] [9]
+    [0]    ᐊ ᐁ ᐅ                 [4] [2] [6] 
+    Camera movement              Camera rotation
+
+
+     [U] [I] [O]
+     [J] [K] [L]
+    Light movement

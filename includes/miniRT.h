@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:12:14 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/16 20:17:48 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/16 21:01:20 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,6 +156,7 @@ typedef struct s_data {
 /* draw_utils.c */
 void	my_mlx_pixel_put(t_data *pic, int x, int y, int color);
 void	clean_scene_data(t_scene *scene);
+void	print_manual(char *file);
 
 /* get_next_line.c */
 
