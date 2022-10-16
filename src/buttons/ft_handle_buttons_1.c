@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 20:22:22 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/15 19:23:44 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/16 20:12:45 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ static void	ft_handle_buttons_2(int keycode, t_data *pic)
 
 int	ft_handle_buttons(int keycode, t_data *pic)
 {
+	printf("button kode = %d\n", keycode);
 	ft_handle_buttons_2(keycode, pic);
 	if (keycode == FOV_PLUS || keycode == FOV_MINUS)
 		ft_change_fov(keycode, CAM_STEP, pic);

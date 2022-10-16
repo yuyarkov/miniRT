@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect_utils_2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
+/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 17:46:23 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/16 18:54:15 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/16 20:08:30 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_vec3	ft_cylinder_norm(t_figure *cyl, t_vec3 *inter_point)
 		tmp = vector_sub(*inter_point, pt);
 		norm = get_norm_vector(&tmp);
 	}
-	norm = get_norm_vector(&norm);
+	vector_normalize(&norm);
 	return (norm);
 }
 

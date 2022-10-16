@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
+/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:11:04 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/16 18:29:39 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/16 20:37:49 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	scene.camera->f = get_focus_distance(&scene);
+	printf("DO: %f, %f, %f\n", scene.figures->norm_vector.x,
+			scene.figures->norm_vector.y, scene.figures->norm_vector.z);
 	mlx_run(&scene);
 	clean_scene_data(&scene);
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
+/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:12:14 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/16 19:10:18 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/16 20:17:48 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,12 +103,12 @@
 # define BACKWARD 82  // NUM_PANEL 0
 
 /* Rotate camera */
-# define ROT_UP 91  // NUM_PANEL 8
-# define ROT_DOWN 87  // NUM_PANEL 5
-# define ROT_LEFT 86  // NUM_PANEL 4
-# define ROT_RIGHT 88  // NUM_PANEL 6
-# define ROT_FRONT 89  // NUM_PANEL 7
-# define ROT_BACK 92  // NUM_PANEL 9
+# define ROT_UP 84  // NUM_PANEL 2
+# define ROT_DOWN 91  // NUM_PANEL 8
+# define ROT_LEFT 88  // NUM_PANEL 6
+# define ROT_RIGHT 86  // NUM_PANEL 4
+# define ROT_FRONT 92  // NUM_PANEL 9
+# define ROT_BACK 89  // NUM_PANEL 7
 
 /* Move light */
 # define I 34  // UP Y_AXIS
