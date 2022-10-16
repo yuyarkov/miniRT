@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_operations_1.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 20:45:59 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/15 18:18:53 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/16 18:54:15 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ t_vec3	vector_sub(t_vec3 first, t_vec3 second)
 	return (result);
 }
 
-float	vector_s_prod(t_vec3 a, t_vec3 b)
+float	scalar_product(t_vec3 a, t_vec3 b)
 {
 	float	result;
 

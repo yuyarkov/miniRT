@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_handle_buttons_2.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 19:59:47 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/15 19:23:55 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/16 18:14:05 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ void	ft_rotate_figure(int keycode, int angle, t_data *pic)
 			figures->norm_vector = ft_rotate_z(figures->norm_vector, angle);
 		else if (keycode == R)
 			figures->norm_vector = ft_rotate_z(figures->norm_vector, -angle);
+		printf("rotate_figures, figure->norm_vector: %f, %f, %f\n", figures->norm_vector.x,
+			figures->norm_vector.y, figures->norm_vector.z);
 		figures = figures->next;
 	}
 }

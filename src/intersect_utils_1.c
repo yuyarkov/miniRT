@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect_utils_1.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:38:09 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/15 20:17:22 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/16 18:54:15 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ float	ft_plane_intersect(t_figure *plane, t_vec3 *cam_origin, \
 	float	dot_product_2;
 
 	subtraction = vector_sub(*cam_origin, plane->center);
-	dot_product_1 = vector_s_prod(subtraction, plane->norm_vector);
-	dot_product_2 = vector_s_prod(*direction, plane->norm_vector);
+	dot_product_1 = scalar_product(subtraction, plane->norm_vector);
+	dot_product_2 = scalar_product(*direction, plane->norm_vector);
 	t = -dot_product_1 / dot_product_2;
 	return (t);
 }
@@ -37,8 +37,8 @@ float	ft_sphere_intersect(t_figure *sphere, t_vec3 *cam_origin, \
 	t_vec3	cam_sphere;
 
 	cam_sphere = vector_sub(*cam_origin, sphere->center);
-	box.b = 2 * (vector_s_prod(cam_sphere, *direction));
-	box.c = vector_s_prod(cam_sphere, cam_sphere) - powf(sphere->radius, 2);
+	box.b = 2 * (scalar_product(cam_sphere, *direction));
+	box.c = scalar_product(cam_sphere, cam_sphere) - powf(sphere->radius, 2);
 	box.discr = (box.b * box.b) - (4 * box.c);
 	if (box.discr < 0)
 		return (0);
@@ -96,6 +96,6 @@ int	ft_intersection(t_scene *scene, t_vec3 *ray)
 	// if (dist_min != MAXFLOAT)
 	// 	printf("inside intersection, dist_min: %f\n", dist_min);
 	if (result != NULL)
-		color = ft_lighting(scene, result, ray, dist_min);//сцена, в какую фигуру попали, луч, дистанция до первой фигуры
+		color = lightning(scene, result, ray, dist_min);//сцена, в какую фигуру попали, луч, дистанция до первой фигуры
 	return (color);
 }

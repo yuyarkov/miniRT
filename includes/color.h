@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   colour.h                                           :+:      :+:    :+:   */
+/*   color.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 17:55:55 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/15 17:55:56 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/16 18:43:55 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COLOUR_H
-# define COLOUR_H
+#ifndef COLOR_H
+# define COLOR_H
 
 typedef struct s_color
 {
@@ -31,9 +31,9 @@ int	get_b_color(int argb);
 
 /* color_utils_2.c */
 
-int	ft_rgb(int color, char level);
-int	ft_mul_clr(t_color clr, float ratio);
-int	ft_add_clr(int color, int coef);
-int	ft_add_clr3(int c1, int c2, int c3);
+int	get_rgb_component(int color, char level);
+int	change_bright(t_color clr, float ratio);
+int	add_color(int color, int coef);
+int	add_3_colors(int c1, int c2, int c3);
 
 #endif

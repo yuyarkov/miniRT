@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/06 21:35:22 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/15 18:09:12 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/16 18:19:33 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,12 @@ void	my_mlx_pixel_put(t_data *pic, int x, int y, int color)
 		dest = pic->addr + (y * pic->line_len + x * (pic->bits_per_p / 8));
 		*(unsigned int *)dest = color;
 	}
+}
+
+void	clean_scene_data(t_scene *scene)
+{
+	ft_ambient_lstclear(&scene->ambient);
+	ft_camera_lstclear(&scene->camera);
+	ft_light_lstclear(&scene->light);
+	ft_figure_lstclear(&scene->figures);
 }

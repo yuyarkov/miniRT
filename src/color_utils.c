@@ -1,46 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color_utils_2.c                                    :+:      :+:    :+:   */
+/*   color_utils_1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/09 18:51:14 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/09 18:57:17 by merlich          ###   ########.fr       */
+/*   Created: 2022/09/18 16:06:34 by dirony            #+#    #+#             */
+/*   Updated: 2022/10/16 18:43:55 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/miniRT.h"
 
-int	ft_rgb(int color, char level)
+int	create_argb_color(int t, int r, int g, int b)
 {
-	if (level == 'R')
+	return (t << 24 | r << 16 | g << 8 | b);
+}
+
+int	get_rgb_component(int color, char component)
+{
+	if (component == 'R')
 		return ((color >> 16) & 0xFF);
-	else if (level == 'G')
+	else if (component == 'G')
 		return ((color >> 8) & 0xFF);
-	else if (level == 'B')
+	else if (component == 'B')
 		return (color & 0xFF);
 	return (0);
 }
 
-int	ft_mul_clr(t_color clr, float ratio)
+int	change_bright(t_color color, float ratio)
 {
 	int	res;
 	int	r;
 	int	g;
 	int	b;
 
-	r = clr.r * ratio;
+	r = color.r * ratio;
 	if (r > 255)
 		r = 255;
 	else if (r < 0)
 		r = 0;
-	g = clr.g * ratio;
+	g = color.g * ratio;
 	if (g > 255)
 		g = 255;
 	else if (g < 0)
 		g = 0;
-	b = clr.b * ratio;
+	b = color.b * ratio;
 	if (b > 255)
 		b = 255;
 	else if (b < 0)
@@ -49,24 +54,24 @@ int	ft_mul_clr(t_color clr, float ratio)
 	return (res);
 }
 
-int	ft_add_clr(int color, int coef)
+int	add_color(int color, int coef)
 {
 	int	r;
 	int	g;
 	int	b;
 	int	res;
 
-	r = ft_rgb(color, 'R') + coef;
+	r = get_rgb_component(color, 'R') + coef;
 	if (r > 255)
 		r = 255;
 	else if (r < 0)
 		r = 0;
-	g = ft_rgb(color, 'G') + coef;
+	g = get_rgb_component(color, 'G') + coef;
 	if (g > 255)
 		g = 255;
 	else if (g < 0)
 		g = 0;
-	b = ft_rgb(color, 'B') + coef;
+	b = get_rgb_component(color, 'B') + coef;
 	if (b > 255)
 		b = 255;
 	else if (b < 0)
@@ -75,24 +80,24 @@ int	ft_add_clr(int color, int coef)
 	return (res);
 }
 
-int	ft_add_clr3(int c1, int c2, int c3)
+int	add_3_colors(int c1, int c2, int c3)
 {
 	int	res;
 	int	r;
 	int	g;
 	int	b;
 
-	r = ft_rgb(c1, 'R') + ft_rgb(c2, 'R') + ft_rgb(c3, 'R');
+	r = get_rgb_component(c1, 'R') + get_rgb_component(c2, 'R') + get_rgb_component(c3, 'R');
 	if (r > 255)
 		r = 255;
 	else if (r < 0)
 		r = 0;
-	g = ft_rgb(c1, 'G') + ft_rgb(c2, 'G') + ft_rgb(c3, 'G');
+	g = get_rgb_component(c1, 'G') + get_rgb_component(c2, 'G') + get_rgb_component(c3, 'G');
 	if (g > 255)
 		g = 255;
 	else if (g < 0)
 		g = 0;
-	b = ft_rgb(c1, 'B') + ft_rgb(c2, 'B') + ft_rgb(c3, 'B');
+	b = get_rgb_component(c1, 'B') + get_rgb_component(c2, 'B') + get_rgb_component(c3, 'B');
 	if (b > 255)
 		b = 255;
 	else if (b < 0)

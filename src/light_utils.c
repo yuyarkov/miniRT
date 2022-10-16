@@ -3,59 +3,57 @@
 /*                                                        :::      ::::::::   */
 /*   light_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 17:30:18 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/15 19:56:23 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/16 19:20:48 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/miniRT.h"
 
-float	ft_diff_light(t_vec3 normale, t_vec3 inter_point, t_scene *scene)
+float	light_angle(t_vec3 normale, t_vec3 point, t_scene *scene)
 {
-	t_vec3	spot;
-	t_vec3	tmp;
-	float	res;
+	t_vec3	temp;
+	float	result;
 
-	tmp = vector_sub(scene->light->origin, inter_point);
-	spot = get_norm_vector(&tmp);
-	res = vector_s_prod(normale, spot);
-	return (res * scene->light->power);
+	temp = vector_sub(scene->light->origin, point);
+	vector_normalize(&temp);
+	result = scalar_product(normale, temp);
+	return (result * scene->light->power);
 }
 
-float	ft_spec_light(t_vec3 normale, t_vec3 ray, t_vec3 inter_point, \
+float	ft_spec_light(t_vec3 normale, t_vec3 ray, t_vec3 point, \
 																t_scene *scene)
 {
 	float	power;
 	t_vec3	reflect;
-	t_vec3	spot;
-	t_vec3	tmp;
+	t_vec3	temp;
 
 	power = scene->light->power;
-	tmp = vector_sub(scene->light->origin, inter_point);
-	spot = get_norm_vector(&tmp);
-	reflect = ft_reflect_vector(ray, normale);
-	return (pow(fmax(vector_s_prod(reflect, spot), 0), 32) * power);
+	temp = vector_sub(scene->light->origin, point);
+	vector_normalize(&temp);
+	reflect = reflect_vector(ray, normale);
+	return (pow(fmax(scalar_product(reflect, temp), 0), 32) * power);
 }
 
-int	ft_drop_shadow(t_scene *scene, t_figure *figure, t_vec3 *inter_point)
+int	is_in_shadow(t_scene *scene, t_figure *figure, t_vec3 *point)
 {
 	t_vec3		dir;
-	t_vec3		vec_tmp;
+	t_vec3		vec_temp;
 	t_figure	*iter;
 	float		dist;
 
-	vec_tmp = vector_sub(scene->light->origin, *inter_point);
-	dir = get_norm_vector(&vec_tmp);
+	vec_temp = vector_sub(scene->light->origin, *point);
+	dir = get_norm_vector(&vec_temp);
 	iter = scene->figures;
 	while (iter)
 	{
-		dist = find_distance(iter, inter_point, &dir);
+		dist = find_distance(iter, point, &dir);
 		if (iter->type != figure->type)
 		{
 			if (dist > 0 && \
-				dist < ft_find_dist(*inter_point, scene->light->origin) && \
+				dist < get_distance(*point, scene->light->origin) && \
 				iter != figure)
 				return (1);
 		}
@@ -64,47 +62,43 @@ int	ft_drop_shadow(t_scene *scene, t_figure *figure, t_vec3 *inter_point)
 	return (0);
 }
 
-t_vec3	ft_normale_surface(t_vec3 inter_point, t_figure *figure)
+t_vec3	get_normale(t_vec3 point, t_figure *figure)
 {
 	t_vec3	normale;
 
 	if (figure->type == SPHERE)
 	{
-		normale = vector_sub(inter_point, figure->center);
+		normale = vector_sub(point, figure->center);
 		vector_normalize(&normale);
 	}
 	else if (figure->type == PLANE)
 		normale = get_norm_vector(&(figure->norm_vector));
 	else if (figure->type == CYLINDER)
-		normale = ft_cylinder_norm(figure, &inter_point);
+		normale = ft_cylinder_norm(figure, &point);
 	return (normale);
 }
 
-int	ft_lighting(t_scene *scene, t_figure *figure, t_vec3 *ray, float dist)
+int	lightning(t_scene *scene, t_figure *fig, t_vec3 *ray, float dist)
 {
-	t_vec3	inter_point;
+	t_vec3	point;
 	t_vec3	normale;
-	t_vec3	tmp;
-	int		drop;
+	t_vec3	temp;
+	int		shadow;
 	int		res;
 
-	tmp = vector_multiply(*ray, dist);
-	inter_point = vector_sum(scene->camera->position, tmp);
-	normale = ft_normale_surface(inter_point, figure);
-	drop = ft_drop_shadow(scene, figure, &inter_point);
+	temp = vector_multiply(*ray, dist);
+	point = vector_sum(scene->camera->position, temp);
+	normale = get_normale(point, fig);
+	shadow = is_in_shadow(scene, fig, &point);
 	res = BLACK;
-	if (drop == 0)
-	{
-		res = ft_add_clr3(ft_mul_clr(figure->color, scene->ambient->power), \
-		ft_mul_clr(figure->color, ft_diff_light(normale, inter_point, scene) \
-		* DIFF), ft_mul_clr(figure->color, \
-		ft_spec_light(normale, *ray, inter_point, scene) * SPEC));
-	}
-	else if (drop == 1)
-	{
-		res = ft_add_clr(ft_add_clr3(ft_mul_clr(figure->color, \
-		scene->ambient->power), ft_mul_clr(figure->color, \
-		ft_diff_light(normale, inter_point, scene) * DIFF), 0), SHADOW);
-	}
+	if (shadow == 0)
+		res = add_3_colors(change_bright(fig->color, scene->ambient->power), \
+		change_bright(fig->color, light_angle(normale, point, scene) \
+		* DIFF), change_bright(fig->color, \
+		ft_spec_light(normale, *ray, point, scene) * SPEC));
+	else if (shadow == 1)
+		res = add_color(add_3_colors(change_bright(fig->color, \
+		scene->ambient->power), change_bright(fig->color, \
+		light_angle(normale, point, scene) * DIFF), 0), SHADOW);
 	return (res);
 }

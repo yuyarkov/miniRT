@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: merlich <merlich@student.42.fr>            +#+  +:+       +#+         #
+#    By: dirony <dirony@21-school.ru>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/02 22:45:06 by merlich           #+#    #+#              #
-#    Updated: 2022/10/15 22:07:03 by merlich          ###   ########.fr        #
+#    Updated: 2022/10/16 19:25:46 by dirony           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,10 +23,8 @@ SRC_FILES =	main.c 							draw_utils.c\
 			intersect_utils_1.c				intersect_utils_2.c\
 			light_utils.c\
 			vector_operations_1.c			vector_operations_2.c\
-			vector_operations_3.c			vectors_rotation.c\
-			color_utils_1.c					color_utils_2.c\
-			scene_utils.c\
-			ft_clean_map_data.c\
+			vector_operations_3.c			rotation_utils.c\
+			color_utils.c					scene_utils.c\
 			./parser/check_geometry.c\
 			./parser/check_colour.c 		./parser/check_vector.c\
 			./parser/error_parser.c  		./parser/map_parser.c\

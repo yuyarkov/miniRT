@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:11:04 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/15 20:26:52 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/16 18:29:39 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ t_data	*create_pic(t_scene *scene)
 	return (pic);
 }
 
-void	ft_rotate_ray(t_camera *cam, t_vec3 *dir)
+void	ft_rotate_ray(t_camera *cam, t_vec3 *direction)
 {
-	*dir = ft_rotate_x(*dir, cam->angle_x);
-	*dir = ft_rotate_y(*dir, cam->angle_y);
-	*dir = ft_rotate_z(*dir, cam->angle_z);
+	*direction = ft_rotate_x(*direction, cam->angle_x);
+	*direction = ft_rotate_y(*direction, cam->angle_y);
+	*direction = ft_rotate_z(*direction, cam->angle_z);
 }
 
 void	render(t_data *pic, t_scene *scene)
@@ -79,11 +79,11 @@ int	main(int argc, char **argv)
 	scene = (t_scene){};
 	if (ft_check_input(argc, argv) || check_map(&scene, argv[1]))
 	{
-		ft_clean_map_data(&scene);
+		clean_scene_data(&scene);
 		return (1);
 	}
 	scene.camera->f = get_focus_distance(&scene);
 	mlx_run(&scene);
-	ft_clean_map_data(&scene);
+	clean_scene_data(&scene);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:12:14 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/15 21:05:19 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/16 19:10:18 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # include <stdio.h>
 
 # include "vector.h"
-# include "colour.h"
+# include "color.h"
 # include "ambient.h"
 # include "light.h"
 # include "camera.h"
@@ -153,7 +153,9 @@ typedef struct s_data {
 	t_scene	*scene_ptr;
 }	t_data;
 
+/* draw_utils.c */
 void	my_mlx_pixel_put(t_data *pic, int x, int y, int color);
+void	clean_scene_data(t_scene *scene);
 
 /* get_next_line.c */
 
@@ -224,18 +226,14 @@ void	ft_rotate_camera(int keycode, float angle, t_data *pic);
 void	ft_move_light(int keycode, float step, t_data *pic);
 void	ft_rotate_light(int keycode, float angle, t_data *pic);
 
-/* ft_clean_map_data.c */
-
-void	ft_clean_map_data(t_scene *scene);
-
 /* light_utils.c */
 
-float	ft_diff_light(t_vec3 normale, t_vec3 inter_point, t_scene *scene);
+float	light_angle(t_vec3 normale, t_vec3 inter_point, t_scene *scene);
 float	ft_spec_light(t_vec3 normale, t_vec3 direction, t_vec3 inter_point, \
 																t_scene *scene);
-t_vec3	ft_normale_surface(t_vec3 inter_point, t_figure *figure);
-int		ft_lighting(t_scene *scene, t_figure *figure, t_vec3 *ray, float dist);
-int		ft_drop_shadow(t_scene *scene, t_figure *figure, t_vec3 *inter_point);
+t_vec3	get_normale(t_vec3 inter_point, t_figure *figure);
+int		lightning(t_scene *scene, t_figure *figure, t_vec3 *ray, float dist);
+int		is_in_shadow(t_scene *scene, t_figure *figure, t_vec3 *inter_point);
 
 /* intersect_utils_1.c */
 

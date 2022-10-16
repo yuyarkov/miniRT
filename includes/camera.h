@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 17:55:59 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/15 19:21:22 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/16 18:25:19 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ typedef struct s_camera
 	float			angle_z;
 	struct s_camera	*next;
 }					t_camera;
-
-t_camera	*camera_create(t_vec3 pos, t_vec3 rot, int fov);
 
 /* camera_utils.c */
 

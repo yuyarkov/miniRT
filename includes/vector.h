@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 17:55:46 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/15 19:13:55 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/16 19:19:39 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_vec3			ft_build_vector(float x, float y, float z);
 float			vector_len(t_vec3 vector);
 t_vec3			vector_sum(t_vec3 first, t_vec3 second);
 t_vec3			vector_sub(t_vec3 a, t_vec3 b);
-float			vector_s_prod(t_vec3 a, t_vec3 b);
+float			scalar_product(t_vec3 a, t_vec3 b);
 
 /* vectors_operations_2.c */
 
@@ -48,8 +48,8 @@ t_vec3			vec3_cross_product(t_vec3 a, t_vec3 b);
 
 /* vectors_operations_3.c */
 
-t_vec3			ft_reflect_vector(t_vec3 direction, t_vec3 normale);
-float			ft_find_dist(t_vec3 a, t_vec3 b);
+t_vec3			reflect_vector(t_vec3 direction, t_vec3 normale);
+float			get_distance(t_vec3 a, t_vec3 b);
 
 /* vectors_rotation.c */
 
