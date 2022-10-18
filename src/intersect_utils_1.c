@@ -6,7 +6,7 @@
 /*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:38:09 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/18 20:49:30 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/18 21:08:37 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ float	find_distance(t_figure *figure, t_vec3 *cam_origin, t_vec3 *ray)
 	else if (figure->type == PLANE)
 		distance = plane_intersect(figure, cam_origin, ray);
 	else if (figure->type == CYLINDER)
-		distance = ft_cylinder_intersect(figure, cam_origin, ray, box);
+		distance = cylinder_intersect(figure, cam_origin, ray, box);
 	return (distance);
 }
 

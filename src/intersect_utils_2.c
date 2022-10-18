@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect_utils_2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 17:46:23 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/16 20:08:30 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/18 21:08:37 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ float	ft_calc_t(float ca_co_cp, float cadir, float caca, float res)
 	return (t);
 }
 
-float	ft_cylinder_intersect_2(t_figure *cyl, t_vec3 *cam_origin, \
+float	cylinder_intersect_2(t_figure *cyl, t_vec3 *cam_origin, \
 											t_vec3 *dir, t_discrmn box)
 {
 	box.tmp = vector_sub(*cam_origin, cyl->center);
@@ -66,7 +66,7 @@ float	ft_cylinder_intersect_2(t_figure *cyl, t_vec3 *cam_origin, \
 	return (0);
 }
 
-float	ft_cylinder_intersect(t_figure *cyl, t_vec3 *cam_origin, \
+float	cylinder_intersect(t_figure *cyl, t_vec3 *cam_origin, \
 											t_vec3 *dir, t_discrmn box)
 {
 	box.tmp = vector_multiply(cyl->norm_vector, cyl->height);
@@ -84,6 +84,6 @@ float	ft_cylinder_intersect(t_figure *cyl, t_vec3 *cam_origin, \
 	box.discr = box.b * box.b - box.a * box.c;
 	if (box.discr < 0)
 		return (0);
-	box.res = ft_cylinder_intersect_2(cyl, cam_origin, dir, box);
+	box.res = cylinder_intersect_2(cyl, cam_origin, dir, box);
 	return (box.res);
 }

@@ -6,7 +6,7 @@
 /*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:12:14 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/18 20:50:36 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/18 21:08:37 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -247,9 +247,9 @@ int		get_pixel_color(t_scene *scene, t_vec3 *ray);
 
 /* intersect_utils_2.c */
 
-float	ft_cylinder_intersect(t_figure *cyl, t_vec3 *cam_origin, \
+float	cylinder_intersect(t_figure *cyl, t_vec3 *cam_origin, \
 											t_vec3 *direction, t_discrmn box);
-float	ft_cylinder_intersect_2(t_figure *cyl, t_vec3 *cam_origin, \
+float	cylinder_intersect_2(t_figure *cyl, t_vec3 *cam_origin, \
 											t_vec3 *direction, t_discrmn box);
 t_vec3	ft_cylinder_norm(t_figure *cyl, t_vec3 *inter_point);
 
