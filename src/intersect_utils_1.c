@@ -6,13 +6,13 @@
 /*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 15:38:09 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/16 18:54:15 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/18 20:49:30 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/miniRT.h"
 
-float	ft_plane_intersect(t_figure *plane, t_vec3 *cam_origin, \
+float	plane_intersect(t_figure *plane, t_vec3 *cam_origin, \
 															t_vec3 *direction)
 {
 	float	t;
@@ -27,7 +27,7 @@ float	ft_plane_intersect(t_figure *plane, t_vec3 *cam_origin, \
 	return (t);
 }
 
-float	ft_sphere_intersect(t_figure *sphere, t_vec3 *cam_origin, \
+float	sphere_intersect(t_figure *sphere, t_vec3 *cam_origin, \
 											t_vec3 *direction, t_discrmn box)
 {
 	float	dist_1;
@@ -50,8 +50,6 @@ float	ft_sphere_intersect(t_figure *sphere, t_vec3 *cam_origin, \
 		box.res = min;
 	else
 		box.res = max;
-	// if (box.res > 0)
-	// 	printf("inside sphere_intersect, box.res: %f\n", box.res);
 	return (box.res);
 }
 
@@ -63,15 +61,15 @@ float	find_distance(t_figure *figure, t_vec3 *cam_origin, t_vec3 *ray)
 	box = (t_discrmn){};
 	distance = 0;
 	if (figure->type == SPHERE)
-		distance = ft_sphere_intersect(figure, cam_origin, ray, box);
+		distance = sphere_intersect(figure, cam_origin, ray, box);
 	else if (figure->type == PLANE)
-		distance = ft_plane_intersect(figure, cam_origin, ray);
+		distance = plane_intersect(figure, cam_origin, ray);
 	else if (figure->type == CYLINDER)
 		distance = ft_cylinder_intersect(figure, cam_origin, ray, box);
 	return (distance);
 }
 
-int	ft_intersection(t_scene *scene, t_vec3 *ray)
+int	get_pixel_color(t_scene *scene, t_vec3 *ray)
 {
 	float		dist;
 	float		dist_min;
@@ -93,9 +91,7 @@ int	ft_intersection(t_scene *scene, t_vec3 *ray)
 		}
 		iter = iter->next;
 	}
-	// if (dist_min != MAXFLOAT)
-	// 	printf("inside intersection, dist_min: %f\n", dist_min);
 	if (result != NULL)
-		color = lightning(scene, result, ray, dist_min);//сцена, в какую фигуру попали, луч, дистанция до первой фигуры
+		color = lightning(scene, result, ray, dist_min);
 	return (color);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_handle_buttons_2.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 19:59:47 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/16 20:41:23 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/18 20:47:13 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	ft_move_figure(int keycode, int step, t_data *pic)
 	}
 }
 
-void	ft_rotate_figure(int keycode, int angle, t_data *pic)
+void	rotate_figure(int keycode, int angle, t_data *pic)
 {
 	t_figure	*figures;
 
@@ -69,53 +69,17 @@ void	ft_rotate_figure(int keycode, int angle, t_data *pic)
 	while (figures)
 	{
 		if (keycode == T)
-		{
-			printf("DO: %f, %f, %f\n", figures->norm_vector.x,
-			figures->norm_vector.y, figures->norm_vector.z);
-			figures->norm_vector = ft_rotate_x(figures->norm_vector, angle);
-			printf("POSLE: %f, %f, %f\n\n\n", figures->norm_vector.x,
-			figures->norm_vector.y, figures->norm_vector.z);
-		}
+			figures->norm_vector = rotate_x(figures->norm_vector, angle);
 		else if (keycode == G)
-		{
-			printf("DO: %f, %f, %f\n", figures->norm_vector.x,
-			figures->norm_vector.y, figures->norm_vector.z);
-			figures->norm_vector = ft_rotate_x(figures->norm_vector, -angle);
-			printf("POSLE: %f, %f, %f\n\n\n", figures->norm_vector.x,
-			figures->norm_vector.y, figures->norm_vector.z);
-		}
+			figures->norm_vector = rotate_x(figures->norm_vector, -angle);
 		else if (keycode == H)
-		{
-			printf("DO: %f, %f, %f\n", figures->norm_vector.x,
-			figures->norm_vector.y, figures->norm_vector.z);
-			figures->norm_vector = ft_rotate_y(figures->norm_vector, angle);
-			printf("POSLE: %f, %f, %f\n\n\n", figures->norm_vector.x,
-			figures->norm_vector.y, figures->norm_vector.z);
-		}
+			figures->norm_vector = rotate_y(figures->norm_vector, angle);
 		else if (keycode == F)
-		{
-			printf("DO: %f, %f, %f\n", figures->norm_vector.x,
-			figures->norm_vector.y, figures->norm_vector.z);
-			figures->norm_vector = ft_rotate_y(figures->norm_vector, -angle);
-			printf("POSLE: %f, %f, %f\n\n\n", figures->norm_vector.x,
-			figures->norm_vector.y, figures->norm_vector.z);
-		}
+			figures->norm_vector = rotate_y(figures->norm_vector, -angle);
 		else if (keycode == Y)
-		{
-			printf("DO: %f, %f, %f\n", figures->norm_vector.x,
-			figures->norm_vector.y, figures->norm_vector.z);
-			figures->norm_vector = ft_rotate_z(figures->norm_vector, angle);
-			printf("POSLE: %f, %f, %f\n\n\n", figures->norm_vector.x,
-			figures->norm_vector.y, figures->norm_vector.z);
-		}
+			figures->norm_vector = rotate_z(figures->norm_vector, angle);
 		else if (keycode == R)
-		{
-			printf("DO: %f, %f, %f\n", figures->norm_vector.x,
-			figures->norm_vector.y, figures->norm_vector.z);
-			figures->norm_vector = ft_rotate_z(figures->norm_vector, -angle);
-			printf("POSLE: %f, %f, %f\n\n\n", figures->norm_vector.x,
-			figures->norm_vector.y, figures->norm_vector.z);
-		}
+			figures->norm_vector = rotate_z(figures->norm_vector, -angle);
 		figures = figures->next;
 	}
 }

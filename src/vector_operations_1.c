@@ -6,13 +6,13 @@
 /*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 20:45:59 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/16 18:54:15 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/18 20:15:49 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/miniRT.h"
 
-t_vec3	ft_build_vector(float x, float y, float z)
+t_vec3	build_vector(float x, float y, float z)
 {
 	t_vec3	result;
 

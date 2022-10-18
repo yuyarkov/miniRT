@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_handle_buttons_1.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 20:22:22 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/16 20:12:45 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/18 20:14:20 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	ft_handle_buttons_2(int keycode, t_data *pic)
 		ft_move_figure(keycode, MOVE_STEP, pic);
 	else if (keycode == F || keycode == H || keycode == T || keycode == G || \
 			keycode == R || keycode == Y)
-		ft_rotate_figure(keycode, ROT_ANGLE, pic);
+		rotate_figure(keycode, ROT_ANGLE, pic);
 }
 
 int	ft_handle_buttons(int keycode, t_data *pic)
@@ -58,7 +58,7 @@ int	ft_handle_buttons(int keycode, t_data *pic)
 		ft_move_camera(keycode, MOVE_STEP, pic);
 	else if (keycode == ROT_UP || keycode == ROT_DOWN || keycode == ROT_LEFT \
 		|| keycode == ROT_RIGHT || keycode == ROT_FRONT || keycode == ROT_BACK)
-		ft_rotate_camera(keycode, ROT_ANGLE, pic);
+		rotate_camera(keycode, ROT_ANGLE, pic);
 	else if (keycode == I || keycode == K || keycode == J || \
 			keycode == L || keycode == U || keycode == O)
 		ft_move_light(keycode, LIGHT_STEP, pic);

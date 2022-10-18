@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   figures.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 20:14:24 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/15 22:05:20 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/18 20:50:09 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void		ft_figure_lstclear(t_figure **head);
 
 /*  ./src/parser/figures_utils_2.c */
 
-void	ft_fill_color(t_color *color, int *colour, char **p2);
-void	ft_fill_center(t_vec3 *center, char **p1);
-void	ft_fill_norm_vector(t_vec3 *norm_vector, char **p2);
+void		ft_fill_color(t_color *color, int *colour, char **p2);
+void		ft_fill_center(t_vec3 *center, char **p1);
+void		ft_fill_norm_vector(t_vec3 *norm_vector, char **p2);
 
 #endif

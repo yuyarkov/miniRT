@@ -6,7 +6,7 @@
 /*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 17:55:46 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/16 19:19:39 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/18 20:15:49 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_discrmn
 
 /* vectors_operations.c */
 
-t_vec3			ft_build_vector(float x, float y, float z);
+t_vec3			build_vector(float x, float y, float z);
 float			vector_len(t_vec3 vector);
 t_vec3			vector_sum(t_vec3 first, t_vec3 second);
 t_vec3			vector_sub(t_vec3 a, t_vec3 b);
@@ -53,8 +53,8 @@ float			get_distance(t_vec3 a, t_vec3 b);
 
 /* vectors_rotation.c */
 
-t_vec3			ft_rotate_x(t_vec3 vector, float phi);
-t_vec3			ft_rotate_y(t_vec3 vector, float phi);
-t_vec3			ft_rotate_z(t_vec3 vector, float phi);
+t_vec3			rotate_x(t_vec3 vector, float phi);
+t_vec3			rotate_y(t_vec3 vector, float phi);
+t_vec3			rotate_z(t_vec3 vector, float phi);
 
 #endif

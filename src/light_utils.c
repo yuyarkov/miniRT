@@ -6,7 +6,7 @@
 /*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 17:30:18 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/16 19:20:48 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/18 20:42:16 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ float	light_angle(t_vec3 normale, t_vec3 point, t_scene *scene)
 	return (result * scene->light->power);
 }
 
-float	ft_spec_light(t_vec3 normale, t_vec3 ray, t_vec3 point, \
+float	special_light(t_vec3 normale, t_vec3 ray, t_vec3 point, \
 																t_scene *scene)
 {
 	float	power;
@@ -91,14 +91,14 @@ int	lightning(t_scene *scene, t_figure *fig, t_vec3 *ray, float dist)
 	normale = get_normale(point, fig);
 	shadow = is_in_shadow(scene, fig, &point);
 	res = BLACK;
-	if (shadow == 0)
-		res = add_3_colors(change_bright(fig->color, scene->ambient->power), \
-		change_bright(fig->color, light_angle(normale, point, scene) \
-		* DIFF), change_bright(fig->color, \
-		ft_spec_light(normale, *ray, point, scene) * SPEC));
-	else if (shadow == 1)
+	if (shadow)
 		res = add_color(add_3_colors(change_bright(fig->color, \
 		scene->ambient->power), change_bright(fig->color, \
 		light_angle(normale, point, scene) * DIFF), 0), SHADOW);
+	else
+		res = add_3_colors(change_bright(fig->color, scene->ambient->power), \
+		change_bright(fig->color, light_angle(normale, point, scene) \
+		* DIFF), change_bright(fig->color, \
+		special_light(normale, *ray, point, scene) * SPEC));
 	return (res);
 }

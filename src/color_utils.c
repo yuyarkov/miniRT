@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color_utils_1.c                                    :+:      :+:    :+:   */
+/*   color_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/18 16:06:34 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/16 18:43:55 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/18 20:45:38 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,17 +87,20 @@ int	add_3_colors(int c1, int c2, int c3)
 	int	g;
 	int	b;
 
-	r = get_rgb_component(c1, 'R') + get_rgb_component(c2, 'R') + get_rgb_component(c3, 'R');
+	r = get_rgb_component(c1, 'R') + get_rgb_component(c2, 'R')
+		+ get_rgb_component(c3, 'R');
 	if (r > 255)
 		r = 255;
 	else if (r < 0)
 		r = 0;
-	g = get_rgb_component(c1, 'G') + get_rgb_component(c2, 'G') + get_rgb_component(c3, 'G');
+	g = get_rgb_component(c1, 'G') + get_rgb_component(c2, 'G')
+		+ get_rgb_component(c3, 'G');
 	if (g > 255)
 		g = 255;
 	else if (g < 0)
 		g = 0;
-	b = get_rgb_component(c1, 'B') + get_rgb_component(c2, 'B') + get_rgb_component(c3, 'B');
+	b = get_rgb_component(c1, 'B') + get_rgb_component(c2, 'B')
+		+ get_rgb_component(c3, 'B');
 	if (b > 255)
 		b = 255;
 	else if (b < 0)

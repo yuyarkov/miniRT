@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_handle_buttons_3.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 21:35:31 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/15 19:24:04 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/18 20:14:20 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_move_camera(int keycode, float step, t_data *pic)
 		camera->position.z -= step;
 }
 
-void	ft_rotate_camera(int keycode, float angle, t_data *pic)
+void	rotate_camera(int keycode, float angle, t_data *pic)
 {
 	if (keycode == ROT_FRONT)
 		pic->scene_ptr->camera->angle_z += angle;

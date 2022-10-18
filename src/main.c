@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:11:04 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/16 21:10:07 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/18 20:13:25 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ t_data	*create_pic(t_scene *scene)
 	return (pic);
 }
 
-void	ft_rotate_ray(t_camera *cam, t_vec3 *direction)
+void	rotate_ray(t_camera *cam, t_vec3 *direction)
 {
-	*direction = ft_rotate_x(*direction, cam->angle_x);
-	*direction = ft_rotate_y(*direction, cam->angle_y);
-	*direction = ft_rotate_z(*direction, cam->angle_z);
+	*direction = rotate_x(*direction, cam->angle_x);
+	*direction = rotate_y(*direction, cam->angle_y);
+	*direction = rotate_z(*direction, cam->angle_z);
 }
 
 void	render(t_data *pic, t_scene *scene)
@@ -50,8 +50,8 @@ void	render(t_data *pic, t_scene *scene)
 		{
 			color = BLACK;
 			ray = ray_by_x_y(x, y, scene);
-			ft_rotate_ray(scene->camera, &ray);
-			color = ft_intersection(scene, &ray);
+			rotate_ray(scene->camera, &ray);
+			color = get_pixel_color(scene, &ray);
 			my_mlx_pixel_put(pic, x, y, color);
 			++x;
 		}

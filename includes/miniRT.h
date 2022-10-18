@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:12:14 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/16 21:01:20 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/18 20:50:36 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@
 # define RED 0x00FF0000
 
 /* Console colors */
-#define RESET   "\033[0m"
-#define RED_C     "\033[1;31m"
-#define YELLOW_C  "\033[1;33m"
-#define WHITE_C   "\033[1;37m"
+# define RESET   "\033[0m"
+# define RED_C     "\033[1;31m"
+# define YELLOW_C  "\033[1;33m"
+# define WHITE_C   "\033[1;37m"
 
 /* Common params */
 # define BUFF_SIZE 40096
@@ -128,7 +128,7 @@
 /* Parameters */
 # define DIFF 2
 # define SPEC 4
-# define SHADOW -30
+# define SHADOW -40
 
 typedef struct s_pixel
 {
@@ -215,22 +215,22 @@ int		ft_handle_buttons(int keycode, t_data *pic);
 void	ft_resize_figure(int step, t_data *pic);
 void	ft_move_figure(int keycode, int step, t_data *pic);
 void	ft_change_fov(int keycode, int step, t_data *pic);
-void	ft_rotate_figure(int keycode, int angle, t_data *pic);
+void	rotate_figure(int keycode, int angle, t_data *pic);
 
 /* ft_handle_buttons_3.c */
 
 void	ft_move_camera(int keycode, float step, t_data *pic);
-void	ft_rotate_camera(int keycode, float angle, t_data *pic);
+void	rotate_camera(int keycode, float angle, t_data *pic);
 
 /* ft_handle_buttons_4.c */
 
 void	ft_move_light(int keycode, float step, t_data *pic);
-void	ft_rotate_light(int keycode, float angle, t_data *pic);
+void	rotate_light(int keycode, float angle, t_data *pic);
 
 /* light_utils.c */
 
 float	light_angle(t_vec3 normale, t_vec3 inter_point, t_scene *scene);
-float	ft_spec_light(t_vec3 normale, t_vec3 direction, t_vec3 inter_point, \
+float	special_light(t_vec3 normale, t_vec3 direction, t_vec3 inter_point, \
 																t_scene *scene);
 t_vec3	get_normale(t_vec3 inter_point, t_figure *figure);
 int		lightning(t_scene *scene, t_figure *figure, t_vec3 *ray, float dist);
@@ -238,12 +238,12 @@ int		is_in_shadow(t_scene *scene, t_figure *figure, t_vec3 *inter_point);
 
 /* intersect_utils_1.c */
 
-float	ft_plane_intersect(t_figure *plane, t_vec3 *cam_origin, \
+float	plane_intersect(t_figure *plane, t_vec3 *cam_origin, \
 															t_vec3 *direction);
-float	ft_sphere_intersect(t_figure *sphere, t_vec3 *cam_origin, \
+float	sphere_intersect(t_figure *sphere, t_vec3 *cam_origin, \
 											t_vec3 *direction, t_discrmn box);
 float	find_distance(t_figure *figure, t_vec3 *cam_origin, t_vec3 *ray);
-int		ft_intersection(t_scene *scene, t_vec3 *ray);
+int		get_pixel_color(t_scene *scene, t_vec3 *ray);
 
 /* intersect_utils_2.c */
 
@@ -255,9 +255,8 @@ t_vec3	ft_cylinder_norm(t_figure *cyl, t_vec3 *inter_point);
 
 /* main.c */
 
-void	ft_rotate_ray(t_camera *cam, t_vec3 *dir);
+void	rotate_ray(t_camera *cam, t_vec3 *dir);
 void	render(t_data *pic, t_scene *scene);
-t_vec3	ft_rotate_dir(t_vec3 dir, t_camera *camera);
-int		sphere_intersect(t_vec3 ray_original, t_scene *scene);
+t_vec3	rotate_dir(t_vec3 dir, t_camera *camera);
 
 #endif
