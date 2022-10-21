@@ -6,7 +6,7 @@
 /*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 17:30:18 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/18 20:42:16 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/21 18:49:58 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ float	light_angle(t_vec3 normale, t_vec3 point, t_scene *scene)
 	return (result * scene->light->power);
 }
 
-float	special_light(t_vec3 normale, t_vec3 ray, t_vec3 point, \
+float	specular_light(t_vec3 normale, t_vec3 ray, t_vec3 point, \
 																t_scene *scene)
 {
 	float	power;
@@ -99,6 +99,6 @@ int	lightning(t_scene *scene, t_figure *fig, t_vec3 *ray, float dist)
 		res = add_3_colors(change_bright(fig->color, scene->ambient->power), \
 		change_bright(fig->color, light_angle(normale, point, scene) \
 		* DIFF), change_bright(fig->color, \
-		special_light(normale, *ray, point, scene) * SPEC));
+		specular_light(normale, *ray, point, scene) * SPEC));
 	return (res);
 }

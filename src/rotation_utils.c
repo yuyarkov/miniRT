@@ -6,7 +6,7 @@
 /*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 19:16:53 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/18 20:15:49 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/21 21:39:35 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_vec3	rotate_x(t_vec3 vector, float phi)
 	new_y = vector.y * cos(phi) + vector.z * sin(phi);
 	new_z = -vector.y * sin(phi) + vector.z * cos(phi);
 	vector = build_vector(vector.x, new_y, new_z);
-	vector_normalize(&vector);
+	//vector_normalize(&vector);
 	return (vector);
 }
 
@@ -32,7 +32,7 @@ t_vec3	rotate_y(t_vec3 vector, float phi)
 	new_x = vector.x * cos(phi) - vector.z * sin(phi);
 	new_z = vector.x * sin(phi) + vector.z * cos(phi);
 	vector = build_vector(new_x, vector.y, new_z);
-	vector_normalize(&vector);
+	//vector_normalize(&vector);
 	return (vector);
 }
 
@@ -44,7 +44,7 @@ t_vec3	rotate_z(t_vec3 vector, float phi)
 	new_x = vector.x * cos(phi) - vector.y * sin(phi);
 	new_y = vector.x * sin(phi) + vector.y * cos(phi);
 	vector = build_vector(new_x, new_y, vector.z);
-	vector_normalize(&vector);
+	//vector_normalize(&vector);
 	return (vector);
 }
 

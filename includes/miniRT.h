@@ -6,7 +6,7 @@
 /*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:12:14 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/18 21:08:37 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/21 20:03:53 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -216,11 +216,14 @@ void	ft_resize_figure(int step, t_data *pic);
 void	ft_move_figure(int keycode, int step, t_data *pic);
 void	ft_change_fov(int keycode, int step, t_data *pic);
 void	rotate_figure(int keycode, int angle, t_data *pic);
+void	move_figures(t_scene *scene);
+void	prepare_scene(t_scene *scene);
 
 /* ft_handle_buttons_3.c */
 
 void	ft_move_camera(int keycode, float step, t_data *pic);
 void	rotate_camera(int keycode, float angle, t_data *pic);
+void	rotate_figures(t_scene *scene);
 
 /* ft_handle_buttons_4.c */
 
@@ -230,7 +233,7 @@ void	rotate_light(int keycode, float angle, t_data *pic);
 /* light_utils.c */
 
 float	light_angle(t_vec3 normale, t_vec3 inter_point, t_scene *scene);
-float	special_light(t_vec3 normale, t_vec3 direction, t_vec3 inter_point, \
+float	specular_light(t_vec3 normale, t_vec3 direction, t_vec3 inter_point, \
 																t_scene *scene);
 t_vec3	get_normale(t_vec3 inter_point, t_figure *figure);
 int		lightning(t_scene *scene, t_figure *figure, t_vec3 *ray, float dist);

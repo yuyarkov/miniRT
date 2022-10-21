@@ -6,7 +6,7 @@
 /*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:11:04 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/18 20:13:25 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/21 20:05:26 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int	main(int argc, char **argv)
 		clean_scene_data(&scene);
 		return (1);
 	}
+	prepare_scene(&scene);
 	scene.camera->f = get_focus_distance(&scene);
 	print_manual("/Users/merlich/Desktop/new_project_dirony_branch/manual.txt");
 	mlx_run(&scene);

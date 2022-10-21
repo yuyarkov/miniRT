@@ -6,7 +6,7 @@
 /*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 19:59:47 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/18 20:47:13 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/21 21:33:50 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,31 @@ void	rotate_figure(int keycode, int angle, t_data *pic)
 			figures->norm_vector = rotate_z(figures->norm_vector, -angle);
 		figures = figures->next;
 	}
+}
+
+void	move_figures(t_scene *scene)
+{
+	t_figure	*iter;
+	t_vec3		cam;
+
+	iter = scene->figures;
+	cam = scene->camera->position;
+	while (iter)
+	{
+		iter->center.x -= cam.x;
+		iter->center.y -= cam.y;
+		iter->center.z -= cam.z;
+		iter = iter->next;
+	}
+	scene->light->origin.x -= cam.x;
+	scene->light->origin.y -= cam.y; 
+	scene->light->origin.z -= cam.z;
+}
+
+void	prepare_scene(t_scene *scene)
+{
+	move_figures(scene);
+	rotate_figures(scene);
+	scene->camera->position = build_vector(0, 0, 0);
+	scene->camera->orientation = build_vector(0, 0, 1);
 }
