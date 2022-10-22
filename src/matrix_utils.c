@@ -6,7 +6,7 @@
 /*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/22 17:05:07 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/22 18:58:45 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/22 19:53:56 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_matrix	look_at(t_vec3 origin, t_vec3 cam_vector)
 	t_vec3		right;
 	t_vec3		up;
 
-	or = camera_up(vector_multiply(cam_vector, -1));
+	or = camera_up(cam_vector);
 	right = vec3_cross_product(or, cam_vector);
 	vector_normalize(&right);
 	up = vec3_cross_product(cam_vector, right);
