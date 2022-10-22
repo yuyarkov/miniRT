@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
+/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 18:12:02 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/22 20:18:14 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/22 20:26:23 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int	check_normale(t_scene *scene)
 				&& figure->norm_vector.z == 0.0f)
 				return (ft_perror("Norm vector cannot be (0;0;0)!\n"));
 		}
-
 		figure = figure->next;
 	}
 	if (cam->orientation.x == 0.0f \
