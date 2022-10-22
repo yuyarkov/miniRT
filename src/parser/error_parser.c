@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 18:12:02 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/15 21:38:43 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/22 20:10:37 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,22 @@ int	ft_check_input(int argc, char **argv)
 		ptr = ft_strrchr(argv[1], '.');
 		if (!ptr || ft_strncmp(ptr, ".rt", 4))
 			return (ft_print_msg());
+	}
+	return (0);
+}
+
+int	check_normale(t_scene *scene)
+{
+	t_figure	*figure;
+
+	figure = scene->figures;
+	while (figure)
+	{
+		if ((figure->type == CYLINDER || figure->type == PLANE) \
+			&& (figure->norm_vector.x == 0 && figure->norm_vector.x == 0 \
+			&& figure->norm_vector.x == 0))
+			return (ft_perror("Norm vector cannot be (0;0;0)!\n"));
+		figure = figure->next;
 	}
 	return (0);
 }

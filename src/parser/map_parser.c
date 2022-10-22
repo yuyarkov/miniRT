@@ -6,7 +6,7 @@
 /*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 19:04:03 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/15 21:38:17 by merlich          ###   ########.fr       */
+/*   Updated: 2022/10/22 20:05:15 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	check_map(t_scene *scene, char *map)
 		str = get_next_line(fd);
 	}
 	close(fd);
-	if (ft_check_doubles(scene) || err)
+	if (check_normale(scene) || ft_check_doubles(scene) || err)
 		return (1);
 	return (0);
 }

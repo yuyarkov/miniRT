@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   miniRT.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
+/*   By: merlich <merlich@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:12:14 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/22 17:04:02 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/22 20:05:31 by merlich          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,6 +167,7 @@ void	ft_str_dup(const char *str, char *ptr);
 /* error_parser.c */
 
 int		ft_check_input(int argc, char **argv);
+int		check_normale(t_scene *scene);
 
 /* map_parser.c */
 
