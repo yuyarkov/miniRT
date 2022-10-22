@@ -6,7 +6,7 @@
 /*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 19:12:14 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/21 20:03:53 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/22 17:04:02 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # include <stdio.h>
 
 # include "vector.h"
+# include "matrix.h"
 # include "color.h"
 # include "ambient.h"
 # include "light.h"
@@ -242,7 +243,7 @@ int		is_in_shadow(t_scene *scene, t_figure *figure, t_vec3 *inter_point);
 /* intersect_utils_1.c */
 
 float	plane_intersect(t_figure *plane, t_vec3 *cam_origin, \
-															t_vec3 *direction);
+														t_vec3 *direction);
 float	sphere_intersect(t_figure *sphere, t_vec3 *cam_origin, \
 											t_vec3 *direction, t_discrmn box);
 float	find_distance(t_figure *figure, t_vec3 *cam_origin, t_vec3 *ray);

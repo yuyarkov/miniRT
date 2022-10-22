@@ -6,7 +6,7 @@
 /*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/16 19:04:20 by dirony            #+#    #+#             */
-/*   Updated: 2022/10/18 20:15:49 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/22 17:09:12 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,3 +33,5 @@ t_vec3	ray_by_x_y(int x, int y, t_scene *scene)
 	vector_normalize(&result);
 	return (result);
 }
+
+

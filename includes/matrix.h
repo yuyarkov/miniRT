@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   color.h                                            :+:      :+:    :+:   */
+/*   matrix.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/15 17:55:55 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/22 15:58:17 by dirony           ###   ########.fr       */
+/*   Created: 2022/10/22 17:03:23 by dirony            #+#    #+#             */
+/*   Updated: 2022/10/22 17:04:19 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef COLOR_H
-# define COLOR_H
+#ifndef MATRIX_H
+# define MATRIX_H
 
-typedef struct s_color
+typedef struct s_matrix
 {
-	int	a;
-	int	r;
-	int	g;
-	int	b;
-}	t_color;
+	float	d[4][4];
+}   t_matrix;
 
-/* color_utils.c */
-int	create_argb_color(int t, int r, int g, int b);
-int	get_rgb_component(int color, char level);
-int	change_bright(t_color clr, float ratio);
-int	add_color(int color, int coef);
-int	add_3_colors(int c1, int c2, int c3);
+t_vec3			multiply_by_matrix(t_vec3 p, t_matrix m);
+t_matrix		look_at(t_vec3 origin, t_vec3 cam_direction);
 
 #endif

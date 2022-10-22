@@ -6,7 +6,7 @@
 #    By: dirony <dirony@21-school.ru>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/02 22:45:06 by merlich           #+#    #+#              #
-#    Updated: 2022/10/16 19:25:46 by dirony           ###   ########.fr        #
+#    Updated: 2022/10/22 17:15:48 by dirony           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ MLIBX_PATH = ./mlx
 LIB_PATH =   ./libft/
 
 SRC_FILES =	main.c 							draw_utils.c\
-			ray_utils.c\
+			ray_utils.c						matrix_utils.c\
 			intersect_utils_1.c				intersect_utils_2.c\
 			light_utils.c\
 			vector_operations_1.c			vector_operations_2.c\
