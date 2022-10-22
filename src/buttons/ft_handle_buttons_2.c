@@ -6,7 +6,7 @@
 /*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 19:59:47 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/21 21:33:50 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/22 19:00:28 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ void	move_figures(t_scene *scene)
 		iter = iter->next;
 	}
 	scene->light->origin.x -= cam.x;
-	scene->light->origin.y -= cam.y; 
+	scene->light->origin.y -= cam.y;
 	scene->light->origin.z -= cam.z;
 }
 

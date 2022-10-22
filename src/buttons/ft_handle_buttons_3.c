@@ -6,7 +6,7 @@
 /*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 21:35:31 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/22 17:56:37 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/22 19:00:57 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	rotate_figures(t_scene *scene)
 	t_figure	*iter;
 	t_matrix	rotation;
 
-
 	iter = scene->figures;
 	rotation = look_at(build_vector(0, 0, 0), scene->camera->orientation);
 	while (iter)
@@ -61,7 +60,7 @@ void	rotate_figures(t_scene *scene)
 		iter->center = multiply_by_matrix(iter->center, rotation);
 		iter = iter->next;
 	}
-	scene->light->origin = multiply_by_matrix(scene->light->origin, rotation);;
+	scene->light->origin = multiply_by_matrix(scene->light->origin, rotation);
 }
 
 void	ft_change_fov(int keycode, int step, t_data *pic)

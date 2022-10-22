@@ -6,7 +6,7 @@
 /*   By: dirony <dirony@21-school.ru>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 20:22:22 by merlich           #+#    #+#             */
-/*   Updated: 2022/10/18 21:06:27 by dirony           ###   ########.fr       */
+/*   Updated: 2022/10/22 18:59:55 by dirony           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ static void	ft_handle_buttons_2(int keycode, t_data *pic)
 
 int	ft_handle_buttons(int keycode, t_data *pic)
 {
-	printf("cylinder height: %f, button code = %d\n", pic->scene_ptr->figures->height, keycode);
 	ft_handle_buttons_2(keycode, pic);
 	if (keycode == FOV_PLUS || keycode == FOV_MINUS)
 		ft_change_fov(keycode, CAM_STEP, pic);
@@ -63,6 +62,5 @@ int	ft_handle_buttons(int keycode, t_data *pic)
 			keycode == L || keycode == U || keycode == O)
 		ft_move_light(keycode, LIGHT_STEP, pic);
 	ft_redraw_image(pic);
-	printf("after redraw, cylinder height: %f, button code = %d\n", pic->scene_ptr->figures->height, keycode);
 	return (0);
 }
